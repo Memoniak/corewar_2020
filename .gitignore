@@ -1,0 +1,7 @@
+asm
+unit_tests
+*.o
+*.a
+*~
+.#*
+*.gc*

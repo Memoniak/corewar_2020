@@ -16,9 +16,9 @@ static void destroy(char **code, char **types, char **values)
 
 static void display(char *code, char *types, char *values)
 {
-    printf("code   = |%s|\n", code);
-    printf("types  = |%s|\n", types);
-    printf("values = |%s|\n", values);
+    my_printf(1, "code   = |%s|\n", code);
+    my_printf(1, "types  = |%s|\n", types);
+    my_printf(1, "values = |%s|\n", values);
 }
 
 int main(int ac, char *av[])

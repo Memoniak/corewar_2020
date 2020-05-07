@@ -13,6 +13,7 @@
 #include "structs.h"
 #include "proto.h"
 #include "my.h"
+#include "my_printf.h"
 #include "op.h"
 
 #endif /* COREWAR_H */

@@ -27,6 +27,7 @@ SRCDIR	=	src/
 LIBDIR	=	lib/
 TESTDIR	=	tests/
 MYDIR	=	$(LIBDIR)my/
+PRINTDIR=	$(LIBDIR)printf_lib/
 PROJDIR	=	$(SRCDIR)
 
 PROJLIST=	$(SRCDIR)main.c			\
@@ -45,9 +46,10 @@ MULFLAG	=	-lcsfml-graphics -lcsfml-system -lcsfml-audio
 MATHFLAG=	-lm
 PSUFLAG	=	-lcurses
 
-LDFLAGS	=	-L $(LIBDIR) -lmy
+LDFLAGS	=	-L $(LIBDIR) -lmy	\
+		-L $(LIBDIR) -lprintf
 
-CFLAGS	+=	-W -Wall	\
+CFLAGS	+=	-W -Wall -Werror	\
 		-I $(INCDIR)
 
 TEST	=	unit_tests
@@ -83,6 +85,7 @@ cc_title:
 
 $(NAME):	obj_title
 		@make -C $(MYDIR) --no-print-directory
+		@make -C $(PRINTDIR) --no-print-directory
 		@$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LDFLAGS) && $(ECHO)			\
 		$(BOLD)$(GREEN)"\n\n\t     ╽ ─╼━━━━━━━━━╾─ ╽\n\t ╼━━┿╉"$(DEF)			\
 		$(BOLD)"BUILD SUCCESS "$(GREEN)"╊┿━━╾\n\t     ╿ ─╼━━━━━━━━━╾─ ╿\n"$(DEF) ||	\
@@ -97,6 +100,7 @@ clean:
 
 fclean:		clean_title clean
 		@make -C $(MYDIR) fclean --no-print-directory
+		@make -C $(PRINTDIR) fclean --no-print-directory
 		@$(RM) $(TEST)
 		@$(RM) $(NAME)
 		@$(ECHO) '\t   '$(BOLD)$(WHITE)"FCLEAN "$(BOLD)$(GREEN)"SUCCESS "✓'\n'$(DEF)

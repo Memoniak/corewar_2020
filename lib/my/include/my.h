@@ -33,8 +33,8 @@ float my_getflt(char *str);
 int next_word(char const *str);
 char *my_getword(char const *str);
 
-//my_realloc.c
-bool my_realloc(char **str, size_t size);
+//my_remalloc.c
+bool my_remalloc(char **str, size_t size);
 
 //my_revstr.c
 char *my_revstr(char *str);

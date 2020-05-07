@@ -11,7 +11,7 @@ char *put_getline(char *str, char const *buff, int buff_len)
 {
     size_t len = my_strlen(str);
 
-    if (!my_realloc(&str, len + buff_len + 1))
+    if (!my_remalloc(&str, len + buff_len + 1))
         return NULL;
     for (size_t i = 0; buff[i]; i++)
         str[i + len] = buff[i];

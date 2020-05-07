@@ -14,7 +14,7 @@ char *my_strcat(char *dest, char const *str)
     char *temp = NULL;
 
     temp = my_strcpy(temp, dest);
-    my_realloc(&dest, len1 + len2 + 1);
+    my_remalloc(&dest, len1 + len2 + 1);
     for (int i = 0; i != len1 + len2 + 1; i++) {
         if (i < len1)
             dest[i] = temp[i];

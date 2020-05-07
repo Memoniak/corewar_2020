@@ -7,7 +7,7 @@
 
 #include "my.h"
 
-bool my_realloc(char **str, size_t size)
+bool my_remalloc(char **str, size_t size)
 {
     size_t len = my_strlen(*str);
     char *temp = NULL;

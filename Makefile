@@ -53,9 +53,9 @@ out:	tests_run
 
 clean:
 	rm -f $(OBJ)
-	rm -f *html
-	rm -f *.gcda
-	rm -f *.gcno
+	rm -rf *html
+	rm -rf *.gcda
+	rm -rf *.gcno
 
 
 ~clean:

@@ -5,10 +5,11 @@
 ** check_ params
 */
 
-// ! Pol struct 
-
 #include "op.h"
 #include <stdio.h>
+#include <stdbool.h>
+
+// ! Pol struct
 
 int check_type_arg(char *param);
 
@@ -21,7 +22,7 @@ typedef struct cmd
     char *p4;
 }cmd_t;
 
-cmd_t cmd_line = {7, "r1", "r2", "r3"};
+cmd_t cmd_line = {1, "%4", NULL, NULL};
 
 int get_code(int cmd_code, op_t* op_tab)
 {
@@ -35,18 +36,54 @@ int get_code(int cmd_code, op_t* op_tab)
         return i;
 }
 
-int check_args(char *cmd_line)
+//operztion sur les bools
+int check_type_ok(int data_cmd , bool t_dir, bool t_ind, bool t_reg)
 {
+    if (data_cmd == 0 && t_dir | t_ind | t_reg == 0)
+        return 0;
+    if (t_dir == true && data_cmd == T_DIR)
+        return 0;
+    if (t_ind == true && data_cmd == T_IND)
+        return 0;
+    if (t_reg == true && data_cmd == T_REG)
+        return 0;
+    return 1;
+}
 
+//TODO : Revoir avc simon le ou binaire si d'autres if
+
+int check_arg(int data_cmd , int type)
+{
+    bool t_dir = false;
+    bool t_ind = false;
+    bool t_reg = false;
+
+    if (!data_cmd && !type)
+        return 0; //ou func check_type_ok
+    if (type - T_IND >= 0)
+        t_ind = true;
+    if (type - T_DIR >= 0)
+        t_reg = true;
+    if (type - T_REG >= 0)
+        t_reg = true;
+    return check_type_ok(data_cmd, t_dir, t_ind, t_reg);
 }
 
 int check_line(cmd_t cmd_line, op_t* op_tab)
 {
     int code = get_code(cmd_line.code, op_tab);
+    int data[4] = {check_type_arg(cmd_line.p1),
+    check_type_arg(cmd_line.p2),
+    check_type_arg(cmd_line.p3),
+    check_type_arg(cmd_line.p4)};
 
     if (code < 0)
         return -1;
-    
+    for (size_t i = 0; i < 4; i++) {
+        if (check_args(data[i], op_tab[code].type[i]))
+            return -1;
+    }
+    return 0;
 }
 
 int main(void)
@@ -78,6 +115,6 @@ int main(void)
     {0, 0, {0}, 0, 0, 0}
   };
 
-    int ret = get_code(cmd_line.code, op_tab);
-    return ret;
+    check_line(cmd_line, op_tab);
+    return 0;
 }

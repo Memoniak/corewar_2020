@@ -47,5 +47,4 @@ int check_type_arg(char *param)
     if (!check_t_ind(param))
         return T_IND;
     return 0;
-
 }

@@ -10,6 +10,8 @@
 #include "op.h"
 #include <stdio.h>
 
+int check_type_arg(char *param);
+
 typedef struct cmd
 {
     int code;
@@ -31,6 +33,20 @@ int get_code(int cmd_code, op_t* op_tab)
         return -1;
     else
         return i;
+}
+
+int check_args(char *cmd_line)
+{
+
+}
+
+int check_line(cmd_t cmd_line, op_t* op_tab)
+{
+    int code = get_code(cmd_line.code, op_tab);
+
+    if (code < 0)
+        return -1;
+    
 }
 
 int main(void)

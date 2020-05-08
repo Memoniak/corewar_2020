@@ -8,16 +8,16 @@
 static int check_t_reg(char *param)
 {
     int nb_reg;
-
     if(param[0] != 'r')
         return 1;
-    for(int i = 0; param[i]; i++) {
-        if (isnum(param[i]))
+    for(int i = 1; param[i]; i++) {
+        if (is_num(param[i]) !=  1)
             return 1;
     }
-    my_getnbr(param + 1);
+    nb_reg = my_getnbr(param + 1);
     if (nb_reg > REG_NUMBER)
         return 1;
+    return 0;
 }
 
 static int check_t_dir(char *param)

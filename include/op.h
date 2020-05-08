@@ -11,6 +11,8 @@
 #ifndef _OP_H_
 # define _OP_H_
 
+#include "my.h"
+
 # define MEM_SIZE                (6*1024)
 # define IDX_MOD                 512   /* modulo of the index < */
 # define MAX_ARGS_NUMBER         4     /* this may not be changed 2^*IND_SIZE */
@@ -66,7 +68,7 @@ typedef struct op_s     op_t;
 /*
 ** op_tab
 */
-extern  op_t    op_tab[];
+//extern  op_t    op_tab[];
 
 /*
 ** header

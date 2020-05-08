@@ -8,9 +8,34 @@
 // ! Pol struct 
 
 #include "op.h"
+#include <stdio.h>
 
+typedef struct cmd
+{
+    int code;
+    char *p1;
+    char *p2;
+    char *p3;
+    char *p4;
+}cmd_t;
 
-op_t    op_tab[] =
+cmd_t cmd_line = {7, "r1", "r2", "r3"};
+
+int get_code(int cmd_code, op_t* op_tab)
+{
+    int i = 0;
+
+    while(cmd_code != op_tab[i].code && i < 16)
+        i++;
+    if (i >= 16)
+        return -1;
+    else
+        return i;
+}
+
+int main(void)
+{
+    op_t    op_tab[] =
   {
     {"live", 1, {T_DIR}, 1, 10, "alive"},
     {"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load"},
@@ -37,13 +62,6 @@ op_t    op_tab[] =
     {0, 0, {0}, 0, 0, 0}
   };
 
-typedef struct cmd
-{
-    int code;
-    char *p1;
-    char *p1;
-    char *p1;
-    char *p1;
-}cmd_t;
-
-cmd_t cmd_line = {1, "r1", "r2", "r3"};
+    int ret = get_code(cmd_line.code, op_tab);
+    return ret;
+}

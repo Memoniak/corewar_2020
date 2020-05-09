@@ -9,11 +9,11 @@
 #define STRUCT_H
 
 typedef struct {
-    float rotate;
-    float speed;
-    int right;
-    int left;
-    int front;
-} game_t;
+    int code;
+    char *p1;
+    char *p2;
+    char *p3;
+    char *p4;
+} instru_t;
 
 #endif /*STRUCT_H*/

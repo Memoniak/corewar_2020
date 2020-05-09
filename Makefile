@@ -31,10 +31,11 @@ PRINTDIR=	$(LIBDIR)printf_lib/
 PROJDIR	=	$(SRCDIR)
 
 PROJLIST=	$(SRCDIR)main.c			\
-		$(SRCDIR)base_to_hexa.c		\
-		$(SRCDIR)code_to_hexa.c		\
-		$(SRCDIR)types_to_hexa.c	\
-		$(SRCDIR)values_to_hexa.c
+		$(SRCDIR)bin_to_deca.c		\
+		$(SRCDIR)write_ina_file.c	\
+		$(SRCDIR)types.c		\
+		$(SRCDIR)tools.c		\
+		$(SRCDIR)values.c
 
 SRC	=	$(PROJLIST)
 
@@ -49,7 +50,7 @@ PSUFLAG	=	-lcurses
 LDFLAGS	=	-L $(LIBDIR) -lmy	\
 		-L $(LIBDIR) -lprintf
 
-CFLAGS	+=	-W -Wall -Werror	\
+CFLAGS	+=	-W -Wall	\
 		-I $(INCDIR)
 
 TEST	=	unit_tests

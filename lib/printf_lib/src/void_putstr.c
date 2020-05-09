@@ -9,6 +9,8 @@
 
 void void_putstr(int output, char const *str)
 {
+    if (!str)
+        return;
     for (int i = 0; str[i]; i++)
         write(output, &str[i], 1);
 }

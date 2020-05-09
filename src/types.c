@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2020
-** types_to_hexa.c
+** types.c
 ** File description:
-** convert instruction_types to hexadecimal numbers
+** convert instruction_types to decimal numbers
 */
 
 #include "corewar.h"
@@ -23,11 +23,10 @@ static char *get_type(char *param, char *binary)
     return str;
 }
 
-char *types_to_hexa(char *param1, char *param2, char *param3, char *param4)
+int types_to_deca(char *param1, char *param2, char *param3, char *param4)
 {
     char *binary = NULL;
     int   deca   = 0;
-    char *hexa   = NULL;
 
     binary = get_type(param1, binary);
     binary = get_type(param2, binary);
@@ -35,8 +34,7 @@ char *types_to_hexa(char *param1, char *param2, char *param3, char *param4)
     binary = get_type(param4, binary);
     if (binary) {
         deca = bin_to_deca(my_getnbr(binary));
-        hexa = deca_to_hexa(deca);
         free(binary);
     }
-    return hexa;
+    return deca;
 }

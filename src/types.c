@@ -7,34 +7,28 @@
 
 #include "corewar.h"
 
-static char *get_type(char *param, char *binary)
+static int getta_type(char *param)
 {
-    char *str = NULL;
-
     if (!param) {
-        str = my_strcat(binary, "00");
-        return str;
+        return 0;
     } if (param[0] == 'r') {
-        str = my_strcat(binary, "01");
+        return 1;
     } else if (param[0] == '%') {
-        str = my_strcat(binary, "10");
-    } else
-        str = my_strcat(binary, "11");
-    return str;
+        return 2;
+    }
+    return 3;
 }
 
 int types_to_deca(char *param1, char *param2, char *param3, char *param4)
 {
-    char *binary = NULL;
-    int   deca   = 0;
+    int deca = 0;
 
-    binary = get_type(param1, binary);
-    binary = get_type(param2, binary);
-    binary = get_type(param3, binary);
-    binary = get_type(param4, binary);
-    if (binary) {
-        deca = bin_to_deca(my_getnbr(binary));
-        free(binary);
-    }
+    deca += getta_type(param1);
+    deca <<= 2;
+    deca += getta_type(param2);
+    deca <<= 2;
+    deca += getta_type(param3);
+    deca <<= 2;
+    deca += getta_type(param4);
     return deca;
 }

@@ -5,7 +5,7 @@
 ** check_label_char
 */
 
-#include "assembler.h"
+#include "corewar.h"
 
 int check_label_chars(char *name)
 {

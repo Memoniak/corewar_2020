@@ -27,17 +27,23 @@ SRCDIR  =       ../src/
 LIBDIR  =       ../lib/
 MYDIR   =       $(LIBDIR)my/
 PRINTDIR=       $(LIBDIR)printf_lib/
-PROJDIR =       $(SRCDIR)assembler/
+PROJDIR =       $(SRCDIR)
+ASMDIR	=	$(SRCDIR)assembler/
 
-PROJLIST=	$(PROJDIR)types.c	\
-		$(PROJDIR)values.c	\
-		$(PROJDIR)tools.c
+PROJLIST=	$(PROJDIR)op.c
+
+ASMLIST=	$(ASMDIR)types.c	\
+		$(ASMDIR)get_indexes.c	\
+		$(ASMDIR)values.c	\
+		$(ASMDIR)tools.c
 
 SRC     =	corewar_tests.c		\
-		$(PROJLIST)
+		$(PROJLIST)		\
+		$(ASMLIST)
 
 OBJ     =       $(SRC:.c=.o)
 POBJ    =       $(PROJLIST:.c=.o)
+AOBJ    =       $(ASMLIST:.c=.o)
 
 TUFLAG  =       --coverage -lcriterion
 MULFLAG =       -lcsfml-graphics -lcsfml-system -lcsfml-audio
@@ -53,7 +59,7 @@ CFLAGS  +=      -W -Wall -Werror        \
 
 TEST    =       unit_tests
 
-obj_title:      Ptitle $(POBJ)
+obj_title:      Ptitle $(POBJ) Atitle $(AOBJ)
 
 title:
 		@$(ECHO) $(BOLD)$(BLUE)"\n        ╼┪  ─╼━━━━━━┷━━━━━━╾─  ┢╾\n    ╼━━━┿╉"\
@@ -62,6 +68,10 @@ title:
 
 Ptitle:
 		@$(ECHO) $(WHITE) && $(ECHO) -n $(PROJDIR) | tr a-z A-Z |       \
+		sed 's/\//\./' | cut -zd'/' -f1 &&                              \
+		$(ECHO) -n $(WHITE)' '$(BLANCO)'/        \n'$(DEF)
+Atitle:
+		@$(ECHO) $(WHITE) && $(ECHO) -n $(ASMDIR) | tr a-z A-Z |       \
 		sed 's/\//\./' | cut -zd'/' -f1 &&                              \
 		$(ECHO) -n $(WHITE)' '$(BLANCO)'/        \n'$(DEF)
 

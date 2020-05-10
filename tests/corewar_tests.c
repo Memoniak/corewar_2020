@@ -35,3 +35,24 @@ Test(values, get_param_values, .init = redirect_all_std)
               values[0], values[1], values[2], values[3]);
     cr_assert_stdout_eq(solved);
 }
+
+Test(indexes, get_prog_size, .init = redirect_all_std)
+{
+    FILE *solved = fopen("tests/files/indexes_test", "r");
+    cmd_t cmd1[] = {
+        {0, 11, "r1", "%7", "%1", NULL}
+    };
+    cmd_t cmd2[] = {
+        {0, 1, "%234", NULL, NULL, NULL},
+        {0, 2, "%0", "r3", NULL, NULL},
+        {0, 9, "%-12", NULL, NULL, NULL}
+    };
+    funct_t funct[] = {
+        {0, NULL, 1, cmd1},
+        {0, "hi", 3, cmd2}
+    };
+    int prog_size = get_indexes(&funct);
+
+    my_printf(1, "%d", prog_size);
+    cr_assert_stdout_eq(solved);
+}

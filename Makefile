@@ -31,9 +31,11 @@ PRINTDIR=	$(LIBDIR)printf_lib/
 PROJDIR=	$(SRCDIR)
 ASMDIR=		$(SRCDIR)assembler/
 
-PROJLIST=	$(PROJDIR)main.c
+PROJLIST=	$(PROJDIR)main.c	\
+		$(PROJDIR)op.c
 
 ASMLIST=	$(ASMDIR)write_ina_file.c	\
+		$(ASMDIR)get_indexes.c		\
 		$(ASMDIR)types.c		\
 		$(ASMDIR)tools.c		\
 		$(ASMDIR)values.c

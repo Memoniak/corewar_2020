@@ -18,11 +18,15 @@ int types_to_deca(cmd_t *cmd);
 int *values_to_deca(cmd_t *cmd);
 
 //write_ina_file.c
-bool put_ina_file(int *types, int **values, cmd_t *cmd);
+bool put_ina_file(int *types, int **values, cmd_t *cmd, op_t op_tab[]);
 
 //tools.c
 int power(int nb, int pow);
-int get_param_type(char const *param);
+int get_type(char const *param, char *name);
 int get_binary_type(char const *param);
+int is_typed(int code);
+
+//get_indexes.c
+int get_indexes(funct_t funct[][2]);
 
 #endif /*PROTO_H*/

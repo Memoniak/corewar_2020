@@ -7,7 +7,7 @@
 
 #include "corewar.h"
 
-static const char FILEPATH[] = "files/file.core";
+static const char FILEPATH[] = "file.core";
 
 static void nwrite(int fd, int *value, int nb)
 {
@@ -23,19 +23,20 @@ static void nwrite(int fd, int *value, int nb)
     }
 }
 
-bool put_ina_file(int *types, int **values, cmd_t *cmd)
+bool put_ina_file(int *types, int **values, cmd_t *cmd, op_t op_tab[])
 {
     int fd;
 
-    fd = open(FILEPATH, O_CREAT | O_WRONLY, 0644);
+    fd = open(FILEPATH, O_APPEND | O_CREAT | O_WRONLY, 0644);
     if (fd == -1)
         return false;
     write(fd, &cmd->code, sizeof(char));
-    write(fd, types, sizeof(char)); //exept for live, zjmp, fork, lfork;
-    nwrite(fd, (*values + 0), get_param_type(cmd->param1));
-    nwrite(fd, (*values + 1), get_param_type(cmd->param2));
-    nwrite(fd, (*values + 2), get_param_type(cmd->param3));
-    nwrite(fd, (*values + 3), get_param_type(cmd->param4));
+    if (is_typed(cmd->code - 1))
+        write(fd, types, sizeof(char));
+    nwrite(fd, (*values + 0), get_type(cmd->param1, OTM(cmd->code - 1)));
+    nwrite(fd, (*values + 1), get_type(cmd->param2, OTM(cmd->code - 1)));
+    nwrite(fd, (*values + 2), get_type(cmd->param3, OTM(cmd->code - 1)));
+    nwrite(fd, (*values + 3), get_type(cmd->param4, OTM(cmd->code - 1)));
     close(fd);
     return true;
 }

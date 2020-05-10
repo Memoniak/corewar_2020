@@ -8,6 +8,10 @@
 #ifndef STRUCT_H
 #define STRUCT_H
 
+#include "op.h"
+
+extern struct op_s op_tab[];
+
 typedef struct {
     int  index;
     int  code;
@@ -18,8 +22,9 @@ typedef struct {
 } cmd_t;
 
 typedef struct {
-    char  *name;
     int   index;
+    char  *name;
+    int   nb_cmd;
     cmd_t *commands;
 } funct_t;
 

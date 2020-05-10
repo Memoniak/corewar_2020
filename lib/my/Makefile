@@ -1,6 +1,5 @@
 ##
 ## EPITECH PROJECT, 2019
-<<<<<<< HEAD
 ## Makefile
 ## File description:
 ## make file to compile
@@ -34,7 +33,8 @@ SRC 	=	concat_params.c			\
 		my_strncmp.c		\
 		my_strncpy.c		\
 		my_strdup.c			\
-		my_strcmp.c
+		my_strcmp.c			\
+		is_num.c
 
 OBJ	=	$(SRC:.c=.o)
 

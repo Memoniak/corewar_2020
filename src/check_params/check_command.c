@@ -6,6 +6,7 @@
 */
 
 #include "op.h"
+#include "assembler.h"
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -14,11 +15,11 @@ int check_type_arg(char *param, funct_t *labels);
 int check_type_ok(int data_cmd , bool t_dir, bool t_ind, bool t_reg)
 {
     if (t_dir == true && data_cmd == T_DIR)
-        return 0;
+	return 0;
     if (t_ind == true && data_cmd == T_IND)
-        return 0;
+	return 0;
     if (t_reg == true && data_cmd == T_REG)
-        return 0;
+	return 0;
     return 1;
 }
 
@@ -29,23 +30,23 @@ int check_arg(int data_cmd , int type)
     bool t_reg = false;
 
     if (!data_cmd && !type)
-        return 0; //ou func check_type_ok
+	return 0; //ou func check_type_ok
     if (type - T_IND >= 0) {
-        t_ind = true;
-        type -= T_IND;
+	t_ind = true;
+	type -= T_IND;
     }
     if (type - T_DIR >= 0) {
-        t_dir = true;
-        type -= T_DIR;
+	t_dir = true;
+	type -= T_DIR;
     }
     if (type - T_REG >= 0) {
-        t_reg = true;
-        type -= T_REG;
+	t_reg = true;
+	type -= T_REG;
     }
     return check_type_ok(data_cmd, t_dir, t_ind, t_reg);
 }
 
-int check_line(cmd_t cmd_line, const op_t* op_tab, funct_t *labels)
+int check_instructions(cmd_t cmd_line, const op_t* op_tab, funct_t *labels)
 {
     int code = cmd_line.code - 1;
     int data[4] = {check_type_arg(cmd_line.p1, labels),
@@ -54,8 +55,8 @@ int check_line(cmd_t cmd_line, const op_t* op_tab, funct_t *labels)
     check_type_arg(cmd_line.p4, labels)};
 
     for (int i = 0; i < 4; i++) {
-        if (check_arg(data[i], op_tab[code].type[i]))
-            return -1;
+	if (check_arg(data[i], op_tab[code].type[i]))
+	    return -1;
     }
     return 0;
 }

@@ -22,6 +22,7 @@ int fill_champion_info(champion_header_t *champ, char **file)
 
     if (!tmp)
         return 84;
+    champ->magic = COREWAR_EXEC_MAGIC;
     while (*(tmp)++ != '.' && *(tmp) != '\0' && *(tmp) != '\n');
     if (!my_strncmp(tmp, "name", 4))
         champ->name = get_string_inbetween(tmp, '"');
@@ -43,7 +44,7 @@ char *get_func_name(char *str)
     if (!str)
         return NULL;
     for (int i = 0; str[i]; i++) {
-        if (str[i] == ':' && str[i - 1] != '%') {
+        if (str[i] == LABEL_CHAR && str[i - 1] != DIRECT_CHAR) {
             name = malloc(sizeof(char) * i + 1);
             name = my_strncpy(name, str, i);
             return name;

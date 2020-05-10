@@ -1,4 +1,5 @@
 #include "op.h"
+#include "assembler.h"
 
 int check_label_chars(char *name)
 {

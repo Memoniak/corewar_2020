@@ -1,4 +1,5 @@
 #include "op.h"
+#include "assembler.h"
 #include <stdio.h>
 #include <stdlib.h>
 

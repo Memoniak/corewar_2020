@@ -19,3 +19,14 @@ bool write_params(cmd_t *cmd, op_t op_tab[])
     free(values);
     return true;
 }
+
+bool sim_main(funct_t *funct)
+{
+    printf("prog_size = %d\n", get_indexes(&funct));
+    get_label_value(&funct);
+    for (int i = 0; i != 2; i++)
+        for (int j = 0; j != funct[i].nb_cmd; j++)
+            if (!write_params(&funct[i].commands[j], op_tab))
+                return false;
+    return true;
+}

@@ -13,6 +13,7 @@
 
 //sim_main.c
 bool write_params(cmd_t *cmd, op_t op_tab[]);
+bool sim_main(funct_t *funct);
 
 //types.c
 int types_to_deca(cmd_t *cmd);

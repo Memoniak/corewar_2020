@@ -10,8 +10,9 @@
 
 int main(void)
 {
-    char *str = "and r1 ,%0,r1";
+    char *str = "%:hi";
+    int value = -1245678;
 
-    printf("%s", recup_label(str));
+    printf("%s\n", replace_label(str, value));
     return 0;
 }

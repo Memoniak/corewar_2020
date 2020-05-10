@@ -16,12 +16,6 @@ int main(int ac, char **av)
         return EXIT_FAILURE;
     if (!(funct = make_struct(av[1], &champ)))
         return EXIT_FAILURE;
-    printf("prog_size = %d\n", get_indexes(&funct));
-    get_label_value(&funct);
-    for (int i = 0; i != 2; i++)
-        for (int j = 0; j != funct[i].nb_cmd; j++)
-            if (!write_params(&funct[i].commands[j], op_tab))
-                return EXIT_FAILURE;
     for (int i = 0; i < funct[0].len; i++) {
         printf("func name --> %s\n", funct[i].name);
         for (int j = 0; j < funct[i].nb_cmd; j++) {
@@ -31,5 +25,7 @@ int main(int ac, char **av)
                    funct[i].commands[j].param4);
         }
     }
+    if (!sim_main(funct))
+        return EXIT_FAILURE;
     return EXIT_SUCCESS;
 }

@@ -13,6 +13,7 @@
 
 //sim_main.c
 bool write_params(cmd_t *cmd, op_t op_tab[]);
+bool sim_main(funct_t *funct);
 
 //types.c
 int types_to_deca(cmd_t *cmd);
@@ -59,6 +60,6 @@ void func_cmd_error(int line);
 int check_label_name(char *name, funct_t *labels);
 int check_value_dir(char *value, funct_t *labels);
 int check_value_ind(char *value, funct_t *labels);
-int check_instructions(cmd_t cmd_line, const op_t* op_tab, funct_t *labels)
+int check_instructions(cmd_t cmd_line, const op_t* op_tab, funct_t *labels);
 
 #endif /*PROTO_H*/

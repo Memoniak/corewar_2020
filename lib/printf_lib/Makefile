@@ -53,7 +53,7 @@ all:		title $(NAME)
 title:
 		@$(ECHO) $(WHITE) && $(ECHO) -n $(NAME) | cut -zd'.' -f1 |	\
 		tr a-z A-Z | sed 's/LIB*/LIB./' &&				\
-		$(ECHO) -n ' '$(BLANCO)'/                                          \n'$(DEF)
+		$(ECHO) -n ' '$(BLANCO)'/                                            \n'$(DEF)
 
 $(NAME):        $(OBJ)
 		@$(ARRC) $(NAME) $(OBJ) || $(ECHO)			\

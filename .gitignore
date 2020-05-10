@@ -1,8 +1,12 @@
 asm
 unit_tests
-*.o
-*.a
-*~
+test_asm
+abel.s
+.vscode/
 .#*
 *.gc*
 *.core
+*.o
+*~
+*.txt
+*.a

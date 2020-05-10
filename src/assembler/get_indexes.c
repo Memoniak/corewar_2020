@@ -16,7 +16,7 @@ static void get_param_info(cmd_t *cmd, int *value)
     *value += get_type(cmd->param4, OTM(cmd->code - 1));
 }
 
-int get_indexes(funct_t funct[][2])
+int get_indexes(funct_t **funct)
 {
     int value = 0;
 

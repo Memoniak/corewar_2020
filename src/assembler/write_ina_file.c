@@ -7,7 +7,7 @@
 
 #include "corewar.h"
 
-static const char FILEPATH[] = "file.core";
+static const char FILEPATH[] = "abel.core";
 
 static void nwrite(int fd, int *value, int nb)
 {

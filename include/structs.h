@@ -1,5 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
+<<<<<<< HEAD:include/structs.h
 ** structs.h
 ** File description:
 ** structs
@@ -24,14 +25,16 @@ typedef struct {
 typedef struct {
     int   index;
     char  *name;
+    int   len;
     int   nb_cmd;
     cmd_t *commands;
 } funct_t;
 
 typedef struct {
-    char **file_header;
     char *name;
     char *comment;
-} champion_info_t;
+    int magic;
+    int prog_size;
+} champion_header_t;
 
-#endif /*STRUCT_H*/
+#endif /* !ASSEMBLER_H_ */

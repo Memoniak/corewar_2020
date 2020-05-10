@@ -23,15 +23,19 @@ BLACKY=		"\e[9;30m"
 FONT=		"\e[7m"
 
 INCDIR=		include/
-SRCDIR=		src/
+SRC_DIR=	src/
 LIBDIR=		lib/
 TESTDIR=	tests/
 MYDIR=		$(LIBDIR)my_lib/
 PRINTDIR=	$(LIBDIR)printf_lib/
-PROJDIR=	$(SRCDIR)
-ASMDIR=		$(SRCDIR)assembler/
+ARRDIR=		$(LIBDIR)arr/
+FILEDIR=	$(LIBDIR)file/
+PARS_DIR=	$(SRC_DIR)parsing/
+ERR_PARS_DIR=	$(PARS_DIR)error_handling/
+PROJDIR=	$(SRC_DIR)
+ASMDIR=		$(SRC_DIR)assembler/
 
-PROJLIST=	$(PROJDIR)sim_main.c	\
+PROJLIST=	$(PROJDIR)sim_main.c		\
 		$(PROJDIR)op.c
 
 ASMLIST=	$(ASMDIR)write_ina_file.c	\
@@ -41,23 +45,37 @@ ASMLIST=	$(ASMDIR)write_ina_file.c	\
 		$(ASMDIR)tools.c		\
 		$(ASMDIR)values.c
 
+PARSLIST=	$(SRC_DIR)main.c		\
+		$(PARS_DIR)file_to_struct.c	\
+		$(PARS_DIR)check_file.c		\
+		$(PARS_DIR)get_func_param.c	\
+		$(PARS_DIR)init_cmd_struct.c	\
+		$(PARS_DIR)count_commands.c	\
+		$(PARS_DIR)command_loop.c	\
+		$(ERR_PARS_DIR)file_errors.c
+
 SRC=		$(PROJLIST)	\
-		$(ASMLIST)
+		$(ASMLIST)	\
+		$(PARSLIST)
 
 OBJ=		$(SRC:.c=.o)
 POBJ=		$(PROJLIST:.c=.o)
 AOBJ=		$(ASMLIST:.c=.o)
+ROBJ=		$(PARSLIST:.c=.o)
 
 TUFLAG=		--coverage -lcriterion
 MULFLAG=	-lcsfml-graphics -lcsfml-system -lcsfml-audio
 MATHFLAG=	-lm
 PSUFLAG=	-lcurses
 
-LDFLAGS=	-L $(LIBDIR) -lmy	\
-		-L $(LIBDIR) -lprintf
+LIB_DIR=	$(PRINTDIR) $(ARRDIR) $(FILEDIR) $(MYDIR)
+LIB_LIST=	my printf arr file
+LIBRARIES=	$(LIB_LIST:%=-l%)
 
+LDFLAGS=	-L $(LIBDIR) $(LIBRARIES)
 CFLAGS+=	-W -Wall	\
-		-I $(INCDIR)
+		-I $(INCDIR)	\
+		$(LDFLAGS)
 
 TEST=		unit_tests
 
@@ -65,7 +83,7 @@ NAME=		asm
 
 all:		title cc_title $(NAME)
 
-obj_title:	Ptitle $(POBJ) Atitle $(AOBJ)
+obj_title:	Ptitle $(POBJ) Atitle $(AOBJ) Rtitle $(ROBJ)
 
 title:
 		@$(ECHO) $(BOLD)$(BLUE)"\n        ╼┪  ─╼━━━━━━━┷━━━━━━━╾─  ┢╾\n    ╼━━━┿╉"	\
@@ -80,11 +98,15 @@ clean_title:
 Ptitle:
 		@$(ECHO) $(WHITE) && $(ECHO) -n $(PROJDIR) | tr a-z A-Z |	\
 		sed 's/\//\./' | cut -zd'/' -f1 &&				\
-		$(ECHO) -n $(WHITE)' '$(BLANCO)'/    \n'$(DEF)
+		$(ECHO) -n $(WHITE)' '$(BLANCO)'/  \n'$(DEF)
 Atitle:
 		@$(ECHO) $(WHITE) && $(ECHO) -n $(ASMDIR) | tr a-z A-Z |	\
 		sed 's/\//\./' | cut -zd'/' -f1 &&				\
-		$(ECHO) -n $(WHITE)' '$(BLANCO)'/    \n'$(DEF)
+		$(ECHO) -n $(WHITE)' '$(BLANCO)'/         \n'$(DEF)
+Rtitle:
+		@$(ECHO) $(WHITE) && $(ECHO) -n $(PARS_DIR) | tr a-z A-Z |	\
+		sed 's/\//\./' | cut -zd'/' -f1 &&				\
+		$(ECHO) -n $(WHITE)' '$(BLANCO)'/                   \n'$(DEF)
 
 cc_title:
 		@$(ECHO) -n $(WHITE)'┧' && $(ECHO) -n ' '$(CC) |\
@@ -94,10 +116,14 @@ cc_title:
 		@$(ECHO) $(WHITE)┃$(MAGENTA)$(LDFLAGS)$(DEF)
 		@$(ECHO) -n $(WHITE)╵
 
-$(NAME):	obj_title
-		@make -C $(MYDIR) --no-print-directory
-		@make -C $(PRINTDIR) --no-print-directory
-		@$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LDFLAGS) && $(ECHO)			\
+lib_maker:
+		@$(ECHO)
+		@for p in $(LIB_DIR) ; do	\
+			make -C $$p -s ;	\
+		done
+
+$(NAME):	obj_title lib_maker
+		@$(CC) -o $(NAME) $(OBJ) $(CFLAGS) && $(ECHO)					\
 		$(BOLD)$(GREEN)"\n\n\t     ╽ ─╼━━━━━━━━━╾─ ╽\n\t ╼━━┿╉"$(DEF)			\
 		$(BOLD)"BUILD SUCCESS "$(GREEN)"╊┿━━╾\n\t     ╿ ─╼━━━━━━━━━╾─ ╿\n"$(DEF) ||	\
 		$(ECHO) $(BOLD)$(RED)"\n\n\t     ╽ ─╼━━━━━━━━╾─ ╽\n\t ╼━━┿╉"$(DEF)		\
@@ -110,8 +136,9 @@ clean:
 		@$(ECHO) '\t   '$(BOLD)$(WHITE)"CLEAN "$(BOLD)$(GREEN)"SUCCESS "✓$(DEF)
 
 fclean:		clean_title clean
-		@make -C $(MYDIR) fclean --no-print-directory
-		@make -C $(PRINTDIR) fclean --no-print-directory
+		@for p in $(LIB_DIR); do	\
+			make -C $$p fclean -s;	\
+		done
 		@$(RM) $(TEST)
 		@$(RM) $(NAME)
 		@$(ECHO) '\t   '$(BOLD)$(WHITE)"FCLEAN "$(BOLD)$(GREEN)"SUCCESS "✓'\n'$(DEF)
@@ -119,7 +146,7 @@ fclean:		clean_title clean
 debug:		CFLAGS += -g
 debug:		re
 
-tests_run:	fclean
+tests_run:	fclean lib_maker
 		@make -C $(TESTDIR) tests_run --no-print-directory
 		@./$(TEST)
 		@$(ECHO)

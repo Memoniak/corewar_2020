@@ -21,4 +21,9 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+#include "my_printf.h"
+#include "arr.h"
+#include "file.h"
+#include "my.h"
+
 #endif /*INCLUDES_H*/

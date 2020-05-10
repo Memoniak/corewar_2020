@@ -45,13 +45,24 @@ char *my_strcat(char *dest, char const *str);
 //my_strcmp.c
 bool my_strcmp(char const *first, char const *second);
 
+//my_strncmp.c
+int my_strncmp(char const *s1, char const *s2, int n);
+
+//my_strdup.c
+char *my_strdup(char const *src);
+char *my_strdup_start(char const *src, int pos);
+
 //my_strcpy.c
+char *my_strncpy(char *dest, char const *src, int n);
 char *my_strcpy(char *dest, char *str);
 char **my_arrcpy(char **dest, char **arr);
 
 //my_int_to_str.c
 int count_num(int nb);
 char *intchar(int nb);
+
+//is_num.c
+int is_num(char str);
 
 //custom_strlen.c
 int custom_strlen(char *str, char limit);

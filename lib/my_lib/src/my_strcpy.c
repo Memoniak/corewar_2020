@@ -7,6 +7,14 @@
 
 #include "my.h"
 
+char *my_strncpy(char *dest, char const *src, int n)
+{
+    for (int i = 0; i < n; i++)
+        dest[i] = src[i];
+    dest[n] = '\0';
+    return dest;
+}
+
 char *my_strcpy(char *dest, char *str)
 {
     int len = my_strlen(str);

@@ -31,6 +31,8 @@ SRC	=	$(SRCDIR)my_getlen.c		\
 		$(SRCDIR)my_revstr.c		\
 		$(SRCDIR)my_strcat.c		\
 		$(SRCDIR)my_strcmp.c		\
+		$(SRCDIR)my_strncmp.c		\
+		$(SRCDIR)my_strdup.c		\
 		$(SRCDIR)my_strcpy.c		\
 		$(SRCDIR)int_to_str.c		\
 		$(SRCDIR)get_file_content.c	\
@@ -49,9 +51,9 @@ NAME	=	libmy.a
 all:		title $(NAME)
 
 title:
-		@$(ECHO) '\n'$(WHITE) && $(ECHO) -n $(NAME) | cut -zd'.' -f1 |	\
-		tr a-z A-Z | sed 's/LIB*/LIB./' &&				\
-		$(ECHO) -n ' '$(BLANCO)'/                                      \n'$(DEF)
+		@$(ECHO) -n '\n'$(WHITE) && $(ECHO) -n $(NAME) | cut -zd'.' -f1 |	\
+		tr a-z A-Z | sed 's/LIB*/LIB./' &&					\
+		$(ECHO) -n ' '$(BLANCO)'/                                                \n'$(DEF)
 
 $(NAME):	$(OBJ)
 		@$(ARRC) $(NAME) $(OBJ)  ||					\

@@ -9,20 +9,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-// ! Pol struct
+int check_type_arg(char *param, funct_t *labels);
 
-int check_type_arg(char *param);
-
-typedef struct cmd
-{
-    int code;
-    char *p1;
-    char *p2;
-    char *p3;
-    char *p4;
-}cmd_t;
-
-//operztion sur les bools
 int check_type_ok(int data_cmd , bool t_dir, bool t_ind, bool t_reg)
 {
     if (t_dir == true && data_cmd == T_DIR)
@@ -33,8 +21,6 @@ int check_type_ok(int data_cmd , bool t_dir, bool t_ind, bool t_reg)
         return 0;
     return 1;
 }
-
-//TODO : Revoir avc simon le ou binaire si d'autres if
 
 int check_arg(int data_cmd , int type)
 {
@@ -59,13 +45,13 @@ int check_arg(int data_cmd , int type)
     return check_type_ok(data_cmd, t_dir, t_ind, t_reg);
 }
 
-int check_line(cmd_t cmd_line, const op_t* op_tab)
+int check_line(cmd_t cmd_line, const op_t* op_tab, funct_t *labels)
 {
     int code = cmd_line.code - 1;
-    int data[4] = {check_type_arg(cmd_line.p1),
-    check_type_arg(cmd_line.p2),
-    check_type_arg(cmd_line.p3),
-    check_type_arg(cmd_line.p4)};
+    int data[4] = {check_type_arg(cmd_line.p1, labels),
+    check_type_arg(cmd_line.p2, labels),
+    check_type_arg(cmd_line.p3, labels),
+    check_type_arg(cmd_line.p4, labels)};
 
     for (int i = 0; i < 4; i++) {
         if (check_arg(data[i], op_tab[code].type[i]))

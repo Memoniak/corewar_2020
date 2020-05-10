@@ -12,6 +12,25 @@
 # define _OP_H_
 
 #include "my.h"
+typedef struct cmd
+{
+    int code;
+    char *p1;
+    char *p2;
+    char *p3;
+    char *p4;
+}cmd_t;
+
+typedef struct funct_t{
+    cmd_t *commands;
+    char *name;
+    int value;
+    int len;
+} funct_t;
+
+int check_label_name(char *name, funct_t *labels);
+int check_value_dir(char *value, funct_t *labels);
+int check_value_ind(char *value, funct_t *labels);
 
 # define MEM_SIZE                (6*1024)
 # define IDX_MOD                 512   /* modulo of the index < */

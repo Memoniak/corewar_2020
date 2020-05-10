@@ -2,9 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// ! check si register type et pas de registre trop grand
-// ? differencier pas reg et reg trop grand
-
 static int check_t_reg(char *param)
 {
     int nb_reg;
@@ -20,31 +17,34 @@ static int check_t_reg(char *param)
     return 0;
 }
 
-static int check_t_dir(char *param)
+static int check_t_dir(char *param, funct_t *labels)
 {
-    if(param[0] != DIRECT_CHAR)
+    if (param[0] != DIRECT_CHAR)
         return 1;
+    if (param[1] != LABEL_CHAR)
+        return check_value_dir(param + 1, labels);
+    else
+        return check_label_name(param + 2, labels);
     return 0;
 }
 
-static int check_t_ind(char *param)
+static int check_t_ind(char *param, funct_t *labels)
 {
     if(param[0] != LABEL_CHAR)
-        return 1;
+        return check_value_ind(param, labels);
+    return check_label_name(param + 1, labels);
     return 0;
 }
 
-// ! check le type de donnée et return le code de la donnée ou 0 si aucun
-
-int check_type_arg(char *param)
+int check_type_arg(char *param, funct_t *labels)
 {
     if (!param)
         return 0;
     if (!check_t_reg(param))
         return T_REG;
-    if (!check_t_dir(param))
+    if (!check_t_dir(param, labels))
         return T_DIR;
-    if (!check_t_ind(param))
+    if (!check_t_ind(param, labels))
         return T_IND;
     return 0;
 }

@@ -9,6 +9,7 @@
 
 SRC	=	src/check_command.c \
 		src/check_type_arg.c \
+		src/check_defines.c \
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -20,6 +21,7 @@ BIB=  -I./include/ -L./lib/my . -lmy -g
 
 SRC_2 = src/check_command.c \
 		src/check_type_arg.c \
+		src/check_defines.c \
 
 SRC_TE= tests/test_check_line.c \
 

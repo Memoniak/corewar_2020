@@ -7,7 +7,7 @@
 
 #include "assembler.h"
 
-void get_func_param(char *str, cmd_t *cmd, char *func_name)
+int get_func_param(char *str, cmd_t *cmd, char *func_name)
 {
     char **parsed = my_parser(str, ',');
     int i = 0;
@@ -17,8 +17,8 @@ void get_func_param(char *str, cmd_t *cmd, char *func_name)
     while((parsed[0][i] != ' ' || parsed[0][i] == 9) && parsed[0][i] != '\0')
         i++;
     cmd->code = get_code(parsed[0], i);
-    // if (!cmd->code);
-    //     //COMMAND EXIST PAS
+    if (!cmd->code)
+        return 1;
     cmd->index = 0;
     cmd->param1 = my_strdup_start(parsed[0], i);
     if (parsed[0] != NULL && parsed[1] != NULL)
@@ -27,4 +27,5 @@ void get_func_param(char *str, cmd_t *cmd, char *func_name)
         cmd->param3 = my_strdup(parsed[2]);
     if (parsed[0] && parsed[1] && parsed[2] && parsed[3])
         cmd->param4 = my_strdup(parsed[3]);
+    return 0;
 }

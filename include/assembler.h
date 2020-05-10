@@ -39,7 +39,7 @@ typedef struct {
 } champion_header_t;
 
 
-void get_func_param(char *str, cmd_t *cmd, char *func_name);
+int get_func_param(char *str, cmd_t *cmd, char *func_name);
 int check_line(char *line);
 char *check_name(char *str, char *name);
 int get_code(char *code_str, int len);

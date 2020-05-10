@@ -110,9 +110,14 @@ funct_t *make_struct(char const *filepath, champion_header_t *champion_info)
 {
     char **file_arr = get_file_ar(filepath);
     int len = get_dbl_arr_len((const char **)file_arr);
-    funct_t *functions = malloc(sizeof(funct_t) * len);
+    funct_t *functions;
     int z = 0;
 
+    if (!file_arr || len < 3) {
+
+    }
+
+    functions = malloc(sizeof(funct_t) * len);
     fill_champion_info(champion_info, file_arr);
     for (int i = 2; i < len; i++) {
         if (check_line(file_arr[i])) {

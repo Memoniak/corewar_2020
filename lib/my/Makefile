@@ -30,7 +30,10 @@ SRC 	=	concat_params.c			\
 		my_str_to_word_array.c		\
 		my_strstr.c			\
 		my_strupcase.c		\
-		my_strncmp.c
+		my_strncmp.c		\
+		my_strncpy.c		\
+		my_strdup.c			\
+		my_strcmp.c
 
 OBJ	=	$(SRC:.c=.o)
 

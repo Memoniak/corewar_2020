@@ -15,7 +15,6 @@ char *get_string_inbetween(char *str, char op)
     int z = 0;
 
     while(str[len++]);
-    printf("len == %i\n", len);
     res = malloc(sizeof(char) * len);
     for (int i = 0; str[i]; i++) {
         if (str[i] == op && !check) {

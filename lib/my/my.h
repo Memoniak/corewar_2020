@@ -40,5 +40,6 @@ char *my_strcat(char *dest, char const *src);
 char *my_strncat(char *dest, char const *src, int nb);
 int my_show_word_array(char * const *tab);
 char **my_str_to_word_array(char const *str);
-
+char *my_strdup(char const *src);
+char *my_strdup_start(char const *src, int pos);
 #endif

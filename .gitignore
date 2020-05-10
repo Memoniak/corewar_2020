@@ -1,0 +1,6 @@
+*.o
+*~
+test_asm
+abel.s
+op.c
+.vscode

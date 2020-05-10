@@ -9,19 +9,13 @@ RM	=	rm -f
 
 CC	=	gcc
 
-SRC 	=	get_dbl_arr_len.c		\
-			get_string_op.c			\
-			parser_w_sep.c			\
-			my_memset.c				\
-			remove_spaces.c			\
-			copy_from.c				\
-			get_word_pos_arr.c
+SRC 	=	fill_file.c
 
 OBJ	=	$(SRC:.c=.o)
 
-NAME	=	libarr.a
+NAME	=	libfile.a
 
-MY_NAME	=	arr.h
+MY_NAME	=	file.h
 
 all:	$(NAME)
 

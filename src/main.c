@@ -7,6 +7,13 @@
 
 #include "corewar.h"
 
+//TODO: fonction auxiliaire parcourir funct et check_instruction
+static int evan_call(funct_t *funct_t)
+{
+    return 0;
+}
+
+
 int main(int ac, char **av)
 {
     champion_header_t champ = {0};
@@ -15,6 +22,8 @@ int main(int ac, char **av)
     if (ac != 2)
         return EXIT_FAILURE;
     if (!(funct = make_struct(av[1], &champ)))
+        return EXIT_FAILURE;
+    if (evan_call(funct))
         return EXIT_FAILURE;
     for (int i = 0; i < funct[0].len; i++) {
         printf("func name --> %s\n", funct[i].name);

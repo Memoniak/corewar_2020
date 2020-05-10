@@ -63,6 +63,8 @@ int create_command(char **str, funct_t *func, int start_pos)
     else
         len = count_cmd_len(str, start_pos);
     func->name = get_func_name(str[start_pos]);
+    if (func->name && check_label_chars(func->name))
+        return 84;
     func->nb_cmd = len;
     func->commands = malloc(sizeof(cmd_t) * (len + 1));
     init_cmd_struct(func->commands, len);

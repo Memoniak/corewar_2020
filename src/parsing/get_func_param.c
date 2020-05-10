@@ -9,7 +9,7 @@
 
 int get_func_param(char *str, cmd_t *cmd, char *func_name)
 {
-    char **parsed = my_parser(str, ',');
+    char **parsed = my_parser(str, SEPARATOR_CHAR);
     int i = 0;
 
     parsed[0] = check_name(parsed[0], func_name);

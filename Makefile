@@ -52,6 +52,7 @@ PARSLIST=	$(SRC_DIR)main.c		\
 		$(PARS_DIR)init_cmd_struct.c	\
 		$(PARS_DIR)count_commands.c	\
 		$(PARS_DIR)command_loop.c	\
+		$(PARS_DIR)check_label_char.c	\
 		$(ERR_PARS_DIR)file_errors.c
 
 SRC=		$(PROJLIST)	\

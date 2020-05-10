@@ -42,8 +42,6 @@ op_t    op_tab[] =
 
 int get_code(char *code_str, int len)
 {
-    printf("code str == %s\n", code_str);
-    printf("len == %i\n", len);
     for (int i = 0; i < 16; i++) {
         if (!my_strncmp(code_str, op_tab[i].mnemonique, len))
             return i + 1;
@@ -51,19 +49,24 @@ int get_code(char *code_str, int len)
     return 0;
 }
 
-void fill_champion_info(champion_header_t *champ, char **file)
+int fill_champion_info(champion_header_t *champ, char **file)
 {
     char *tmp = my_strdup(file[0]);
 
+    if (!tmp)
+        return 84;
     while (*(tmp)++ != '.' && *(tmp) != '\0' && *(tmp) != '\n');
-    *(tmp)-= 1;
-    if (!my_strncmp(tmp, ".name", 5))
+    if (!my_strncmp(tmp, "name", 4))
         champ->name = get_string_inbetween(tmp, '"');
     tmp = my_strdup(file[1]);
     while (*(tmp)++ != '.' && *(tmp) != '\0' && *(tmp) != '\n');
-    *(tmp)-= 1;
-    if (!my_strncmp(tmp, ".comment", 7))
+    if (!my_strncmp(tmp, "comment", 6))
        champ->comment = get_string_inbetween(tmp, '"');
+    if (!champ->name || !champ->comment) {
+        champ_info_error();
+        return 84;
+    }
+    return 1;
 }
 
 char *get_func_name(char *str)
@@ -85,7 +88,7 @@ char *get_func_name(char *str)
 int create_command(char **str, funct_t *func, int start_pos)
 {
     int len;
-    int z = 1;
+    int tmp = 0;
 
     if (get_func_name(str[start_pos]) == NULL)
         len = count_cmd_len_first(str, start_pos);
@@ -95,12 +98,9 @@ int create_command(char **str, funct_t *func, int start_pos)
     func->nb_cmd = len;
     func->commands = malloc(sizeof(cmd_t) * (len + 1));
     init_cmd_struct(func->commands, len);
-    get_func_param(str[start_pos], &func->commands[0], func->name);
-    for (int i = start_pos + 1; i < start_pos + len; i++) {
-        if (str[i]) {
-            get_func_param(str[i], &func->commands[z], NULL);
-            z++;
-        }
+    if ((tmp = command_loop(str, start_pos, func, len)) != -1) {
+        func_cmd_error(tmp);
+        return 84;
     }
     func->index = 0;
     return start_pos + len - 1;
@@ -111,20 +111,17 @@ funct_t *make_struct(char const *filepath, champion_header_t *champion_info)
     char **file_arr = get_file_ar(filepath);
     int len = get_dbl_arr_len((const char **)file_arr);
     funct_t *functions;
-    int z = 0;
 
     if (!file_arr || len < 3) {
-
+        file_error();
+        return NULL;
     }
-
+    if (fill_champion_info(champion_info, file_arr) == 84)
+        return NULL;
     functions = malloc(sizeof(funct_t) * len);
-    fill_champion_info(champion_info, file_arr);
-    for (int i = 2; i < len; i++) {
-        if (check_line(file_arr[i])) {
-            i = create_command(file_arr, &functions[z], i);
-            z++;
-        }
+    if (arr_func_loop(len, file_arr, functions) == 84) {
+        free(functions);
+        return NULL;
     }
-    functions[0].len = z;
     return functions;
 }

@@ -39,6 +39,7 @@ typedef struct {
 } champion_header_t;
 
 
+//PARSING
 int get_func_param(char *str, cmd_t *cmd, char *func_name);
 int check_line(char *line);
 char *check_name(char *str, char *name);
@@ -48,8 +49,15 @@ int count_cmd_len(char **arr, int pos);
 int count_cmd_len_first(char **arr, int pos);
 funct_t *make_struct(char const *filepath, champion_header_t *champion_info);
 int create_command(char **str, funct_t *func, int start_pos);
-void fill_champion_info(champion_header_t *champ, char **file);
+int fill_champion_info(champion_header_t *champ, char **file);
 char *get_func_name(char *str);
+int command_loop(char **str, int start_pos, funct_t *func, int len);
+int arr_func_loop(int len, char **file_arr, funct_t *functions);
+
+//EROR_HANDLING PARSING
+void file_error();
+void champ_info_error();
+void func_cmd_error(int line);
 
 //check_params
 

@@ -17,8 +17,8 @@ int get_func_param(char *str, cmd_t *cmd, char *func_name)
     while((parsed[0][i] != ' ' || parsed[0][i] == 9) && parsed[0][i] != '\0')
         i++;
     cmd->code = get_code(parsed[0], i);
-    if (!cmd->code)
-        return 1;
+    if (!cmd->code && parsed[0][0] != '\0')
+        return 84;
     cmd->index = 0;
     cmd->param1 = my_strdup_start(parsed[0], i);
     if (parsed[0] != NULL && parsed[1] != NULL)

@@ -11,12 +11,14 @@ int my_strncmp(char const *s1, char const *s2, int n)
     int z = 0;
     int e = 0;
 
+    if (!s1 || !s2 || s2[0] == '\0' || s1[0] == '\0')
+        return 1;
     for (int a = 0; a < n; a++) {
         if (s1[a] != s2[a]) {
             z = s1[a];
             e = s2[a];
             result = z - e;
-            return (result);
+            return result;
         }
     }
     return 0;

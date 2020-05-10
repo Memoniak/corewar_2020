@@ -13,6 +13,8 @@ int main(int ac, char **av)
     funct_t *functions;
 
     functions = make_struct(av[1], &champ);
+    if (!functions)
+        return 84;
     printf("func->commds test = %i\n", functions[0].commands->code);
     for (int i = 0; i < functions[0].len; i++) {
         printf("func name --> %s\n", functions[i].name);

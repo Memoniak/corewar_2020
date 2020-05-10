@@ -8,17 +8,22 @@ RM	=	rm -f
 
 CC	=	gcc
 
-SRC	=	$(SRC_DIR)main.c		\
-		$(PARS_DIR)file_to_struct.c	\
-		$(PARS_DIR)check_file.c		\
-		$(PARS_DIR)get_func_param.c	\
+SRC	=	$(SRC_DIR)main.c				\
+		$(PARS_DIR)file_to_struct.c		\
+		$(PARS_DIR)check_file.c			\
+		$(PARS_DIR)get_func_param.c		\
 		$(PARS_DIR)init_cmd_struct.c	\
-		$(PARS_DIR)count_commands.c
+		$(PARS_DIR)count_commands.c		\
+		$(PARS_DIR)command_loop.c		\
+		$(ERR_PARS_DIR)file_errors.c
+
 
 
 SRC_DIR	=	src/
 
 PARS_DIR	=	$(SRC_DIR)parsing/
+
+ERR_PARS_DIR	=	$(PARS_DIR)error_handling/
 
 LIB_DIR	=	lib/
 

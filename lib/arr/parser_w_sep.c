@@ -40,12 +40,16 @@ static char **copy_into_tab(char **res, char *str, char seperator)
 
     for (int i = 0; str[i] != '\0'; i++) {
         if (str[i] == seperator && i != 0 && str[i + 1] != '\0') {
+            if (res[z][j - 1] == '\n')
+                res[z][j - 1] = '\0';
             res[z++][j] = '\0';
             j = 0;
             i++;
         }
         res[z][j++] = str[i];
     }
+    if (res[z][j - 1] == '\n')
+        res[z][j - 1] = '\0';
     res[z][j] = '\0';
     return res;
 }

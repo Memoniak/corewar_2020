@@ -5,7 +5,7 @@
 ** checks the file lines
 */
 
-#include "assembler.h"
+#include "corewar.h"
 
 
 int check_line(char *line)

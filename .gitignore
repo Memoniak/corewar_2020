@@ -1,9 +1,12 @@
-.vscode/
-*.o
-*~
+asm
+unit_tests
 test_asm
 abel.s
-op.c
+.vscode/
+.#*
+*.gc*
+*.core
+*.o
+*~
 *.txt
 *.a
-asm

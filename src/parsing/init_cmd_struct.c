@@ -5,7 +5,7 @@
 ** inits the cmd struct
 */
 
-#include "assembler.h"
+#include "corewar.h"
 
 void init_cmd_struct(cmd_t *commands, int len)
 {

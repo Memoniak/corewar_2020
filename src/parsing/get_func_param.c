@@ -5,7 +5,7 @@
 ** gets the param of the label
 */
 
-#include "assembler.h"
+#include "corewar.h"
 
 int get_func_param(char *str, cmd_t *cmd, char *func_name)
 {

@@ -5,7 +5,7 @@
 ** count_commands
 */
 
-#include "assembler.h"
+#include "corewar.h"
 
 int count_cmd_len_first(char **arr, int pos)
 {

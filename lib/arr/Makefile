@@ -5,36 +5,69 @@
 ## make file to compile
 ##
 
-RM	=	rm -f
+ECHO    =       /bin/echo -e
+DEF     =       "\e[m"
+BLACK   =       "\e[1;30m"
+RED     =       "\e[31m"
+GREEN   =       "\e[32m"
+YELLOW  =       "\e[33m"
+BLUE    =       "\e[34m"
+MAGENTA =       "\e[35m"
+TEAL    =       "\e[1;36m"
+WHITE   =       "\e[1;37m"
+BLINK   =       "\e[5m"
+BOLD    =       "\e[1m"
+BORDER  =       "\e[9m"
+BLANCO  =       "\e[9;37m"
+FONT    =       "\e[7m"
 
-CC	=	gcc
+SRCDIR	=	src/
+INCDIR	=	include/
 
-SRC 	=	get_dbl_arr_len.c		\
-			get_string_op.c			\
-			parser_w_sep.c			\
-			my_memset.c				\
-			remove_spaces.c			\
-			copy_from.c				\
-			get_word_pos_arr.c
+SRC	=	$(SRCDIR)get_dbl_arr_len.c	\
+		$(SRCDIR)get_string_op.c	\
+		$(SRCDIR)parser_w_sep.c		\
+		$(SRCDIR)my_memset.c		\
+		$(SRCDIR)remove_spaces.c	\
+		$(SRCDIR)copy_from.c		\
+		$(SRCDIR)get_word_pos_arr.c
 
 OBJ	=	$(SRC:.c=.o)
 
+ARRC	=	ar rc
+
+CFLAGS	+=	-I $(INCDIR)
+
 NAME	=	libarr.a
 
-MY_NAME	=	arr.h
+all:		title $(NAME)
 
-all:	$(NAME)
-
+title:
+		@$(ECHO) $(WHITE) && $(ECHO) -n $(NAME) | cut -zd'.' -f1 |      \
+		tr a-z A-Z | sed 's/LIB*/LIB./' &&                              \
+		$(ECHO) -n ' '$(BLANCO)'/                   \n'$(DEF)
 
 $(NAME):	$(OBJ)
-		$(CC) -I./ -c $(SRC) && ar rc $(NAME) $(OBJ)
-		mv $(NAME) ..
+		@$(ARRC) $(NAME) $(OBJ) || $(ECHO)			\
+		$(BOLD)$(RED)"\n\n\t     ╽ ─╼━━━━━━━━╾─ ╽\n\t╼━━━┿╉"	\
+		$(DEF)$(BOLD)"BUILD FAILED "$(RED)"╊┿━━━╾\n\t     ╿ ─╼━━━━━━━━╾─ ╿"$(DEF)
+		@mv $(NAME) ..
 
 clean:
-		$(RM) $(OBJ) $(NAME)
+		@$(RM) $(OBJ) $(NAME)
 
-fclean: 	clean
-		$(RM) $(NAME) *.gc*
-		$(RM) ../$(NAME)
+fclean:		clean
+		@$(RM) $(NAME) *.gc*
+		@$(RM) ../$(NAME)
 
-re:	fclean all
+debug:		CFLAGS += -g
+
+re:		fclean all
+
+%.o:            %.c
+		@$(CC) -c -o $@ $^ $(CFLAGS) &&         \
+		$(ECHO) -n $(BOLD)$(GREEN)"[OK]" ||     \
+		$(ECHO) $(BOLD)$(RED)"[NO]"$< &&        \
+		$(ECHO) -n $(DEF)
+
+.PHONY:         title all clean fclean re debug

@@ -1,83 +1,162 @@
+##
 ## EPITECH PROJECT, 2019
-## makefile
+## Makefile
 ## File description:
-## makes lib
+## compile programs
 ##
 
-RM	=	rm -f
+ECHO=		/bin/echo -e
+DEF=		"\e[m"
+BLACK=		"\e[1;30m"
+RED=		"\e[31m"
+GREEN=		"\e[32m"
+YELLOW=		"\e[33m"
+BLUE=		"\e[34m"
+MAGENTA=	"\e[35m"
+TEAL=		"\e[1;36m"
+WHITE=		"\e[1;37m"
+BLINK=		"\e[5m"
+BOLD=		"\e[1m"
+BORDER=		"\e[9m"
+BLANCO=		"\e[9;37m"
+BLACKY=		"\e[9;30m"
+FONT=		"\e[7m"
 
-CC	=	gcc
+INCDIR=		include/
+SRC_DIR=	src/
+LIBDIR=		lib/
+TESTDIR=	tests/
+MYDIR=		$(LIBDIR)my_lib/
+PRINTDIR=	$(LIBDIR)printf_lib/
+ARRDIR=		$(LIBDIR)arr/
+FILEDIR=	$(LIBDIR)file/
+PARS_DIR=	$(SRC_DIR)parsing/
+ERR_PARS_DIR=	$(PARS_DIR)error_handling/
+PROJDIR=	$(SRC_DIR)
+ASMDIR=		$(SRC_DIR)assembler/
 
-SRC	=	$(SRC_DIR)main.c				\
-		$(PARS_DIR)file_to_struct.c		\
-		$(PARS_DIR)check_file.c			\
-		$(PARS_DIR)get_func_param.c		\
+PROJLIST=	$(PROJDIR)sim_main.c		\
+		$(PROJDIR)op.c
+
+ASMLIST=	$(ASMDIR)write_ina_file.c	\
+		$(ASMDIR)get_indexes.c		\
+		$(ASMDIR)get_label_value.c	\
+		$(ASMDIR)types.c		\
+		$(ASMDIR)tools.c		\
+		$(ASMDIR)values.c
+
+PARSLIST=	$(SRC_DIR)main.c		\
+		$(PARS_DIR)file_to_struct.c	\
+		$(PARS_DIR)check_file.c		\
+		$(PARS_DIR)get_func_param.c	\
 		$(PARS_DIR)init_cmd_struct.c	\
-		$(PARS_DIR)count_commands.c		\
-		$(PARS_DIR)command_loop.c		\
+		$(PARS_DIR)count_commands.c	\
+		$(PARS_DIR)command_loop.c	\
 		$(ERR_PARS_DIR)file_errors.c
 
+SRC=		$(PROJLIST)	\
+		$(ASMLIST)	\
+		$(PARSLIST)
 
+OBJ=		$(SRC:.c=.o)
+POBJ=		$(PROJLIST:.c=.o)
+AOBJ=		$(ASMLIST:.c=.o)
+ROBJ=		$(PARSLIST:.c=.o)
 
-SRC_DIR	=	src/
+TUFLAG=		--coverage -lcriterion
+MULFLAG=	-lcsfml-graphics -lcsfml-system -lcsfml-audio
+MATHFLAG=	-lm
+PSUFLAG=	-lcurses
 
-PARS_DIR	=	$(SRC_DIR)parsing/
+LIB_DIR=	$(PRINTDIR) $(ARRDIR) $(FILEDIR) $(MYDIR)
+LIB_LIST=	my printf arr file
+LIBRARIES=	$(LIB_LIST:%=-l%)
 
-ERR_PARS_DIR	=	$(PARS_DIR)error_handling/
+LDFLAGS=	-L $(LIBDIR) $(LIBRARIES)
+CFLAGS+=	-W -Wall	\
+		-I $(INCDIR)	\
+		$(LDFLAGS)
 
-LIB_DIR	=	lib/
+TEST=		unit_tests
 
-LIB_PRINT	=	print
+NAME=		asm
 
-LIB_MY		=	my
+all:		title cc_title $(NAME)
 
-LIB_ARR		=	arr
+obj_title:	Ptitle $(POBJ) Atitle $(AOBJ) Rtitle $(ROBJ)
 
-LIB_FILE	=	file
+title:
+		@$(ECHO) $(BOLD)$(BLUE)"\n        ╼┪  ─╼━━━━━━━┷━━━━━━━╾─  ┢╾\n    ╼━━━┿╉"	\
+		$(DEF)$(BOLD)BUILDING $(TEAL)'\t'$(NAME)'\t'$(BOLD)$(BLUE)			\
+		"╊┿━━━╾\n        ╼┩  ─╼━━━━━━━┯━━━━━━━╾─  ┡╾\n"$(DEF)
 
-LIB_LIST	=	$(LIB_PRINT) $(LIB_MY) $(LIB_ARR) $(LIB_FILE)
+clean_title:
+		@$(ECHO) $(BOLD)$(BLUE)"\n        ╼┪  ─╼━━━━━━━┷━━━━━━━╾─  ┢╾\n    ╼━━━┿╉"	\
+		$(DEF)$(BOLD)CLEANING $(TEAL)'\t'$(NAME)'\t'$(BOLD)$(BLUE)			\
+		"╊┿━━━╾\n        ╼┩  ─╼━━━━━━━┯━━━━━━━╾─  ┡╾\n"$(DEF)
 
-OBJ	=	$(SRC:.c=.o)
+Ptitle:
+		@$(ECHO) $(WHITE) && $(ECHO) -n $(PROJDIR) | tr a-z A-Z |	\
+		sed 's/\//\./' | cut -zd'/' -f1 &&				\
+		$(ECHO) -n $(WHITE)' '$(BLANCO)'/  \n'$(DEF)
+Atitle:
+		@$(ECHO) $(WHITE) && $(ECHO) -n $(ASMDIR) | tr a-z A-Z |	\
+		sed 's/\//\./' | cut -zd'/' -f1 &&				\
+		$(ECHO) -n $(WHITE)' '$(BLANCO)'/         \n'$(DEF)
+Rtitle:
+		@$(ECHO) $(WHITE) && $(ECHO) -n $(PARS_DIR) | tr a-z A-Z |	\
+		sed 's/\//\./' | cut -zd'/' -f1 &&				\
+		$(ECHO) -n $(WHITE)' '$(BLANCO)'/                   \n'$(DEF)
 
-NAME	=	asm
+cc_title:
+		@$(ECHO) -n $(WHITE)'┧' && $(ECHO) -n ' '$(CC) |\
+		tr a-z A-Z && $(ECHO) ' '$(BLANCO)/		\
+		'                         '$(DEF)		\
+		'\n'$(BOLD)$(WHITE)┃$(YELLOW)$(CFLAGS)
+		@$(ECHO) $(WHITE)┃$(MAGENTA)$(LDFLAGS)$(DEF)
+		@$(ECHO) -n $(WHITE)╵
 
-NAME_T	=	test_asm
-
-CFLAGS	=	-Wall -Wextra -I./include/ -L./$(LIB_DIR) -l$(LIB_ARR) -l$(LIB_MY) -l$(LIB_PRINT) -l$(LIB_FILE) -g
-
-TESTFLAGS       =       --coverage -lcriterion
-
-all:		$(NAME)
-
-$(NAME):	$(OBJ)
-		for p in $(LIB_LIST);	\
-		do	\
-		make -C $(LIB_DIR)$$p;	\
+lib_maker:
+		@$(ECHO)
+		@for p in $(LIB_DIR) ; do	\
+			make -C $$p -s ;	\
 		done
-		$(CC) -o $(NAME) $(OBJ) $(CFLAGS)
 
-debug:		$(OBJ)
-		for p in $(LIB_LIST);	\
-		do	\
-		make -C $(LIB_DIR)$$p;	\
-		done
-		$(CC) -o $(NAME) $(OBJ) $(CFLAGS) -g
-
-testing:	$(OBJ)
-		for p in $(LIB_LIST);   \
-                do      \
-		make -C $(LIB_DIR)$$p;  \
-                done
-		$(CC) -o $(NAME_T) $(OBJ) tests/$(TEST_NAME) $(CFLAGS) $(TESTFLAGS)
+$(NAME):	obj_title lib_maker
+		@$(CC) -o $(NAME) $(OBJ) $(CFLAGS) && $(ECHO)					\
+		$(BOLD)$(GREEN)"\n\n\t     ╽ ─╼━━━━━━━━━╾─ ╽\n\t ╼━━┿╉"$(DEF)			\
+		$(BOLD)"BUILD SUCCESS "$(GREEN)"╊┿━━╾\n\t     ╿ ─╼━━━━━━━━━╾─ ╿\n"$(DEF) ||	\
+		$(ECHO) $(BOLD)$(RED)"\n\n\t     ╽ ─╼━━━━━━━━╾─ ╽\n\t ╼━━┿╉"$(DEF)		\
+		$(BOLD)"BUILD FAILED "$(RED)"╊┿━━╾\n\t     ╿ ─╼━━━━━━━━╾─ ╿"$(DEF)
 
 clean:
-		$(RM) $(OBJ) $(NAME)
+		@$(RM) $(OBJ)
+		@$(ECHO) '\t   '$(WHITE)"CLEANING "$(MYDIR)$(DEF)
+		@$(ECHO) '\t   '$(WHITE)"CLEANING "$(PRINTDIR)$(DEF)
+		@$(ECHO) '\t   '$(BOLD)$(WHITE)"CLEAN "$(BOLD)$(GREEN)"SUCCESS "✓$(DEF)
 
-fclean:		clean
-		for p in $(LIB_LIST);	\
-		do 	\
-		make -C $(LIB_DIR)$$p fclean;	\
+fclean:		clean_title clean
+		@for p in $(LIB_DIR); do	\
+			make -C $$p fclean -s;	\
 		done
-		$(RM) $(NAME) $(EXEC_N) *.gc*
+		@$(RM) $(TEST)
+		@$(RM) $(NAME)
+		@$(ECHO) '\t   '$(BOLD)$(WHITE)"FCLEAN "$(BOLD)$(GREEN)"SUCCESS "✓'\n'$(DEF)
+
+debug:		CFLAGS += -g
+debug:		re
+
+tests_run:	fclean lib_maker
+		@make -C $(TESTDIR) tests_run --no-print-directory
+		@./$(TEST)
+		@$(ECHO)
 
 re:		fclean all
+
+%.o:		%.c
+		@gcc -c -o $@ $^ $(CFLAGS) &&		\
+		$(ECHO) -n $(BOLD)$(GREEN)"[OK]" ||	\
+		$(ECHO) $(BOLD)$(RED)"[NO]"$< &&	\
+		$(ECHO) -n $(DEF)
+
+.PHONY:         title all clean fclean re debug

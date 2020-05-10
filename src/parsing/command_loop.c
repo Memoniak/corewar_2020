@@ -5,7 +5,7 @@
 ** the loop for when creating func
 */
 
-#include "assembler.h"
+#include "corewar.h"
 
 int command_loop(char **str, int start_pos, funct_t *func, int len)
 {

@@ -26,12 +26,12 @@ INCDIR=		include/
 SRCDIR=		src/
 LIBDIR=		lib/
 TESTDIR=	tests/
-MYDIR=		$(LIBDIR)my/
+MYDIR=		$(LIBDIR)my_lib/
 PRINTDIR=	$(LIBDIR)printf_lib/
 PROJDIR=	$(SRCDIR)
 ASMDIR=		$(SRCDIR)assembler/
 
-PROJLIST=	$(PROJDIR)main.c	\
+PROJLIST=	$(PROJDIR)sim_main.c	\
 		$(PROJDIR)op.c
 
 ASMLIST=	$(ASMDIR)write_ina_file.c	\

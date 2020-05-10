@@ -1,1 +1,1 @@
-../lib/my/include/my.h
+../lib/my_lib/include/my.h

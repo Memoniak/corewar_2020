@@ -64,7 +64,7 @@ typedef struct op_s     op_t;
 /*
 ** op_tab
 */
-extern  op_t    op_tab[];
+//extern  op_t    op_tab[];
 
 /*
 ** header

@@ -51,4 +51,10 @@ int create_command(char **str, funct_t *func, int start_pos);
 void fill_champion_info(champion_header_t *champ, char **file);
 char *get_func_name(char *str);
 
+//check_params
+
+int check_label_name(char *name, funct_t *labels);
+int check_value_dir(char *value, funct_t *labels);
+int check_value_ind(char *value, funct_t *labels);
+
 #endif /* !ASSEMBLER_H_ */

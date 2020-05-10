@@ -42,21 +42,28 @@ int check_line(char *line);
 char *check_name(char *str, char *name);
 int get_code(char *code_str, int len);
 void init_cmd_struct(cmd_t *commands, int len);
+
 int count_cmd_len(char **arr, int pos);
 int count_cmd_len_first(char **arr, int pos);
+int get_full_cmd_len(char **str, int start_pos);
+
 funct_t *make_struct(char const *filepath, champion_header_t *champion_info);
 int create_command(char **str, funct_t *func, int start_pos);
 int fill_champion_info(champion_header_t *champ, char **file);
-char *get_func_name(char *str);
+
 int command_loop(char **str, int start_pos, funct_t *func, int len);
 int arr_func_loop(int len, char **file_arr, funct_t *functions);
 cmd_t *remove_command(cmd_t *command, int pos, int len);
+
 char *copy_name(char *str, int pos);
 void get_champ_name(champion_header_t *champ, char **file);
 void get_champ_comment(champion_header_t *champ, char **file);
+char *get_func_name(char *str);
 
 //DESTROY
 void destroy_command(cmd_t *command, int len);
+void destroy_func(funct_t *func);
+void destroy_all(funct_t *func, champion_header_t *champ);
 
 
 //EROR_HANDLING PARSING

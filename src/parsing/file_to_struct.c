@@ -28,31 +28,12 @@ int fill_champion_info(champion_header_t *champ, char **file)
     return 1;
 }
 
-char *get_func_name(char *str)
-{
-    char *name = NULL;
-
-    if (!str)
-        return NULL;
-    for (int i = 0; str[i]; i++) {
-        if (str[i] == LABEL_CHAR && str[i - 1] != DIRECT_CHAR) {
-            name = malloc(sizeof(char) * i + 1);
-            name = my_strncpy(name, str, i);
-            return name;
-        }
-    }
-    return name;
-}
-
 int create_command(char **str, funct_t *func, int start_pos)
 {
     int len = 0;
     int tmp = 0;
 
-    if (get_func_name(str[start_pos]) == NULL)
-        len = count_cmd_len_first(str, start_pos);
-    else
-        len = count_cmd_len(str, start_pos);
+    len = get_full_cmd_len(str, start_pos);
     func->name = get_func_name(str[start_pos]);
     if (func->name && check_label_chars(func->name))
         return 84;
@@ -82,7 +63,9 @@ funct_t *make_struct(char const *filepath, champion_header_t *champion_info)
     functions = malloc(sizeof(funct_t) * len);
     if (arr_func_loop(len, file_arr, functions) == 84) {
         free(functions);
+        destroy_rr(file_arr);
         return NULL;
     }
+    destroy_rr(file_arr);
     return functions;
 }

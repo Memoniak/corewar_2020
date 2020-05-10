@@ -21,8 +21,10 @@ int main(int ac, char **av)
 
     if (ac != 2)
         return EXIT_FAILURE;
-    if (!(funct = make_struct(av[1], &champ)))
+    if (!(funct = make_struct(av[1], &champ))) {
+        destroy_all(funct, &champ);
         return EXIT_FAILURE;
+    }
     if (evan_call(funct))
         return EXIT_FAILURE;
     for (int i = 0; i < funct[0].len; i++) {
@@ -36,5 +38,6 @@ int main(int ac, char **av)
     }
     if (!sim_main(funct))
         return EXIT_FAILURE;
+    destroy_all(funct, &champ);
     return EXIT_SUCCESS;
 }

@@ -57,8 +57,12 @@ PARSLIST=	$(SRC_DIR)main.c		\
 		$(PARS_DIR)remove_command.c		\
 		$(PARS_DIR)get_champ_name.c		\
 		$(PARS_DIR)get_champ_comment.c	\
+		$(PARS_DIR)get_func_name.c		\
+		$(PARS_DIR)full_cmd_len.c		\
 		$(ERR_PARS_DIR)file_errors.c	\
-		$(DESTDIR)destroy_cmd.c
+		$(DESTDIR)destroy_cmd.c			\
+		$(DESTDIR)destroy_func.c		\
+		$(DESTDIR)destroy_all.c
 
 
 SRC=		$(PROJLIST)	\

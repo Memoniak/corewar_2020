@@ -20,4 +20,6 @@ char *remove_spaces(char *str);
 char *remove_first_spaces(char *str);
 char *copy_from_start(char *str, char *dest, int pos);
 size_t get_pos_word_in_str(char const  *word, char const *str);
+void destroy_rr(char **arr);
+
 #endif /* !ARR_H_ */

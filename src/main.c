@@ -7,19 +7,24 @@
 
 #include "corewar.h"
 
-int main(int ac, char *av[])
+static bool write_params(cmd_t *cmd)
 {
-    char *param1 = (ac > 1 && av[2]) ? av[2] : NULL;
-    char *param2 = (ac > 2 && av[3]) ? av[3] : NULL;
-    char *param3 = (ac > 3 && av[4]) ? av[4] : NULL;
-    char *param4 = (ac > 4 && av[5]) ? av[5] : NULL;
-    int   code   = (ac > 0 && av[1]) ? my_getnbr(av[1]) : 0;
-    int   types  = 0;
-    int  *values = NULL;
+    int types   = 0;
+    int *values = NULL;
 
-    types = types_to_deca(param1, param2, param3, param4);
-    values = values_to_deca(param1, param2, param3, param4);
-    writing(&code, &types, &values, av);
+    types = types_to_deca(cmd);
+    values = values_to_deca(cmd);
+    if (!put_ina_file(&types, &values, cmd))
+        return false;
     free(values);
+    return true;
+}
+
+int main(void)
+{
+    cmd_t cmd = {0, 11, "r2", "%-23", "%34", NULL};
+
+    if (!write_params(&cmd))
+        return EXIT_FAILURE;
     return EXIT_SUCCESS;
 }

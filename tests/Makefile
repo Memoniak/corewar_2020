@@ -27,14 +27,13 @@ SRCDIR  =       ../src/
 LIBDIR  =       ../lib/
 MYDIR   =       $(LIBDIR)my/
 PRINTDIR=       $(LIBDIR)printf_lib/
-PROJDIR =       $(SRCDIR)
+PROJDIR =       $(SRCDIR)assembler/
 
-PROJLIST=	$(PROJDIR)base_to_hexa.c	\
-		$(PROJDIR)code_to_hexa.c	\
-		$(PROJDIR)types_to_hexa.c	\
-		$(PROJDIR)values_to_hexa.c
+PROJLIST=	$(PROJDIR)types.c	\
+		$(PROJDIR)values.c	\
+		$(PROJDIR)tools.c
 
-SRC     =	corewar_tests.c	\
+SRC     =	corewar_tests.c		\
 		$(PROJLIST)
 
 OBJ     =       $(SRC:.c=.o)

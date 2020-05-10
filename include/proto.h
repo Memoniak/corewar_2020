@@ -11,19 +11,18 @@
 #include "includes.h"
 #include "structs.h"
 
-//bin_to_deca.c
-int bin_to_deca(int bin);
-
 //types.c
-int types_to_deca(char *param1, char *param2, char *param3, char *param4);
+int types_to_deca(cmd_t *cmd);
 
 //values.c
-int *values_to_deca(char *param1, char *param2, char *param3, char *param4);
+int *values_to_deca(cmd_t *cmd);
 
 //write_ina_file.c
-void writing(int *code, int *types, int **values, char *av[]);
+bool put_ina_file(int *types, int **values, cmd_t *cmd);
 
 //tools.c
-int get_param_type(char const *str);
+int power(int nb, int pow);
+int get_param_type(char const *param);
+int get_binary_type(char const *param);
 
 #endif /*PROTO_H*/

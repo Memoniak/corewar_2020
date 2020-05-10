@@ -5,61 +5,64 @@
 ## compile programs
 ##
 
-ECHO	=       /bin/echo -e
-DEF	=       "\e[m"
-BLACK	=       "\e[1;30m"
-RED	=       "\e[31m"
-GREEN	=       "\e[32m"
-YELLOW	=       "\e[33m"
-BLUE	=       "\e[34m"
-MAGENTA	=       "\e[35m"
-TEAL	=       "\e[1;36m"
-WHITE	=       "\e[1;37m"
-BLINK	=	"\e[5m"
-BOLD	=	"\e[1m"
-BORDER	=       "\e[9m"
-BLANCO	=       "\e[9;37m"
-BLACKY	=       "\e[9;30m"
-FONT	=	"\e[7m"
+ECHO=		/bin/echo -e
+DEF=		"\e[m"
+BLACK=		"\e[1;30m"
+RED=		"\e[31m"
+GREEN=		"\e[32m"
+YELLOW=		"\e[33m"
+BLUE=		"\e[34m"
+MAGENTA=	"\e[35m"
+TEAL=		"\e[1;36m"
+WHITE=		"\e[1;37m"
+BLINK=		"\e[5m"
+BOLD=		"\e[1m"
+BORDER=		"\e[9m"
+BLANCO=		"\e[9;37m"
+BLACKY=		"\e[9;30m"
+FONT=		"\e[7m"
 
-INCDIR	=	include/
-SRCDIR	=	src/
-LIBDIR	=	lib/
-TESTDIR	=	tests/
-MYDIR	=	$(LIBDIR)my/
+INCDIR=		include/
+SRCDIR=		src/
+LIBDIR=		lib/
+TESTDIR=	tests/
+MYDIR=		$(LIBDIR)my/
 PRINTDIR=	$(LIBDIR)printf_lib/
-PROJDIR	=	$(SRCDIR)
+PROJDIR=	$(SRCDIR)
+ASMDIR=		$(SRCDIR)assembler/
 
-PROJLIST=	$(SRCDIR)main.c			\
-		$(SRCDIR)bin_to_deca.c		\
-		$(SRCDIR)write_ina_file.c	\
-		$(SRCDIR)types.c		\
-		$(SRCDIR)tools.c		\
-		$(SRCDIR)values.c
+PROJLIST=	$(PROJDIR)main.c
 
-SRC	=	$(PROJLIST)
+ASMLIST=	$(ASMDIR)write_ina_file.c	\
+		$(ASMDIR)types.c		\
+		$(ASMDIR)tools.c		\
+		$(ASMDIR)values.c
 
-OBJ	=	$(SRC:.c=.o)
-POBJ	=	$(PROJLIST:.c=.o)
+SRC=		$(PROJLIST)	\
+		$(ASMLIST)
 
-TUFLAG	=	--coverage -lcriterion
-MULFLAG	=	-lcsfml-graphics -lcsfml-system -lcsfml-audio
+OBJ=		$(SRC:.c=.o)
+POBJ=		$(PROJLIST:.c=.o)
+AOBJ=		$(ASMLIST:.c=.o)
+
+TUFLAG=		--coverage -lcriterion
+MULFLAG=	-lcsfml-graphics -lcsfml-system -lcsfml-audio
 MATHFLAG=	-lm
-PSUFLAG	=	-lcurses
+PSUFLAG=	-lcurses
 
-LDFLAGS	=	-L $(LIBDIR) -lmy	\
+LDFLAGS=	-L $(LIBDIR) -lmy	\
 		-L $(LIBDIR) -lprintf
 
-CFLAGS	+=	-W -Wall	\
+CFLAGS+=	-W -Wall	\
 		-I $(INCDIR)
 
-TEST	=	unit_tests
+TEST=		unit_tests
 
-NAME	=	asm
+NAME=		asm
 
 all:		title cc_title $(NAME)
 
-obj_title:	Ptitle $(POBJ)
+obj_title:	Ptitle $(POBJ) Atitle $(AOBJ)
 
 title:
 		@$(ECHO) $(BOLD)$(BLUE)"\n        ╼┪  ─╼━━━━━━━┷━━━━━━━╾─  ┢╾\n    ╼━━━┿╉"	\
@@ -74,7 +77,11 @@ clean_title:
 Ptitle:
 		@$(ECHO) $(WHITE) && $(ECHO) -n $(PROJDIR) | tr a-z A-Z |	\
 		sed 's/\//\./' | cut -zd'/' -f1 &&				\
-		$(ECHO) -n $(WHITE)' '$(BLANCO)'/        \n'$(DEF)
+		$(ECHO) -n $(WHITE)' '$(BLANCO)'/    \n'$(DEF)
+Atitle:
+		@$(ECHO) $(WHITE) && $(ECHO) -n $(ASMDIR) | tr a-z A-Z |	\
+		sed 's/\//\./' | cut -zd'/' -f1 &&				\
+		$(ECHO) -n $(WHITE)' '$(BLANCO)'/    \n'$(DEF)
 
 cc_title:
 		@$(ECHO) -n $(WHITE)'┧' && $(ECHO) -n ' '$(CC) |\

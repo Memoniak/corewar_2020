@@ -9,11 +9,24 @@
 #define STRUCT_H
 
 typedef struct {
-    int code;
-    char *p1;
-    char *p2;
-    char *p3;
-    char *p4;
-} instru_t;
+    int  index;
+    int  code;
+    char *param1;
+    char *param2;
+    char *param3;
+    char *param4;
+} cmd_t;
+
+typedef struct {
+    char  *name;
+    int   index;
+    cmd_t *commands;
+} funct_t;
+
+typedef struct {
+    char **file_header;
+    char *name;
+    char *comment;
+} champion_info_t;
 
 #endif /*STRUCT_H*/

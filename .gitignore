@@ -5,3 +5,4 @@ unit_tests
 *~
 .#*
 *.gc*
+*.core

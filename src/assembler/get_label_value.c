@@ -22,17 +22,18 @@ static int get_value(char *param, funct_t **funct, cmd_t cmd)
     return 0;
 }
 
-static void check_label(char *param, funct_t **funct, cmd_t cmd)
+static bool check_label(char *param, funct_t **funct, cmd_t cmd)
 {
     int value = 0;
 
     if (!param)
-        return;
+        return false;
     else if (param[0] == DIRECT_CHAR &&
              param[1] == LABEL_CHAR)
         value = get_value(param, funct, cmd);
     if (value)
         param = replace_label(param + 2, value);
+    return true;
 }
 
 void get_label_value(funct_t **funct)

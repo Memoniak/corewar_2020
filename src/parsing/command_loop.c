@@ -23,6 +23,19 @@ int command_loop(char **str, int start_pos, funct_t *func, int len)
     return -1;
 }
 
+void check_empty_cmd(funct_t *func)
+{
+    for (int i = 0; i < func[0].len; i++) {
+        for (int j = 0; j < func[i].nb_cmd; j++) {
+            if (!func[i].commands[j].code && j + 1 != func[i].nb_cmd) {
+                func[i].commands =
+                remove_command(func[i].commands, j, func[i].nb_cmd);
+                func[i].nb_cmd--;
+            }
+        }
+    }
+}
+
 int arr_func_loop(int len, char **file_arr, funct_t *functions)
 {
     int z = 0;
@@ -35,6 +48,7 @@ int arr_func_loop(int len, char **file_arr, funct_t *functions)
         }
     }
     functions[0].len = z;
+    check_empty_cmd(functions);
     if (i == 85)
         return 84;
     return 0;

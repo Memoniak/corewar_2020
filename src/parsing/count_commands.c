@@ -10,7 +10,7 @@
 int count_cmd_len_first(char **arr, int pos)
 {
     char *name = NULL;
-    int len = 1;
+    int len = -1;
 
     if (!arr[pos])
         return len;
@@ -19,12 +19,10 @@ int count_cmd_len_first(char **arr, int pos)
         pos++;
         if (!arr[pos])
             return len;
-        name = get_func_name(arr[pos]);
         len++;
+        name = get_func_name(arr[pos]);
     }
     free(name);
-    if (len > 1)
-        len--;
     return len;
 }
 
@@ -32,19 +30,21 @@ int count_cmd_len(char **arr, int pos)
 {
     char *name = NULL;
     char *new = NULL;
-    int len = 1;
+    int len = 0;
 
-    name = get_func_name(arr[pos++]);
-    new = get_func_name(arr[pos]);
-    while (!my_strcmp(name, new) != 0 && arr[pos]) {
+    name = get_func_name(arr[pos]);
+    new = get_func_name(arr[pos++]);
+    printf("name= %s | new = %s\n", name, new);
+    while (my_strcmp(name, new) && arr[pos]) {
         if (new)
             free(new);
-        if (arr[pos]) {
-            pos++;
-            len++;
-            new = get_func_name(arr[pos]);
-        }
+        pos++;
+        len++;
+        new = get_func_name(arr[pos]);
+        if (!new)
+            new = my_strcpy(new, name);
     }
+    printf("len = %i\n", len);
     free(name);
     free(new);
     return len;

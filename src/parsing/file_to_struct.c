@@ -18,18 +18,9 @@ int get_code(char *code_str, int len)
 
 int fill_champion_info(champion_header_t *champ, char **file)
 {
-    char *tmp = my_strdup(file[0]);
-
-    if (!tmp)
-        return 84;
     champ->magic = COREWAR_EXEC_MAGIC;
-    while (*(tmp)++ != '.' && *(tmp) != '\0' && *(tmp) != '\n');
-    if (!my_strncmp(tmp, "name", 4))
-        champ->name = get_string_inbetween(tmp, '"');
-    tmp = my_strdup(file[1]);
-    while (*(tmp)++ != '.' && *(tmp) != '\0' && *(tmp) != '\n');
-    if (!my_strncmp(tmp, "comment", 6))
-       champ->comment = get_string_inbetween(tmp, '"');
+    get_champ_name(champ, file);
+    get_champ_comment(champ, file);
     if (!champ->name || !champ->comment) {
         champ_info_error();
         return 84;
@@ -55,7 +46,7 @@ char *get_func_name(char *str)
 
 int create_command(char **str, funct_t *func, int start_pos)
 {
-    int len;
+    int len = 0;
     int tmp = 0;
 
     if (get_func_name(str[start_pos]) == NULL)
@@ -73,7 +64,7 @@ int create_command(char **str, funct_t *func, int start_pos)
         return 84;
     }
     func->index = 0;
-    return start_pos + len - 1;
+    return start_pos + len;
 }
 
 funct_t *make_struct(char const *filepath, champion_header_t *champion_info)

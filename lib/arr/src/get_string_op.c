@@ -20,8 +20,7 @@ char *get_string_inbetween(char *str, char op)
         if (str[i] == op && !check) {
             i++;
             check = 1;
-        }
-        else if (str[i] == op && check)
+        } else if (str[i] == op && check)
             check = 0;
         if (check)
             res[z++] = str[i];

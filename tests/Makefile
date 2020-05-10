@@ -33,9 +33,9 @@ ASMDIR	=	$(SRCDIR)assembler/
 PROJLIST=	$(PROJDIR)op.c
 
 ASMLIST=	$(ASMDIR)types.c	\
-		$(ASMDIR)get_indexes.c	\
-		$(ASMDIR)values.c	\
-		$(ASMDIR)tools.c
+			$(ASMDIR)get_indexes.c	\
+			$(ASMDIR)values.c	\
+			$(ASMDIR)tools.c
 
 SRC     =	corewar_tests.c		\
 		$(PROJLIST)		\

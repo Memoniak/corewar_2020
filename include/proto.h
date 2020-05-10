@@ -49,6 +49,14 @@ int fill_champion_info(champion_header_t *champ, char **file);
 char *get_func_name(char *str);
 int command_loop(char **str, int start_pos, funct_t *func, int len);
 int arr_func_loop(int len, char **file_arr, funct_t *functions);
+cmd_t *remove_command(cmd_t *command, int pos, int len);
+char *copy_name(char *str, int pos);
+void get_champ_name(champion_header_t *champ, char **file);
+void get_champ_comment(champion_header_t *champ, char **file);
+
+//DESTROY
+void destroy_command(cmd_t *command, int len);
+
 
 //EROR_HANDLING PARSING
 void file_error(void);

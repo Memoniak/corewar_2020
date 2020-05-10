@@ -30,6 +30,7 @@ MYDIR=		$(LIBDIR)my_lib/
 PRINTDIR=	$(LIBDIR)printf_lib/
 ARRDIR=		$(LIBDIR)arr/
 FILEDIR=	$(LIBDIR)file/
+DESTDIR=	$(SRC_DIR)destroy/
 PARS_DIR=	$(SRC_DIR)parsing/
 ERR_PARS_DIR=	$(PARS_DIR)error_handling/
 PROJDIR=	$(SRC_DIR)
@@ -53,7 +54,12 @@ PARSLIST=	$(SRC_DIR)main.c		\
 		$(PARS_DIR)count_commands.c	\
 		$(PARS_DIR)command_loop.c	\
 		$(PARS_DIR)check_label_char.c	\
-		$(ERR_PARS_DIR)file_errors.c
+		$(PARS_DIR)remove_command.c		\
+		$(PARS_DIR)get_champ_name.c		\
+		$(PARS_DIR)get_champ_comment.c	\
+		$(ERR_PARS_DIR)file_errors.c	\
+		$(DESTDIR)destroy_cmd.c
+
 
 SRC=		$(PROJLIST)	\
 		$(ASMLIST)	\

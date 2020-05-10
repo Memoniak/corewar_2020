@@ -52,12 +52,12 @@ char *remove_first_spaces(char *str)
     char *tmp = malloc(sizeof(char) * (my_strlen(str) + 1));
     int i = 0;
 
-    if (!str || str[0] == '\n') {
+    if (!str || str[0] == '\n' || str[0] == '\0') {
         free(tmp);
         return "\0";
     }
     tmp = my_memset(my_strlen(str), tmp);
-    while (str[i] == ' ' || str[i] == 9)
+    while (str[i] == ' ' || str[i] == 9 || str[i] == '\n')
         i++;
     if (i != 1)
         i--;

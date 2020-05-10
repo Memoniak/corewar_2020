@@ -61,7 +61,7 @@ static const op_t    op_tab[] =
     {0, 0, {0}, 0, 0, 0}
   };
 
-int check_line(cmd_t cmd_line, const op_t* op_tab, funct_t *labels);
+int check_instructions(cmd_t cmd_line, const op_t* op_tab, funct_t *labels);
 
 TestSuite(instructions);
 

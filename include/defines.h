@@ -32,6 +32,7 @@
 
 #define INFO (true)
 
-#define OTM(a) op_tab[a].mnemonique
+#define OTM(a)   op_tab[a].mnemonique
+#define FC(a, b) (*funct)[a].commands[b]
 
 #endif /*DEFINES_H*/

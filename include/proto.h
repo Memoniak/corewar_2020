@@ -29,4 +29,7 @@ int is_typed(int code);
 //get_indexes.c
 int get_indexes(funct_t funct[][2]);
 
+//get_label_value.c
+void get_label_value(funct_t funct[][2]);
+
 #endif /*PROTO_H*/

@@ -36,6 +36,7 @@ PROJLIST=	$(PROJDIR)main.c	\
 
 ASMLIST=	$(ASMDIR)write_ina_file.c	\
 		$(ASMDIR)get_indexes.c		\
+		$(ASMDIR)get_label_value.c	\
 		$(ASMDIR)types.c		\
 		$(ASMDIR)tools.c		\
 		$(ASMDIR)values.c

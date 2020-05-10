@@ -7,26 +7,8 @@
 
 #include "corewar.h"
 
-static void replace_label(UNSD char **param, UNSD int value)
-{
-    return;
-}
-
-static void check_label(char *param, int value)
-{
-    if (!param)
-        return;
-    else if (param[0] == DIRECT_CHAR &&
-             param[1] == LABEL_CHAR)
-        replace_label(&param, value);
-}
-
 static void get_param_info(cmd_t *cmd, int *value)
 {
-    check_label(cmd->param1, *value);
-    check_label(cmd->param2, *value);
-    check_label(cmd->param3, *value);
-    check_label(cmd->param4, *value);
     *value += 1 + is_typed(cmd->code - 1);
     *value += get_type(cmd->param1, OTM(cmd->code - 1));
     *value += get_type(cmd->param2, OTM(cmd->code - 1));

@@ -38,7 +38,6 @@ Test(values, get_param_values, .init = redirect_all_std)
 
 Test(indexes, get_prog_size, .init = redirect_all_std)
 {
-    FILE *solved = fopen("tests/files/indexes_test", "r");
     cmd_t cmd1[] = {
         {0, 11, "r1", "%7", "%1", NULL}
     };
@@ -53,6 +52,5 @@ Test(indexes, get_prog_size, .init = redirect_all_std)
     };
     int prog_size = get_indexes(&funct);
 
-    my_printf(1, "%d", prog_size);
-    cr_assert_stdout_eq(solved);
+    cr_assert(prog_size == 22);
 }

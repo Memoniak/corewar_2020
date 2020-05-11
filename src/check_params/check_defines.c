@@ -1,5 +1,11 @@
-#include "op.h"
-#include "assembler.h"
+/*
+** EPITECH PROJECT, 2020
+** Corewar
+** File description:
+** check_defines
+*/
+
+#include "corewar.h"
 
 int check_label_chars(char *name)
 {

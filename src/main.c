@@ -40,8 +40,10 @@ int main(int ac, char **av)
     champion_header_t champ = {0};
     funct_t *funct = NULL;
 
-    if (ac != 2 || find_usage(ac, av))
+    if (ac != 2)
         return EXIT_FAILURE;
+    if (find_usage(ac, av))
+        return EXIT_SUCCESS;
     if (!(funct = make_struct(av[1], &champ))) {
         destroy_all(funct, &champ);
         return EXIT_FAILURE;
@@ -54,7 +56,6 @@ int main(int ac, char **av)
         destroy_all(funct, &champ);
         return EXIT_FAILURE;
     }
-    display_funct(funct);
     destroy_all(funct, &champ);
     return EXIT_SUCCESS;
 }

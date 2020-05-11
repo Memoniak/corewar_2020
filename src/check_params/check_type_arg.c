@@ -6,8 +6,6 @@
 */
 
 #include "corewar.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 static int check_t_reg(char *param)
 {
@@ -47,11 +45,11 @@ int check_type_arg(char *param, funct_t *labels)
 {
     if (!param)
         return 0;
-    if (!check_t_reg(param))
+    if (!check_t_reg(param + 1))
         return T_REG;
-    if (!check_t_dir(param, labels))
+    if (!check_t_dir(param + 1, labels))
         return T_DIR;
-    if (!check_t_ind(param, labels))
+    if (!check_t_ind(param + 1, labels))
         return T_IND;
     return 0;
 }

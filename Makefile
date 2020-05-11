@@ -35,6 +35,7 @@ PARS_DIR=	$(SRC_DIR)parsing/
 ERR_PARS_DIR=	$(PARS_DIR)error_handling/
 PROJDIR=	$(SRC_DIR)
 ASMDIR=		$(SRC_DIR)assembler/
+PARAMS_DIR=	$(SRC_DIR)check_params/
 
 PROJLIST=	$(PROJDIR)sim_main.c		\
 		$(PROJDIR)op.c
@@ -66,15 +67,20 @@ PARSLIST=	$(SRC_DIR)main.c		\
 		$(DESTDIR)destroy_func.c		\
 		$(DESTDIR)destroy_all.c
 
+PARAMSLIST=	$(PARAMS_DIR)check_command.c \
+		$(PARAMS_DIR)check_defines.c		\
+		$(PARAMS_DIR)check_type_arg.c
 
 SRC=		$(PROJLIST)	\
 		$(ASMLIST)	\
-		$(PARSLIST)
+		$(PARSLIST)     \
+		$(PARAMSLIST)
 
 OBJ=		$(SRC:.c=.o)
 POBJ=		$(PROJLIST:.c=.o)
 AOBJ=		$(ASMLIST:.c=.o)
 ROBJ=		$(PARSLIST:.c=.o)
+PAROBJ=		$(PARAMSLIST:.c=.o)
 
 TUFLAG=		--coverage -lcriterion
 MULFLAG=	-lcsfml-graphics -lcsfml-system -lcsfml-audio
@@ -96,7 +102,7 @@ NAME=		asm
 
 all:		title cc_title $(NAME)
 
-obj_title:	Ptitle $(POBJ) Atitle $(AOBJ) Rtitle $(ROBJ)
+obj_title:	Ptitle $(POBJ) Atitle $(AOBJ) Rtitle $(ROBJ) Partitle $(PAROBJ)
 
 title:
 		@$(ECHO) $(BOLD)$(BLUE)"\n        ╼┪  ─╼━━━━━━━┷━━━━━━━╾─  ┢╾\n    ╼━━━┿╉"	\
@@ -118,6 +124,10 @@ Atitle:
 		$(ECHO) -n $(WHITE)' '$(BLANCO)'/         \n'$(DEF)
 Rtitle:
 		@$(ECHO) $(WHITE) && $(ECHO) -n $(PARS_DIR) | tr a-z A-Z |	\
+		sed 's/\//\./' | cut -zd'/' -f1 &&				\
+		$(ECHO) -n $(WHITE)' '$(BLANCO)'/                   \n'$(DEF)
+Partitle:
+		@$(ECHO) $(WHITE) && $(ECHO) -n $(PARAMS_DIR) | tr a-z A-Z |	\
 		sed 's/\//\./' | cut -zd'/' -f1 &&				\
 		$(ECHO) -n $(WHITE)' '$(BLANCO)'/                   \n'$(DEF)
 

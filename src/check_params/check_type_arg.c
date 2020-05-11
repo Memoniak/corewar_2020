@@ -1,5 +1,11 @@
-#include "op.h"
-#include "assembler.h"
+/*
+** EPITECH PROJECT, 2020
+** COREWAR
+** File description:
+** check_type_arg
+*/
+
+#include "corewar.h"
 #include <stdio.h>
 #include <stdlib.h>
 

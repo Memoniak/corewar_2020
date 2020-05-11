@@ -5,8 +5,7 @@
 ** check_ params
 */
 
-#include "op.h"
-#include "assembler.h"
+#include "corewar.h"
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -49,14 +48,25 @@ int check_arg(int data_cmd , int type)
 int check_instructions(cmd_t cmd_line, const op_t* op_tab, funct_t *labels)
 {
     int code = cmd_line.code - 1;
-    int data[4] = {check_type_arg(cmd_line.p1, labels),
-    check_type_arg(cmd_line.p2, labels),
-    check_type_arg(cmd_line.p3, labels),
-    check_type_arg(cmd_line.p4, labels)};
+    int data[4] = {check_type_arg(cmd_line.param1, labels),
+    check_type_arg(cmd_line.param2, labels),
+    check_type_arg(cmd_line.param3, labels),
+    check_type_arg(cmd_line.param4, labels)};
 
     for (int i = 0; i < 4; i++) {
 	if (check_arg(data[i], op_tab[code].type[i]))
 	    return -1;
+    }
+    return 0;
+}
+
+int check_errors_instructions(funct_t *labels)
+{
+    for (int y = 0; y < labels[0].len; y++) {
+        for (int x = 0; x < labels[y].nb_cmd; x++) {
+            if (check_instructions(labels[y].commands[x], op_tab, labels))
+                return 1;
+        }
     }
     return 0;
 }

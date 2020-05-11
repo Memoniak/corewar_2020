@@ -11,7 +11,7 @@ int command_loop(char **str, int start_pos, funct_t *func, int len)
 {
     int z = 1;
 
-    printf(" len --- %i\n", len);
+    my_printf(2, "%s len --- %i%s\n", TEAL, len, DEF);
     if (get_func_param(str[start_pos], &func->commands[0], func->name) == 84)
         return start_pos;
     for (int i = start_pos + 1; i < start_pos + len; i++) {

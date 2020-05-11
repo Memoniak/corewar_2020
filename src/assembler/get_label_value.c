@@ -23,7 +23,7 @@ static char *replace_label(char *param, int nb)
 
 static int get_value(char *param, funct_t **funct, cmd_t cmd)
 {
-    for (int i = 0; i != 2; i++) {
+    for (int i = 0; i != (*funct)[0].len; i++) {
         if (my_strcmp((*funct)[i].name, param + 2))
             return ((*funct)[i].index - cmd.index);
     }
@@ -33,11 +33,13 @@ static int get_value(char *param, funct_t **funct, cmd_t cmd)
 static bool check_label(char **param, funct_t **funct, cmd_t cmd)
 {
     int value = 0;
+    int move = 0;
 
     if (!(*param))
         return false;
-    else if ((*param)[1] == DIRECT_CHAR &&
-             (*param)[2] == LABEL_CHAR)
+    for (; (*param)[move] == ' '; move++);
+    if ((*param)[move++] == DIRECT_CHAR &&
+        (*param)[move] == LABEL_CHAR)
         value = get_value((*param) + 1, funct, cmd);
     if (value)
         (*param) = replace_label((*param) + 2, value);
@@ -46,7 +48,7 @@ static bool check_label(char **param, funct_t **funct, cmd_t cmd)
 
 void get_label_value(funct_t **funct)
 {
-    for (int i = 0; i != 2; i++) {
+    for (int i = 0; i != (*funct)[0].len; i++) {
         for (int j = 0; j != (*funct)[i].nb_cmd; j++) {
             check_label(&FC(i, j).param1, funct, FC(i, j));
             check_label(&FC(i, j).param2, funct, FC(i, j));

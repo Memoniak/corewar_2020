@@ -25,7 +25,7 @@ bool sim_main(funct_t *funct, UNSD char *file_name, champion_header_t *champ)
     champ->prog_size = get_indexes(&funct);
     write_header(champ);
     get_label_value(&funct);
-    for (int i = 0; i != 2; i++)
+    for (int i = 0; i != funct[0].len; i++)
         for (int j = 0; j != funct[i].nb_cmd; j++)
             if (!write_params(&funct[i].commands[j], op_tab, champ->fd))
                 return false;

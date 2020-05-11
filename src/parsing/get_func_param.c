@@ -28,7 +28,7 @@ int get_func_param(char *str, cmd_t *cmd, char *func_name)
     if (parsed[0] && parsed[1] && parsed[2] && parsed[3])
         cmd->param4 = my_strdup(parsed[3]);
     for (int i =0; parsed[i]; i++) {
-        printf("%s\n", parsed[i]);
+        my_printf(2, "%s\n", parsed[i]);
     }
     //destroy_rr(parsed);
     return 0;

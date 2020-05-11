@@ -20,7 +20,7 @@ int get_indexes(funct_t **funct)
 {
     int value = 0;
 
-    for (int i = 0; i != 2; i++) {
+    for (int i = 0; i != (*funct)[0].len; i++) {
         (*funct)[i].index = value;
         for (int j = 0; j != (*funct)[i].nb_cmd; j++) {
             (*funct)[i].commands[j].index = value;

@@ -9,12 +9,16 @@
 
 void destroy_func(funct_t *func)
 {
-    int len = func[0].len;
+    int len;
 
+    if (!func)
+        return;
+    len = func[0].len;
     for (int i = 0; i < len; i++) {
         if (func[i].name)
             free(func[i].name);
         destroy_command(func[i].commands, func[i].nb_cmd);
     }
-    free(func);
+    if (func)
+        free(func);
 }

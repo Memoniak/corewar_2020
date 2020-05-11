@@ -9,7 +9,8 @@
 
 void destroy_all(funct_t *func, champion_header_t *champ)
 {
-    close(champ->fd);
+    if (champ->fd != -1)
+        close(champ->fd);
     if (champ->file_name)
         free(champ->file_name);
     destroy_func(func);

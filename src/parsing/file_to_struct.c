@@ -18,18 +18,9 @@ int get_code(char *code_str, int len)
 
 int fill_champion_info(champion_header_t *champ, char **file)
 {
-    char *tmp = my_strdup(file[0]);
-
-    if (!tmp)
-        return 84;
     champ->magic = COREWAR_EXEC_MAGIC;
-    while (*(tmp)++ != '.' && *(tmp) != '\0' && *(tmp) != '\n');
-    if (!my_strncmp(tmp, "name", 4))
-        champ->name = get_string_inbetween(tmp, '"');
-    tmp = my_strdup(file[1]);
-    while (*(tmp)++ != '.' && *(tmp) != '\0' && *(tmp) != '\n');
-    if (!my_strncmp(tmp, "comment", 6))
-       champ->comment = get_string_inbetween(tmp, '"');
+    get_champ_name(champ, file);
+    get_champ_comment(champ, file);
     if (!champ->name || !champ->comment) {
         champ_info_error();
         return 84;
@@ -37,31 +28,12 @@ int fill_champion_info(champion_header_t *champ, char **file)
     return 1;
 }
 
-char *get_func_name(char *str)
-{
-    char *name = NULL;
-
-    if (!str)
-        return NULL;
-    for (int i = 0; str[i]; i++) {
-        if (str[i] == LABEL_CHAR && str[i - 1] != DIRECT_CHAR) {
-            name = malloc(sizeof(char) * i + 1);
-            name = my_strncpy(name, str, i);
-            return name;
-        }
-    }
-    return name;
-}
-
 int create_command(char **str, funct_t *func, int start_pos)
 {
-    int len;
+    int len = 0;
     int tmp = 0;
 
-    if (get_func_name(str[start_pos]) == NULL)
-        len = count_cmd_len_first(str, start_pos);
-    else
-        len = count_cmd_len(str, start_pos);
+    len = get_full_cmd_len(str, start_pos);
     func->name = get_func_name(str[start_pos]);
     if (func->name && check_label_chars(func->name))
         return 84;
@@ -73,7 +45,7 @@ int create_command(char **str, funct_t *func, int start_pos)
         return 84;
     }
     func->index = 0;
-    return start_pos + len - 1;
+    return start_pos + len;
 }
 
 funct_t *make_struct(char const *filepath, champion_header_t *champion_info)
@@ -91,7 +63,10 @@ funct_t *make_struct(char const *filepath, champion_header_t *champion_info)
     functions = malloc(sizeof(funct_t) * len);
     if (arr_func_loop(len, file_arr, functions) == 84) {
         free(functions);
+        destroy_rr(file_arr);
         return NULL;
     }
+    create_cor_file(champion_info, filepath);
+    destroy_rr(file_arr);
     return functions;
 }

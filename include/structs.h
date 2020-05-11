@@ -31,10 +31,12 @@ typedef struct {
 } funct_t;
 
 typedef struct {
-    char *name;
-    char *comment;
+    char name[PROG_NAME_LENGTH];
+    char comment[COMMENT_LENGTH];
     int magic;
     int prog_size;
+    char *file_name;
+    int fd;
 } champion_header_t;
 
 #endif /* !ASSEMBLER_H_ */

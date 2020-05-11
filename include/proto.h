@@ -12,8 +12,10 @@
 #include "structs.h"
 
 //sim_main.c
-bool write_params(cmd_t *cmd, op_t op_tab[]);
-bool sim_main(funct_t *funct);
+bool write_params(cmd_t *cmd, op_t op_tab[], int fd);
+bool sim_main(funct_t *funct, char *file_name, champion_header_t *champ);
+void nwrite(int fd, int *value, int nb);
+void write_header(champion_header_t *champ);
 
 //types.c
 int types_to_deca(cmd_t *cmd);
@@ -22,7 +24,7 @@ int types_to_deca(cmd_t *cmd);
 int *values_to_deca(cmd_t *cmd);
 
 //write_ina_file.c
-bool put_ina_file(int *types, int **values, cmd_t *cmd, op_t op_tab[]);
+bool put_ina_file(int *types, int **values, cmd_t *cmd, int fd);
 
 //tools.c
 int power(int nb, int pow);
@@ -42,14 +44,30 @@ int check_line(char *line);
 char *check_name(char *str, char *name);
 int get_code(char *code_str, int len);
 void init_cmd_struct(cmd_t *commands, int len);
+
 int count_cmd_len(char **arr, int pos);
 int count_cmd_len_first(char **arr, int pos);
+int get_full_cmd_len(char **str, int start_pos);
+
 funct_t *make_struct(char const *filepath, champion_header_t *champion_info);
 int create_command(char **str, funct_t *func, int start_pos);
 int fill_champion_info(champion_header_t *champ, char **file);
-char *get_func_name(char *str);
+
 int command_loop(char **str, int start_pos, funct_t *func, int len);
 int arr_func_loop(int len, char **file_arr, funct_t *functions);
+cmd_t *remove_command(cmd_t *command, int pos, int len);
+
+char *copy_name(char *str, int pos);
+void get_champ_name(champion_header_t *champ, char **file);
+void get_champ_comment(champion_header_t *champ, char **file);
+char *get_func_name(char *str);
+void create_cor_file(champion_header_t *champ, char const *file_name);
+
+//DESTROY
+void destroy_command(cmd_t *command, int len);
+void destroy_func(funct_t *func);
+void destroy_all(funct_t *func, champion_header_t *champ);
+
 
 //EROR_HANDLING PARSING
 void file_error(void);

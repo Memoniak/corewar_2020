@@ -7,9 +7,7 @@
 
 #include "corewar.h"
 
-static const char FILEPATH[] = "abel.core";
-
-static void nwrite(int fd, int *value, int nb)
+void nwrite(int fd, int *value, int nb)
 {
     int right;
     int left;
@@ -23,11 +21,8 @@ static void nwrite(int fd, int *value, int nb)
     }
 }
 
-bool put_ina_file(int *types, int **values, cmd_t *cmd, op_t op_tab[])
+bool put_ina_file(int *types, int **values, cmd_t *cmd, int fd)
 {
-    int fd;
-
-    fd = open(FILEPATH, O_APPEND | O_CREAT | O_WRONLY, 0644);
     if (fd == -1)
         return false;
     write(fd, &cmd->code, sizeof(char));

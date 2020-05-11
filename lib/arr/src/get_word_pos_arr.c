@@ -17,7 +17,7 @@ size_t get_pos_word_in_str(char const  *word, char const *str)
     if (!word || !str)
         return -1;
     while (str[pos]) {
-        if (my_strncmp(word, str + pos, my_strlen(word))) {
+        if (!my_strncmp(word, str + pos, my_strlen(word))) {
             return pos;
         }
         pos++;

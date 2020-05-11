@@ -30,7 +30,8 @@ SRC	=	$(SRCDIR)get_dbl_arr_len.c	\
 		$(SRCDIR)my_memset.c		\
 		$(SRCDIR)remove_spaces.c	\
 		$(SRCDIR)copy_from.c		\
-		$(SRCDIR)get_word_pos_arr.c
+		$(SRCDIR)get_word_pos_arr.c	\
+		$(SRCDIR)destroy_rr.c
 
 OBJ	=	$(SRC:.c=.o)
 

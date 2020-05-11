@@ -1,11 +1,10 @@
 asm
 unit_tests
 test_asm
-abel.s
 .vscode/
 .#*
 *.gc*
-*.core
+*.cor
 *.o
 *~
 *.txt

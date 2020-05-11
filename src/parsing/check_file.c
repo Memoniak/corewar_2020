@@ -13,8 +13,10 @@ int check_line(char *line)
     if (!line)
         return 0;
     for (int i = 0; line[i]; i++) {
-        if (line[i] >= 'a' && line[i] <= 'z')
+        if (line[i] >= 'a' && line[i] <= 'z') {
+            printf("line %s + char %c\n", line, line[i]);
             return 1;
+        }
     }
     return 0;
 }

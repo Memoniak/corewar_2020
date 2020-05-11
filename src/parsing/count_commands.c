@@ -10,18 +10,20 @@
 int count_cmd_len_first(char **arr, int pos)
 {
     char *name = NULL;
-    int len = -1;
+    int len = 0;
 
     if (!arr[pos])
-        return len;
+        return 0;
     name = get_func_name(arr[pos]);
     while (!name) {
         pos++;
+        len++;
         if (!arr[pos])
             return len;
-        len++;
+        printf("NAME = %s | POS = %i | %s\n", name, pos, arr[pos]);
         name = get_func_name(arr[pos]);
     }
+    printf("LEN -%i\n", len);
     free(name);
     return len;
 }

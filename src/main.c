@@ -26,7 +26,7 @@ static void display_funct(funct_t *funct)
 int main(int ac, char **av)
 {
     champion_header_t champ = {0};
-    funct_t *funct;
+    funct_t *funct = NULL;
 
     if (ac != 2)
 	return EXIT_FAILURE;

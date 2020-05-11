@@ -19,9 +19,10 @@ int get_code(char *code_str, int len)
 int fill_champion_info(champion_header_t *champ, char **file)
 {
     champ->magic = COREWAR_EXEC_MAGIC;
+    champ->fd = -1;
     get_champ_name(champ, file);
     get_champ_comment(champ, file);
-    if (!champ->name || !champ->comment) {
+    if (champ->name[0] == '\0' || champ->comment[0] == '\0') {
         champ_info_error();
         return 84;
     }
@@ -34,7 +35,6 @@ int create_command(char **str, funct_t *func, int start_pos)
     int tmp = 0;
 
     len = get_full_cmd_len(str, start_pos);
-    printf("label len = %i\n", len);
     func->name = get_func_name(str[start_pos]);
     if (func->name && check_label_chars(func->name))
         return 84;

@@ -24,12 +24,16 @@ char *copy_name(char *str, int pos)
 void get_champ_name(champion_header_t *champ, char **file)
 {
     int pos = 0;
-    char *name;
+    char *name = NULL;
 
     for (int i = 0; file[i]; i++) {
         pos = get_pos_word_in_str(NAME_CMD_STRING, file[i]);
         if (pos != -1)
             name = copy_name(file[i], pos);
+    }
+    if (!name) {
+        champ->name[0] = '\0';
+        return;
     }
     for (int i = 0; i < my_strlen(name); i++)
         champ->name[i] = name[i];

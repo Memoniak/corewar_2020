@@ -10,11 +10,16 @@
 void get_champ_comment(champion_header_t *champ, char **file)
 {
     int pos = 0;
-    char *comment;
+    char *comment = NULL;
+
     for (int i = 0; file[i]; i++) {
         pos = get_pos_word_in_str(COMMENT_CMD_STRING, file[i]);
         if (pos != -1)
             comment = copy_name(file[i], pos);
+    }
+    if (!comment) {
+        champ->comment[0] = '\0';
+        return;
     }
     for (int i = 0; i < my_strlen(comment); i++)
         champ->comment[i] = comment[i];

@@ -7,10 +7,18 @@
 
 #include "corewar.h"
 
-static char *replace_label(char *param, int value)
+static char *replace_label(char *param, int nb)
 {
-    printf("%s <-> %d\n", param, value);
-    return param;
+    char *value = intchar(nb);
+    char *result = malloc(sizeof(char) * (count_num(nb) + 2));
+
+    if (!param)
+        return NULL;
+    result[0] = DIRECT_CHAR;
+    result[1] = '\0';
+    result = my_strcat(result, value);
+    free(value);
+    return result;
 }
 
 static int get_value(char *param, funct_t **funct, cmd_t cmd)
@@ -22,17 +30,17 @@ static int get_value(char *param, funct_t **funct, cmd_t cmd)
     return 0;
 }
 
-static bool check_label(char *param, funct_t **funct, cmd_t cmd)
+static bool check_label(char **param, funct_t **funct, cmd_t cmd)
 {
     int value = 0;
 
-    if (!param)
+    if (!(*param))
         return false;
-    else if (param[0] == DIRECT_CHAR &&
-             param[1] == LABEL_CHAR)
-        value = get_value(param, funct, cmd);
+    else if ((*param)[1] == DIRECT_CHAR &&
+             (*param)[2] == LABEL_CHAR)
+        value = get_value((*param) + 1, funct, cmd);
     if (value)
-        param = replace_label(param + 2, value);
+        (*param) = replace_label((*param) + 2, value);
     return true;
 }
 
@@ -40,10 +48,10 @@ void get_label_value(funct_t **funct)
 {
     for (int i = 0; i != 2; i++) {
         for (int j = 0; j != (*funct)[i].nb_cmd; j++) {
-            check_label(FC(i, j).param1, funct, FC(i, j));
-            check_label(FC(i, j).param2, funct, FC(i, j));
-            check_label(FC(i, j).param3, funct, FC(i, j));
-            check_label(FC(i, j).param4, funct, FC(i, j));
+            check_label(&FC(i, j).param1, funct, FC(i, j));
+            check_label(&FC(i, j).param2, funct, FC(i, j));
+            check_label(&FC(i, j).param3, funct, FC(i, j));
+            check_label(&FC(i, j).param4, funct, FC(i, j));
         }
     }
 }

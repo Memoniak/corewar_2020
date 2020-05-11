@@ -7,25 +7,24 @@
 
 #include "corewar.h"
 
-//TODO: fonction auxiliaire parcourir funct et check_instruction
-
-static void display_funct(funct_t *funct)
+UNSD static void display_funct(funct_t *funct)
 {
     for (int i = 0; i < funct[0].len; i++) {
         my_printf(2, "%sfunc name --> %s%s\n", BLUE, funct[i].name, DEF);
         for (int j = 0; j < funct[i].nb_cmd; j++) {
-            my_printf(2, "%scommand:\n\tindex:%i\n\tcode:%i\n\tparam1:%s\n\tparam2:%s"
-                      "\n\tparam3:%s\n\tparam4:%s%s\n", YELLOW, funct[i].commands[j].index,
-                   funct[i].commands[j].code, funct[i].commands[j].param1,
-                   funct[i].commands[j].param2, funct[i].commands[j].param3,
+            my_printf(2, "%scommand:\n\tindex:%i\n\tcode:%i"
+                      "\n\tparam1:%s\n\tparam2:%s\n\tparam3:%s"
+                      "\n\tparam4:%s%s\n", YELLOW, funct[i].commands[j].index,
+                      funct[i].commands[j].code, funct[i].commands[j].param1,
+                      funct[i].commands[j].param2, funct[i].commands[j].param3,
                       funct[i].commands[j].param4, DEF);
         }
     }
 }
 
-int find_usage(int ac, char **av)
+static int find_usage(int ac, char **av)
 {
-    if (av[1][0] == '-' && av[1][1] == 'h') {
+    if (ac == 2 && my_strcmp(av[1], "-h")) {
         my_printf(1, "USAGE\n./asm file_name[.s]\nDESCRITPION\n");
         my_printf(1, "file_name file in assembly language to be converted");
         my_printf(1, "into file_name.cor, an executable in the Virtual");
@@ -47,12 +46,10 @@ int main(int ac, char **av)
     if (!(funct = make_struct(av[1], &champ))) {
         destroy_all(funct, &champ);
         return EXIT_FAILURE;
-    }
-    if (check_errors_instructions(funct)) {
+    } if (check_errors_instructions(funct)) {
         destroy_all(funct, &champ);
         return EXIT_FAILURE;
-    }
-    if (!sim_main(funct, champ.file_name, &champ)) {
+    } if (!sim_main(funct, champ.file_name, &champ)) {
         destroy_all(funct, &champ);
         return EXIT_FAILURE;
     }

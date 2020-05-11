@@ -34,11 +34,12 @@ int create_command(char **str, funct_t *func, int start_pos)
     int tmp = 0;
 
     len = get_full_cmd_len(str, start_pos);
+    printf("label len = %i\n", len);
     func->name = get_func_name(str[start_pos]);
     if (func->name && check_label_chars(func->name))
         return 84;
     func->nb_cmd = len;
-    func->commands = malloc(sizeof(cmd_t) * (len + 1));
+    func->commands = malloc(sizeof(cmd_t) * (len + 2));
     init_cmd_struct(func->commands, len);
     if ((tmp = command_loop(str, start_pos, func, len)) != -1) {
         func_cmd_error(tmp);
@@ -60,7 +61,8 @@ funct_t *make_struct(char const *filepath, champion_header_t *champion_info)
     }
     if (fill_champion_info(champion_info, file_arr) == 84)
         return NULL;
-    functions = malloc(sizeof(funct_t) * len);
+    functions = malloc(sizeof(funct_t) * (len + 1));
+    printf("func len= %i\n", len);
     if (arr_func_loop(len, file_arr, functions) == 84) {
         free(functions);
         destroy_rr(file_arr);

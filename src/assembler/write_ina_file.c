@@ -32,6 +32,5 @@ bool put_ina_file(int *types, int **values, cmd_t *cmd, int fd)
     nwrite(fd, (*values + 1), get_type(cmd->param2, OTM(cmd->code - 1)));
     nwrite(fd, (*values + 2), get_type(cmd->param3, OTM(cmd->code - 1)));
     nwrite(fd, (*values + 3), get_type(cmd->param4, OTM(cmd->code - 1)));
-    close(fd);
     return true;
 }

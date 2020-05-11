@@ -23,6 +23,7 @@ bool write_params(cmd_t *cmd, op_t op_tab[], int fd)
 bool sim_main(funct_t *funct, char *file_name, champion_header_t *champ)
 {
     champ->prog_size = get_indexes(&funct);
+    write_header(champ);
     get_label_value(&funct);
     for (int i = 0; i != 2; i++)
         for (int j = 0; j != funct[i].nb_cmd; j++)

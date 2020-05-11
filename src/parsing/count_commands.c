@@ -33,8 +33,9 @@ int count_cmd_len(char **arr, int pos)
     int len = 0;
 
     name = get_func_name(arr[pos]);
+    if (!check_line(arr[pos] + my_strlen(name)))
+        len++;
     new = get_func_name(arr[pos++]);
-    printf("name= %s | new = %s\n", name, new);
     while (my_strcmp(name, new) && arr[pos]) {
         if (new)
             free(new);
@@ -44,7 +45,6 @@ int count_cmd_len(char **arr, int pos)
         if (!new)
             new = my_strcpy(new, name);
     }
-    printf("len = %i\n", len);
     free(name);
     free(new);
     return len;

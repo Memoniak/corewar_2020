@@ -14,5 +14,5 @@ size_t get_dbl_arr_len(char const **arr)
     if (!arr)
         return 0;
     while (arr[len++]);
-    return len;
+    return len - 1;
 }

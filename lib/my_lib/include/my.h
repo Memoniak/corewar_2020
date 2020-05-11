@@ -51,6 +51,8 @@ int my_strncmp(char const *s1, char const *s2, int n);
 //my_strdup.c
 char *my_strdup(char const *src);
 char *my_strdup_start(char const *src, int pos);
+char *my_strdup_w_no_spaces(char const *src);
+char *my_strdup_start_no_sp(char const *src, int pos);
 
 //my_strcpy.c
 char *my_strncpy(char *dest, char const *src, int n);

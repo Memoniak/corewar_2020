@@ -44,7 +44,9 @@ ASMLIST=	$(ASMDIR)write_ina_file.c	\
 		$(ASMDIR)get_label_value.c	\
 		$(ASMDIR)types.c		\
 		$(ASMDIR)tools.c		\
-		$(ASMDIR)values.c
+		$(ASMDIR)values.c		\
+		$(ASMDIR)create_cor_file.c	\
+		$(ASMDIR)write_header.c
 
 PARSLIST=	$(SRC_DIR)main.c		\
 		$(PARS_DIR)file_to_struct.c	\

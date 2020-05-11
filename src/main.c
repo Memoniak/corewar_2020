@@ -36,8 +36,11 @@ int main(int ac, char **av)
                    funct[i].commands[j].param4);
         }
     }
-    if (!sim_main(funct))
+    printf("champ:\n\tname:%s\n\tcomment:%s\n", champ.name, champ.comment);
+    if (!sim_main(funct, champ.file_name, &champ)) {
+        destroy_all(funct, &champ);
         return EXIT_FAILURE;
+    }
     destroy_all(funct, &champ);
     return EXIT_SUCCESS;
 }

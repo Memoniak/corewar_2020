@@ -9,9 +9,7 @@
 
 void destroy_all(funct_t *func, champion_header_t *champ)
 {
-    if (champ->comment)
-        free(champ->comment);
-    if (champ->name)
-        free(champ->name);
+    if (champ->file_name)
+        free(champ->file_name);
     destroy_func(func);
 }

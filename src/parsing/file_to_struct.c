@@ -66,6 +66,7 @@ funct_t *make_struct(char const *filepath, champion_header_t *champion_info)
         destroy_rr(file_arr);
         return NULL;
     }
+    create_cor_file(champion_info, filepath);
     destroy_rr(file_arr);
     return functions;
 }

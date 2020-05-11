@@ -12,8 +12,10 @@
 #include "structs.h"
 
 //sim_main.c
-bool write_params(cmd_t *cmd, op_t op_tab[]);
-bool sim_main(funct_t *funct);
+bool write_params(cmd_t *cmd, op_t op_tab[], int fd);
+bool sim_main(funct_t *funct, char *file_name, champion_header_t *champ);
+void nwrite(int fd, int *value, int nb);
+void write_header(champion_header_t *champ);
 
 //types.c
 int types_to_deca(cmd_t *cmd);
@@ -22,7 +24,7 @@ int types_to_deca(cmd_t *cmd);
 int *values_to_deca(cmd_t *cmd);
 
 //write_ina_file.c
-bool put_ina_file(int *types, int **values, cmd_t *cmd, op_t op_tab[]);
+bool put_ina_file(int *types, int **values, cmd_t *cmd, int fd);
 
 //tools.c
 int power(int nb, int pow);
@@ -59,6 +61,7 @@ char *copy_name(char *str, int pos);
 void get_champ_name(champion_header_t *champ, char **file);
 void get_champ_comment(champion_header_t *champ, char **file);
 char *get_func_name(char *str);
+void create_cor_file(champion_header_t *champ, char const *file_name);
 
 //DESTROY
 void destroy_command(cmd_t *command, int len);

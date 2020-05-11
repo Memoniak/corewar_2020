@@ -34,7 +34,6 @@ int main(int ac, char **av)
         destroy_all(funct, &champ);
         return EXIT_FAILURE;
     }
-    my_printf(2, "%s%d%s\n", GREEN, funct[0].commands[0].code, DEF);
     if (check_errors_instructions(funct)) {
         destroy_all(funct, &champ);
         return EXIT_FAILURE;

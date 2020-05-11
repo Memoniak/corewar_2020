@@ -59,8 +59,6 @@ char *remove_first_spaces(char *str)
     tmp = my_memset(my_strlen(str), tmp);
     while (str[i] == ' ' || str[i] == 9 || str[i] == '\n')
         i++;
-    if (i != 1)
-        i--;
     for (; str[i]; i++) {
         tmp[z] = str[i];
         z++;

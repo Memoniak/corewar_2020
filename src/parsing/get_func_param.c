@@ -14,8 +14,10 @@ int get_func_param(char *str, cmd_t *cmd, char *func_name)
 
     parsed[0] = check_name(parsed[0], func_name);
     parsed[0] = remove_first_spaces(parsed[0]);
+    printf("parsed[0] after removed spacs =%s\n", parsed[0]);
     while((parsed[0][i] != ' ' || parsed[0][i] == 9) && parsed[0][i] != '\0')
         i++;
+    printf("code end at %i\n", i);
     cmd->code = get_code(parsed[0], i);
     if (!cmd->code && parsed[0][0] != '\0')
         return 84;

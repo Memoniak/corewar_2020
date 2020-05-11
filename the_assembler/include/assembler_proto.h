@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2020
-** proto.h
+** assembler_proto.h
 ** File description:
-** prototypes
+** prototypes for the_assembler
 */
 
 #ifndef PROTO_H

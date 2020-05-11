@@ -11,7 +11,8 @@
 #include "includes.h"
 #include "defines.h"
 #include "structs.h"
-#include "proto.h"
+#include "assembler_proto.h"
+#include "virtual_machine_proto.h"
 #include "op.h"
 
 #endif /* COREWAR_H */

@@ -31,14 +31,15 @@ int main(int ac, char **av)
     if (ac != 2)
 	return EXIT_FAILURE;
     if (!(funct = make_struct(av[1], &champ))) {
-	destroy_all(funct, &champ);
-	return EXIT_FAILURE;
+	    destroy_all(funct, &champ);
+	    return EXIT_FAILURE;
     }
+    display_funct(funct);
     if (check_errors_instructions(funct))
-	return EXIT_FAILURE;
+	    return EXIT_FAILURE;
     if (!sim_main(funct, champ.file_name, &champ)) {
-	destroy_all(funct, &champ);
-	return EXIT_FAILURE;
+	    destroy_all(funct, &champ);
+	    return EXIT_FAILURE;
     }
     display_funct(funct);
     destroy_all(funct, &champ);

@@ -28,7 +28,7 @@ void check_empty_cmd(funct_t *func)
 {
     for (int i = 0; i < func[0].len; i++) {
         for (int j = 0; j < func[i].nb_cmd; j++) {
-            if (!func[i].commands[j].code && j + 1 != func[i].nb_cmd) {
+            if (!func[i].commands[j].code) {
                 func[i].commands =
                 remove_command(func[i].commands, j, func[i].nb_cmd);
                 func[i].nb_cmd--;

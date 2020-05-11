@@ -46,7 +46,7 @@ int create_command(char **str, funct_t *func, int start_pos)
         return 84;
     }
     func->index = 0;
-    return start_pos + len;
+    return start_pos + len - 1;
 }
 
 funct_t *make_struct(char const *filepath, champion_header_t *champion_info)
@@ -62,7 +62,6 @@ funct_t *make_struct(char const *filepath, champion_header_t *champion_info)
     if (fill_champion_info(champion_info, file_arr) == 84)
         return NULL;
     functions = malloc(sizeof(funct_t) * (len + 1));
-    printf("func len= %i\n", len);
     if (arr_func_loop(len, file_arr, functions) == 84) {
         free(functions);
         destroy_rr(file_arr);

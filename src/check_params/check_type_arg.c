@@ -45,11 +45,11 @@ int check_type_arg(char *param, funct_t *labels)
 {
     if (!param)
         return 0;
-    if (!check_t_reg(param + 1))
+    if (!check_t_reg(param))
         return T_REG;
-    if (!check_t_dir(param + 1, labels))
+    if (!check_t_dir(param, labels))
         return T_DIR;
-    if (!check_t_ind(param + 1, labels))
+    if (!check_t_ind(param, labels))
         return T_IND;
     return 0;
 }

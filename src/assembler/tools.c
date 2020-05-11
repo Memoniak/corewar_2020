@@ -16,16 +16,16 @@ int power(int nb, int pow)
 
 int get_type(char const *param, char *name)
 {
-    if (!param)
+    if (!param) {
         return 0;
-    if (param[0] == 'r' || (param[0] == ' ' && param[1] == 'r'))
+    } if (*param == 'r') {
         return 1;
-    else if ((param[0] == DIRECT_CHAR ||
-              (param[0] == ' ' && param[1] == DIRECT_CHAR)) &&
-             !my_strcmp(name, "zjmp") && !my_strcmp(name, "ldi") &&
-             !my_strcmp(name, "fork") && !my_strcmp(name, "sti") &&
-             !my_strcmp(name, "lfork") && !my_strcmp(name, "lldi"))
+    } else if (*param == DIRECT_CHAR &&
+               !my_strcmp(name, "zjmp") && !my_strcmp(name, "ldi") &&
+               !my_strcmp(name, "fork") && !my_strcmp(name, "sti") &&
+               !my_strcmp(name, "lfork") && !my_strcmp(name, "lldi")) {
         return DIR_SIZE;
+    }
     return IND_SIZE;
 }
 
@@ -33,10 +33,9 @@ int get_binary_type(char const *param)
 {
     if (!param) {
         return 0;
-    } if (param[0] == 'r' || (param[0] == ' ' && param[1] == 'r')) {
+    } if (*param == 'r') {
         return 1;
-    } else if (param[0] == DIRECT_CHAR ||
-               (param[0] == ' ' && param[1] == DIRECT_CHAR)) {
+    } else if (*param == DIRECT_CHAR) {
         return 2;
     }
     return 3;

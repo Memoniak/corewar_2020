@@ -27,7 +27,7 @@ static int check_t_dir(char *param, funct_t *labels)
     if (param[0] != DIRECT_CHAR)
         return 1;
     if (param[1] != LABEL_CHAR)
-        return check_value_dir(param + 1, labels);
+        return check_value(param + 1, labels);
     else
         return check_label_name(param + 2, labels);
     return 0;
@@ -36,7 +36,7 @@ static int check_t_dir(char *param, funct_t *labels)
 static int check_t_ind(char *param, funct_t *labels)
 {
     if(param[0] != LABEL_CHAR)
-        return check_value_ind(param, labels);
+        return check_value(param, labels);
     return check_label_name(param + 1, labels);
     return 0;
 }

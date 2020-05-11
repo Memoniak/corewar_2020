@@ -23,12 +23,24 @@ static void display_funct(funct_t *funct)
     }
 }
 
+int find_usage(int ac, char **av)
+{
+    if (av[1][0] == '-' && av[1][1] == 'h') {
+        my_printf(1, "USAGE\n./asm file_name[.s]\nDESCRITPION\n");
+        my_printf(1, "file_name file in assembly language to be converted");
+        my_printf(1, "into file_name.cor, an executable in the Virtual");
+        my_printf(1, " Machine.\n");
+        return 1;
+    }
+    return 0;
+}
+
 int main(int ac, char **av)
 {
     champion_header_t champ = {0};
     funct_t *funct = NULL;
 
-    if (ac != 2)
+    if (ac != 2 || find_usage(ac, av))
         return EXIT_FAILURE;
     if (!(funct = make_struct(av[1], &champ))) {
         destroy_all(funct, &champ);

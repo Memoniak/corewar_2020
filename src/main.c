@@ -13,6 +13,6 @@ int main(void)
     char *str = "%:hi";
     int value = -1245678;
 
-    printf("%s\n", replace_label(str, value));
+    printf();
     return 0;
 }

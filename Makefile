@@ -5,8 +5,7 @@
 ## makefile my_screensaver
 ##
 
-SRC	=	src/main.c \
-		src/get_label.c \
+SRC	=	src/funct_live.c \
 
 OBJ	=	$(SRC:.c=.o)
 

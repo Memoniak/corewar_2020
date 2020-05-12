@@ -22,8 +22,8 @@ BLANCO=         "\e[9;37m"
 BLACKY=         "\e[9;30m"
 FONT=           "\e[7m"
 
-ASMDIR=		the_assembler/
-VMDIR=		the_virtual_machine/
+ASMDIR=		asm/
+VMDIR=		corewar/
 
 all:		build
 

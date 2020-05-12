@@ -1,1 +1,0 @@
-../../the_virtual_machine/include/virtual_machine_proto.h

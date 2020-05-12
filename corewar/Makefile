@@ -144,7 +144,6 @@ $(NAME):	obj_title lib_maker
 		$(BOLD)"BUILD SUCCESS "$(GREEN)"╊┿━━╾\n\t     ╿ ─╼━━━━━━━━━╾─ ╿\n"$(DEF) ||	\
 		$(ECHO) $(BOLD)$(RED)"\n\n\t     ╽ ─╼━━━━━━━━╾─ ╽\n\t ╼━━┿╉"$(DEF)		\
 		$(BOLD)"BUILD FAILED "$(RED)"╊┿━━╾\n\t     ╿ ─╼━━━━━━━━╾─ ╿"$(DEF)
-		@cp $(NAME) ../
 
 clean:
 		@$(RM) $(OBJ)
@@ -158,7 +157,6 @@ fclean:		clean_title clean
 		done
 		@$(RM) $(TEST)
 		@$(RM) $(NAME)
-		@$(RM) ../$(NAME)
 		@$(ECHO) '\t   '$(BOLD)$(WHITE)"FCLEAN "$(BOLD)$(GREEN)"SUCCESS "✓'\n'$(DEF)
 
 debug:		CFLAGS += -g

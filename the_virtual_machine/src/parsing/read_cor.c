@@ -51,9 +51,35 @@ static void decrypt_type(unsigned char value, int params[][4], int code, bool ty
     }
 }
 
-static void decrypt_params(int byte, char **buf, int *read_len)
+static int read_nbytes(char **buf, int nb, int code)
+{
+    int result = **buf;
+    unsigned char live = **buf;
+
+    for (ssize_t i = 1; i != nb; i++)
+    {
+        if (!my_strcmp(OTM(code - 1), "live"))
+        {
+            result <<= i * 8;
+            result += *(*buf + i);
+            result %= power(2, 8);
+        } else
+        {
+            live <<= i * 8;
+            live += *(*buf + i);
+            live %= power(2, 8);
+        }
+    }
+    if (!my_strcmp(OTM(code - 1), "live"))
+        return result;
+    return live;
+}
+
+static void decrypt_params(int byte, char **buf, int *read_len, unsigned char code)
 {
     unsigned char value;
+    int result;
+    char *temp = *buf + 1;
 
     if (byte == 1)
         my_printf(2, "%sREG%s  ", RED, DEF);
@@ -62,12 +88,14 @@ static void decrypt_params(int byte, char **buf, int *read_len)
     else
         my_printf(2, "%sIND%s  ", RED, DEF);
     my_printf(2, "%ssize: %s%d  %s", GREEN, BOLD, byte, DEF);
+    result = read_nbytes(&temp, byte, code);
+    my_printf(2, "%s%d  %s", LBLUE, result, DEF);
     for (ssize_t i = 0; i != byte; i++)
     {
         (*read_len)--;
         (*buf)++;
         value = **buf;
-        my_printf(2, "%s0%d  %s", LBLUE, value, DEF);
+        my_printf(2, "%s0%d  %s", BLUE, value, DEF);
     }
     my_printf(2, "\n");
 }
@@ -86,13 +114,13 @@ static void decrypt_instruction(unsigned char code, char **buf, int *read_len)
     decrypt_type(**buf, &params, code, typed);
     my_printf(2, "%sparams━━━━━━━━━━━━━━━━━━━%s\n", LGREEN, DEF);
     for (ssize_t i = 0; params[i]; i++)
-        decrypt_params(params[i], buf, read_len);
+        decrypt_params(params[i], buf, read_len, code);
 }
 
 static void get_prog_size(char **buf, int *prog_size)
 {
-    my_printf(2, "%scode = %d%s\n", BLUE, **buf, DEF);
-    *prog_size = 21;
+    *prog_size = read_nbytes(buf, 4, 1);
+    my_printf(2, "%sprog_size = %d%s\n", LRED, *prog_size, DEF);
 }
 
 static void display_values(char *buf, int read_len)
@@ -102,14 +130,13 @@ static void display_values(char *buf, int read_len)
 
     while (read_len--)
     {
-        if (read_len <= prog_size)
+        if (read_len < prog_size)
         {
             my_printf(2, "%s━━━━━━━━━━━%s\n", TEAL, DEF);
             my_printf(2, "%scode = %d | %sindex = %d%s\n",
-                      LTEAL, *buf, LMAGENTA, prog_size - read_len, DEF);
+                      LTEAL, *buf, LMAGENTA, prog_size - read_len - 1, DEF);
             decrypt_instruction(*buf, &buf, &read_len);
-        }
-        if (move >= 8 + PROG_NAME_LENGTH && move < 12 + PROG_NAME_LENGTH)
+        } else if (move == 8 + PROG_NAME_LENGTH)
         {
             get_prog_size(&buf, &prog_size);
         }

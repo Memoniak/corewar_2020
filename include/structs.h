@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-<<<<<<< HEAD:include/structs.h
+** include/structs.h
 ** structs.h
 ** File description:
 ** structs
@@ -38,5 +38,34 @@ typedef struct {
     char *file_name;
     int fd;
 } champion_header_t;
+
+typedef struct process_s{
+    int pc;
+    char carry;
+    int cycle_length;
+    int registre[REG_NUMBER];
+    struct process_s *next;
+} process_t;
+
+typedef struct {
+    char *file_name;
+    char *comment;
+    char *prog;
+    int prog_size;
+    int champ_nb;
+    char name[PROG_NAME_LENGTH];
+    process_t *process;
+} champ_t;
+
+typedef struct virtual_machine {
+    int cycle;
+    int total_cycle;
+    int cycle_to_die;
+    int last_live_nb;
+    char *last_name;
+    char mem[MEM_SIZE];
+    champ_t *current_champ;
+} vm_t;
+
 
 #endif /* !ASSEMBLER_H_ */

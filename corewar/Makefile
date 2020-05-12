@@ -43,7 +43,8 @@ PROJLIST=	$(SRC_DIR)main.c	\
 
 VMLIST=		$(VMDIR)tools.c
 
-PARSLIST=	$(PARS_DIR)read_cor.c
+PARSLIST=	$(PARS_DIR)read_cor.c		\
+		$(PARS_DIR)init_empty_champ.c
 
 EXECLIST=
 

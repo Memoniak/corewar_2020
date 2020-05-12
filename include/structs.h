@@ -50,11 +50,11 @@ typedef struct process_s{
 
 typedef struct {
     char *file_name;
-    char *comment;
+    char name[PROG_NAME_LENGTH];
+    char comment[COMMENT_LENGTH];
     char *prog;
     int prog_size;
     int champ_nb;
-    char name[PROG_NAME_LENGTH];
     process_t *process;
 } champ_t;
 

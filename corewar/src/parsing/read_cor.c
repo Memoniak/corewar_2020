@@ -120,7 +120,13 @@ static void decrypt_instruction(unsigned char code, char **buf, int *read_len)
 static void get_prog_size(char **buf, int *prog_size)
 {
     *prog_size = read_nbytes(buf, 4, 1);
-    my_printf(2, "%sprog_size = %d%s\n", LRED, *prog_size + 1, DEF);
+    if (*prog_size > MEM_SIZE / 6)
+    {
+        my_printf(2, "%sError Champ too big: %d > %d%s\n",
+                  RED, *prog_size, MEM_SIZE / 6, DEF);
+        exit(EXIT_FAILURE);
+    }
+    my_printf(2, "%sprog_size = %d%s\n", LRED, *prog_size, DEF);
 }
 
 static int get_nbytes(char **buf, int nb)
@@ -135,21 +141,23 @@ static int get_nbytes(char **buf, int nb)
     return result;
 }
 
-static void pars_loop(char *buf, int read_len, int prog_size)
+static void pars_loop(char *buf, int read_len, champ_t *champ)
 {
     int move = 0;
 
     while (read_len--)
     {
-        if (read_len < prog_size)
+        if (read_len == champ->prog_size - 1)
+            champ->prog = my_strndup(champ->prog, buf, champ->prog_size);
+        if (read_len < champ->prog_size)
         {
             my_printf(2, "%s━━━━━━━━━━━%s\n", TEAL, DEF);
             my_printf(2, "%scode = %d | %sindex = %d%s\n",
-                      LTEAL, *buf, LMAGENTA, prog_size - read_len - 1, DEF);
+                      LTEAL, *buf, LMAGENTA, champ->prog_size - read_len - 1, DEF);
             decrypt_instruction(*buf, &buf, &read_len);
         } else if (move == 8 + PROG_NAME_LENGTH)
         {
-            get_prog_size(&buf, &prog_size);
+            get_prog_size(&buf, &champ->prog_size);
         }
         move++;
         buf++;
@@ -158,7 +166,6 @@ static void pars_loop(char *buf, int read_len, int prog_size)
 
 static void pars_all_values(char *buf, int read_len, champ_t *champ)
 {
-    int prog_size = 0;
     int magic = get_nbytes(&buf, 4);
 
     if (magic != COREWAR_EXEC_MAGIC)
@@ -167,7 +174,7 @@ static void pars_all_values(char *buf, int read_len, champ_t *champ)
                   RED, BOLD, WHITE, magic, COREWAR_EXEC_MAGIC, DEF);
         exit(EXIT_FAILURE);
     }
-    pars_loop(buf, read_len, prog_size);
+    pars_loop(buf, read_len, champ);
 }
 
 static int opena_file(char *filepath)
@@ -184,19 +191,18 @@ static int opena_file(char *filepath)
     return fd;
 }
 
-void reada_file(char *filepath, champ_t *champ)
+void reada_file(champ_t *champ)
 {
     ssize_t read_len;
     char    buf[100000];
-    int     fd = opena_file(filepath);
+    int     fd = opena_file(champ->file_name);
 
     read_len = read(fd, &buf, 100000);
     if (read_len == (-1))
     {
         my_printf(2, "%sError with read:%s%s '%s'%s\n",
-                  RED, BOLD, WHITE, filepath, DEF);
+                  RED, BOLD, WHITE, champ->file_name, DEF);
         exit(EXIT_FAILURE);
     }
     pars_all_values(buf, read_len, champ);
-    return NULL;
 }

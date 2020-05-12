@@ -26,11 +26,13 @@ void set_up_vm(vm_t *vm)
 int main(int ac, char *av[])
 {
     vm_t vm;
-    champ_t champ;
+    champ_t champ[4];
 
+    init_empty_champ(&champ);
     if (ac != 2)
         return EXIT_FAILURE;
-    reada_file(av[1], &champ);
+    champ[0].file_name = av[1];
+    reada_file(&champ[0]);
     set_up_vm(&vm);
     return EXIT_SUCCESS;
 }

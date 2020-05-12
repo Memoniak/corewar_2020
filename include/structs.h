@@ -37,6 +37,7 @@ typedef struct {
     int prog_size;
     char *file_name;
     int fd;
+    int len;
 } champion_header_t;
 
 typedef struct process_s{
@@ -61,6 +62,7 @@ typedef struct virtual_machine {
     int cycle;
     int total_cycle;
     int cycle_to_die;
+    int nb_live;
     int last_live_nb;
     char *last_name;
     char mem[MEM_SIZE];

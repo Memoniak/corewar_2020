@@ -51,7 +51,7 @@ int get_full_cmd_len(char **str, int start_pos);
 
 funct_t *make_struct(char const *filepath, champion_header_t *champion_info);
 int create_command(char **str, funct_t *func, int start_pos);
-int fill_champion_info(champion_header_t *champ, char **file);
+int fill_champion_info(champion_header_t *champ, char **file, int len);
 
 int command_loop(char **str, int start_pos, funct_t *func, int len);
 int arr_func_loop(int len, char **file_arr, funct_t *functions);

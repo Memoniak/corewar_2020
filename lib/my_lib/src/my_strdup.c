@@ -7,6 +7,16 @@
 
 #include "my.h"
 
+char *my_strndup(char *dest, char *src, int n)
+{
+    if (!dest)
+        dest = malloc(sizeof(char) * (n + 1));
+    for (int i = 0; i < n; i++)
+        dest[i] = src[i];
+    dest[n] = '\0';
+    return dest;
+}
+
 char *my_strdup_w_no_spaces(char const *src)
 {
     char *tab;

@@ -68,7 +68,6 @@ void destroy_command(cmd_t *command, int len);
 void destroy_func(funct_t *func);
 void destroy_all(funct_t *func, champion_header_t *champ);
 
-
 //EROR_HANDLING PARSING
 void file_error(void);
 void champ_info_error(void);

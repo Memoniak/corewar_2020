@@ -24,6 +24,13 @@
 #define WHITE   "\e[37m"
 #define BOLD    "\e[1m"
 
+#define LRED     "\e[91m"
+#define LGREEN   "\e[92m"
+#define LYELLOW  "\e[93m"
+#define LBLUE    "\e[94m"
+#define LMAGENTA "\e[95m"
+#define LTEAL    "\e[96m"
+
 #define MAX(a, b) ((a > b) ? a : b)
 #define MIN(a, b) ((a < b) ? a : b)
 

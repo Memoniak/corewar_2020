@@ -37,6 +37,7 @@ typedef struct {
     int prog_size;
     char *file_name;
     int fd;
+    int len;
 } champion_header_t;
 
 typedef struct process_s{

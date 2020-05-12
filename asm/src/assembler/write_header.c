@@ -16,7 +16,6 @@ void write_header(champion_header_t *champ)
 {
     int zero = 0;
 
-    printf("prog size = %i\n", champ->prog_size);
     nwrite(champ->fd, &champ->magic, 4);
     for (int i = 0; champ->name[i]; i++)
         write_char(champ->name[i], champ->fd);
@@ -28,4 +27,8 @@ void write_header(champion_header_t *champ)
         write_char(champ->comment[i], champ->fd);
     for (int i = my_strlen(champ->comment); i < COMMENT_LENGTH + 4; i++)
         write_char(0, champ->fd);
+    if (champ->len <= 2) {
+        close(champ->fd);
+        exit(0);
+    }
 }

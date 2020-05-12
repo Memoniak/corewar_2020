@@ -16,10 +16,11 @@ int get_code(char *code_str, int len)
     return 0;
 }
 
-int fill_champion_info(champion_header_t *champ, char **file)
+int fill_champion_info(champion_header_t *champ, char **file, int len)
 {
     champ->magic = COREWAR_EXEC_MAGIC;
     champ->fd = -1;
+    champ->len = len;
     get_champ_name(champ, file);
     get_champ_comment(champ, file);
     if (champ->name[0] == '\0' || champ->comment[0] == '\0') {
@@ -59,15 +60,15 @@ funct_t *make_struct(char const *filepath, champion_header_t *champion_info)
         file_error();
         return NULL;
     }
-    if (fill_champion_info(champion_info, file_arr) == 84)
+    if (fill_champion_info(champion_info, file_arr, len) == 84)
         return NULL;
+    create_cor_file(champion_info, filepath);
     functions = malloc(sizeof(funct_t) * (len + 1));
     if (arr_func_loop(len, file_arr, functions) == 84) {
         free(functions);
         destroy_rr(file_arr);
         return NULL;
     }
-    create_cor_file(champion_info, filepath);
     destroy_rr(file_arr);
     return functions;
 }

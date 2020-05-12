@@ -135,18 +135,10 @@ static int get_nbytes(char **buf, int nb)
     return result;
 }
 
-static void pars_all_values(char *buf, int read_len)
+static void pars_loop(char *buf, int read_len, int prog_size)
 {
     int move = 0;
-    int prog_size = 0;
-    int magic = get_nbytes(&buf, 4);
 
-    if (magic != COREWAR_EXEC_MAGIC)
-    {
-        my_printf(2, "%sError with Magic Number:%s%s %d != %d%s\n",
-                  RED, BOLD, WHITE, magic, COREWAR_EXEC_MAGIC, DEF);
-        exit(EXIT_FAILURE);
-    }
     while (read_len--)
     {
         if (read_len < prog_size)
@@ -162,6 +154,20 @@ static void pars_all_values(char *buf, int read_len)
         move++;
         buf++;
     }
+}
+
+static void pars_all_values(char *buf, int read_len)
+{
+    int prog_size = 0;
+    int magic = get_nbytes(&buf, 4);
+
+    if (magic != COREWAR_EXEC_MAGIC)
+    {
+        my_printf(2, "%sError with Magic Number:%s%s %d != %d%s\n",
+                  RED, BOLD, WHITE, magic, COREWAR_EXEC_MAGIC, DEF);
+        exit(EXIT_FAILURE);
+    }
+    pars_loop(buf, read_len, prog_size);
 }
 
 static int opena_file(char *filepath)

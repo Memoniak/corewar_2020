@@ -9,9 +9,9 @@
 
 void print_cycle(vm_t *vm)
 {
-    my_printf("1, CYCLE NUMBER[%d]\t", vm->total_cycle);
-    my_printf("1, CYCLE[%d]\t", vm->cycle);
-    my_printf("1, CYCLE_TO_DIE[%d]\t", vm->cycle_to_die);
+    my_printf(1, "CYCLE NUMBER[%d]\t", vm->total_cycle);
+    my_printf(1, "CYCLE[%d]\t", vm->cycle);
+    my_printf(1, "CYCLE_TO_DIE[%d]\t", vm->cycle_to_die);
 }
 
 void set_up_vm(vm_t *vm)

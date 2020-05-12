@@ -30,40 +30,57 @@ MYDIR=		$(LIBDIR)my_lib/
 PRINTDIR=	$(LIBDIR)printf_lib/
 ARRDIR=		$(LIBDIR)arr/
 FILEDIR=	$(LIBDIR)file/
-PROJDIR=	$(SRC_DIR)
 DESTDIR=	$(SRC_DIR)destroy/
 PARS_DIR=	$(SRC_DIR)parsing/
 ERR_PARS_DIR=	$(PARS_DIR)error_handling/
-VMDIR=		$(SRC_DIR)virtual_machine/
-EXEC_DIR=	$(SRC_DIR)executions/
-OPT_DIR=	$(SRC_DIR)executions/
+PROJDIR=	$(SRC_DIR)
+ASMDIR=		$(SRC_DIR)assembler/
+PARAMS_DIR=	$(SRC_DIR)check_params/
 
-PROJLIST=	$(SRC_DIR)main.c
+PROJLIST=	$(PROJDIR)sim_main.c		\
+		$(PROJDIR)op.c
 
-VMLIST=
+ASMLIST=	$(ASMDIR)write_ina_file.c	\
+		$(ASMDIR)get_indexes.c		\
+		$(ASMDIR)get_label_value.c	\
+		$(ASMDIR)types.c		\
+		$(ASMDIR)tools.c		\
+		$(ASMDIR)values.c		\
+		$(ASMDIR)create_cor_file.c	\
+		$(ASMDIR)write_header.c
 
-PARSLIST=
+PARSLIST=	$(SRC_DIR)main.c		\
+		$(PARS_DIR)file_to_struct.c	\
+		$(PARS_DIR)check_file.c		\
+		$(PARS_DIR)get_func_param.c	\
+		$(PARS_DIR)init_cmd_struct.c	\
+		$(PARS_DIR)count_commands.c	\
+		$(PARS_DIR)command_loop.c	\
+		$(PARS_DIR)check_label_char.c	\
+		$(PARS_DIR)remove_command.c		\
+		$(PARS_DIR)get_champ_name.c		\
+		$(PARS_DIR)get_champ_comment.c	\
+		$(PARS_DIR)get_func_name.c		\
+		$(PARS_DIR)full_cmd_len.c		\
+		$(ERR_PARS_DIR)file_errors.c	\
+		$(DESTDIR)destroy_cmd.c			\
+		$(DESTDIR)destroy_func.c		\
+		$(DESTDIR)destroy_all.c
 
-EXECLIST=
-
-DESTLIST=
-
-OPTLIST=
+PARAMSLIST=	$(PARAMS_DIR)check_command.c \
+		$(PARAMS_DIR)check_defines.c		\
+		$(PARAMS_DIR)check_type_arg.c
 
 SRC=		$(PROJLIST)	\
-		$(VMLIST)	\
+		$(ASMLIST)	\
 		$(PARSLIST)     \
-		$(EXECLIST)	\
-		$(DESTLIST)	\
-		$(OPTLIST)
+		$(PARAMSLIST)
 
 OBJ=		$(SRC:.c=.o)
 POBJ=		$(PROJLIST:.c=.o)
-VMOBJ=		$(VMLIST:.c=.o)
-PAOBJ=		$(PARSLIST:.c=.o)
-EXOBJ=		$(EXECLIST:.c=.o)
-DOBJ=		$(DESTLIST:.c=.o)
-OPOBJ=		$(OPTLIST:.c=.o)
+AOBJ=		$(ASMLIST:.c=.o)
+ROBJ=		$(PARSLIST:.c=.o)
+PAROBJ=		$(PARAMSLIST:.c=.o)
 
 TUFLAG=		--coverage -lcriterion
 MULFLAG=	-lcsfml-graphics -lcsfml-system -lcsfml-audio
@@ -81,12 +98,11 @@ CFLAGS+=	-W -Wall	\
 
 TEST=		unit_tests
 
-NAME=		corewar
+NAME=		asm
 
 all:		title cc_title $(NAME)
 
-obj_title:	Ptitle $(POBJ) VMtitle $(VMOBJ) PAtitle $(PAOBJ) EXtitle $(EXECOBJ)	\
-		Dtitle $(DOB) OPtitle $(OPOBJ)
+obj_title:	Ptitle $(POBJ) Atitle $(AOBJ) Rtitle $(ROBJ) Partitle $(PAROBJ)
 
 title:
 		@$(ECHO) $(BOLD)$(BLUE)"\n        ╼┪  ─╼━━━━━━━┷━━━━━━━╾─  ┢╾\n    ╼━━━┿╉"	\
@@ -102,24 +118,16 @@ Ptitle:
 		@$(ECHO) $(WHITE) && $(ECHO) -n $(PROJDIR) | tr a-z A-Z |	\
 		sed 's/\//\./' | cut -zd'/' -f1 &&				\
 		$(ECHO) -n $(WHITE)' '$(BLANCO)'/  \n'$(DEF)
-VMtitle:
-		@$(ECHO) $(WHITE) && $(ECHO) -n $(VMDIR) | tr a-z A-Z |	\
+Atitle:
+		@$(ECHO) $(WHITE) && $(ECHO) -n $(ASMDIR) | tr a-z A-Z |	\
 		sed 's/\//\./' | cut -zd'/' -f1 &&				\
 		$(ECHO) -n $(WHITE)' '$(BLANCO)'/         \n'$(DEF)
-PAtitle:
+Rtitle:
 		@$(ECHO) $(WHITE) && $(ECHO) -n $(PARS_DIR) | tr a-z A-Z |	\
 		sed 's/\//\./' | cut -zd'/' -f1 &&				\
 		$(ECHO) -n $(WHITE)' '$(BLANCO)'/                   \n'$(DEF)
-EXtitle:
-		@$(ECHO) $(WHITE) && $(ECHO) -n $(EXEC_DIR) | tr a-z A-Z |	\
-		sed 's/\//\./' | cut -zd'/' -f1 &&				\
-		$(ECHO) -n $(WHITE)' '$(BLANCO)'/                   \n'$(DEF)
-Dtitle:
-		@$(ECHO) $(WHITE) && $(ECHO) -n $(DESTDIR) | tr a-z A-Z |	\
-		sed 's/\//\./' | cut -zd'/' -f1 &&				\
-		$(ECHO) -n $(WHITE)' '$(BLANCO)'/                   \n'$(DEF)
-OPtitle:
-		@$(ECHO) $(WHITE) && $(ECHO) -n $(OPT_DIR) | tr a-z A-Z |	\
+Partitle:
+		@$(ECHO) $(WHITE) && $(ECHO) -n $(PARAMS_DIR) | tr a-z A-Z |	\
 		sed 's/\//\./' | cut -zd'/' -f1 &&				\
 		$(ECHO) -n $(WHITE)' '$(BLANCO)'/                   \n'$(DEF)
 
@@ -143,7 +151,6 @@ $(NAME):	obj_title lib_maker
 		$(BOLD)"BUILD SUCCESS "$(GREEN)"╊┿━━╾\n\t     ╿ ─╼━━━━━━━━━╾─ ╿\n"$(DEF) ||	\
 		$(ECHO) $(BOLD)$(RED)"\n\n\t     ╽ ─╼━━━━━━━━╾─ ╽\n\t ╼━━┿╉"$(DEF)		\
 		$(BOLD)"BUILD FAILED "$(RED)"╊┿━━╾\n\t     ╿ ─╼━━━━━━━━╾─ ╿"$(DEF)
-		@cp $(NAME) ../
 
 clean:
 		@$(RM) $(OBJ)
@@ -157,7 +164,6 @@ fclean:		clean_title clean
 		done
 		@$(RM) $(TEST)
 		@$(RM) $(NAME)
-		@$(RM) ../$(NAME)
 		@$(ECHO) '\t   '$(BOLD)$(WHITE)"FCLEAN "$(BOLD)$(GREEN)"SUCCESS "✓'\n'$(DEF)
 
 debug:		CFLAGS += -g

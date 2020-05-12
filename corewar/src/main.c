@@ -26,6 +26,9 @@ int main(UNSD int ac, UNSD char *av[])
 {
     vm_t vm;
 
+    if (ac != 2)
+        return EXIT_FAILURE;
+    reada_file(av[1]);
     set_up_vm(&vm);
     return EXIT_SUCCESS;
 }

@@ -7,7 +7,10 @@
 
 #include "corewar.h"
 
-int main(UNSD int ac, UNSD char *av[])
+int main(int ac, char *av[])
 {
+    if (ac != 2)
+        return EXIT_FAILURE;
+    reada_file(av[1]);
     return EXIT_SUCCESS;
 }

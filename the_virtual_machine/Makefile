@@ -36,13 +36,14 @@ PARS_DIR=	$(SRC_DIR)parsing/
 ERR_PARS_DIR=	$(PARS_DIR)error_handling/
 VMDIR=		$(SRC_DIR)virtual_machine/
 EXEC_DIR=	$(SRC_DIR)executions/
-OPT_DIR=	$(SRC_DIR)executions/
+OPT_DIR=	$(SRC_DIR)operations/
 
-PROJLIST=	$(SRC_DIR)main.c
+PROJLIST=	$(SRC_DIR)main.c	\
+		$(SRC_DIR)op.c
 
-VMLIST=
+VMLIST=		$(VMDIR)tools.c
 
-PARSLIST=
+PARSLIST=	$(PARS_DIR)read_cor.c
 
 EXECLIST=
 

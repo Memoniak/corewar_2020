@@ -9,7 +9,7 @@
 #define VIRTUAL_H
 
 //read_cor.c
-char *reada_file(char *filepath);
+void reada_file(char *filepath, champ_t *champ);
 
 //tools.c
 int power(int nb, int pow);

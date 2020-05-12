@@ -67,5 +67,4 @@ typedef struct virtual_machine {
     champ_t *current_champ;
 } vm_t;
 
-
 #endif /* !ASSEMBLER_H_ */

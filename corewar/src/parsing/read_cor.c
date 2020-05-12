@@ -156,7 +156,7 @@ static void pars_loop(char *buf, int read_len, int prog_size)
     }
 }
 
-static void pars_all_values(char *buf, int read_len)
+static void pars_all_values(char *buf, int read_len, champ_t *champ)
 {
     int prog_size = 0;
     int magic = get_nbytes(&buf, 4);
@@ -184,7 +184,7 @@ static int opena_file(char *filepath)
     return fd;
 }
 
-char *reada_file(char *filepath)
+void reada_file(char *filepath, champ_t *champ)
 {
     ssize_t read_len;
     char    buf[100000];
@@ -197,6 +197,6 @@ char *reada_file(char *filepath)
                   RED, BOLD, WHITE, filepath, DEF);
         exit(EXIT_FAILURE);
     }
-    pars_all_values(buf, read_len);
+    pars_all_values(buf, read_len, champ);
     return NULL;
 }

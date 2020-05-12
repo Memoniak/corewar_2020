@@ -62,6 +62,7 @@ typedef struct virtual_machine {
     int cycle;
     int total_cycle;
     int cycle_to_die;
+    int nb_live;
     int last_live_nb;
     char *last_name;
     char mem[MEM_SIZE];

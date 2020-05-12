@@ -19,6 +19,7 @@ void set_up_vm(vm_t *vm)
     vmemset(vm, '\0', sizeof(vm_t));
     vm->cycle = 1;
     vm->total_cycle = 1;
+    vm->nb_live = 40;
     vm->cycle_to_die = CYCLE_TO_DIE;
 }
 

@@ -1,0 +1,13 @@
+/asm/asm
+/corewar/corewar
+unit_tests
+test_asm
+.vscode/
+.#*
+*.gc*
+*.cor
+*.o
+*~
+*.txt
+*.a
+*.s

@@ -1,30 +1,52 @@
 ##
 ## EPITECH PROJECT, 2019
-## makefile
+## Makefile
 ## File description:
-## makefile my_screensaver
+## compile programs
 ##
 
-SRC	=	src/funct_live.c \
+ECHO=           /bin/echo -e
+DEF=            "\e[m"
+BLACK=          "\e[1;30m"
+RED=            "\e[31m"
+GREEN=          "\e[32m"
+YELLOW=         "\e[33m"
+BLUE=           "\e[34m"
+MAGENTA=        "\e[35m"
+TEAL=           "\e[1;36m"
+WHITE=          "\e[1;37m"
+BLINK=          "\e[5m"
+BOLD=           "\e[1m"
+BORDER=         "\e[9m"
+BLANCO=         "\e[9;37m"
+BLACKY=         "\e[9;30m"
+FONT=           "\e[7m"
 
-OBJ	=	$(SRC:.c=.o)
+ASMDIR=		asm/
+VMDIR=		corewar/
 
-NAME	=	test
+all:		build
 
-C_FLAGS = -Wall -Wextra
+build:
+		@make -C $(ASMDIR) --no-print-directory
+		@make -C $(VMDIR) --no-print-directory
 
-all:	$(NAME)
+asm:
+		@make -C $(ASMDIR) --no-print-directory
 
-$(NAME):
-	 make -C lib/my
-	 gcc $(C_FLAGS) $(SRC) -o $(NAME) -I./include -L./lib -lmy
+core:
+		@make -C $(VMDIR) --no-print-directory
 
 clean:
-	$(RM) *.o
+		@make -C $(ASMDIR) clean --no-print-directory
+		@make -C $(VMDIR) clean --no-print-directory
 
 fclean:
-	make fclean  -C lib/my/
-	$(RM) *.o
-	$(RM) $(NAME)
+		@make -C $(ASMDIR) fclean --no-print-directory
+		@make -C $(VMDIR) fclean --no-print-directory
 
-re: fclean all
+tests_run:
+		@make -C $(ASMDIR) tests_run --no-print-directory
+		@make -C $(VMDIR) tests_run --no-print-directory
+
+re:		fclean all

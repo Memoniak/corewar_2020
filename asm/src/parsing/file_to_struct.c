@@ -55,7 +55,7 @@ funct_t *make_struct(char const *filepath, champion_header_t *champion_info)
     int len = get_dbl_arr_len((const char **)file_arr);
     funct_t *functions;
 
-    if (!file_arr || len < 3) {
+    if (!file_arr) {
         file_error();
         return NULL;
     }

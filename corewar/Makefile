@@ -47,7 +47,8 @@ ERRLIST=	$(ERR_DIR)exit_msg.c
 
 VMLIST=		$(VMDIR)run_vm.c
 
-PARSLIST=	$(PARS_DIR)read_cor.c
+PARSLIST=	$(PARS_DIR)read_cor.c		\
+		$(PARS_DIR)init_empty_champ.c
 
 EXECLIST=
 

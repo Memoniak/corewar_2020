@@ -12,7 +12,7 @@
 
 
 //read_cor.c
-char *reada_file(char *filepath);
+void reada_file(champ_t *champ);
 
 //tools.c
 int power(int nb, int pow);
@@ -20,6 +20,7 @@ int get_type(char const *param, char *name);
 int get_binary_type(char const *param);
 int is_typed(int code);
 
+<<<<<<< HEAD
 //vm
 void run_vm(vm_t *vm, champ_t *champs);
 
@@ -32,5 +33,9 @@ void print_cycle(vm_t *vm);
 
 //error_handling
 void exit_w_msg(char *msg, vm_t *vm);
+=======
+//init_empty_champ.c
+void init_empty_champ(champ_t champ[][4]);
+>>>>>>> 35fe619340fcecd6412e44f92da5f2d81e1f99d6
 
 #endif /* !VIRTUAL_H */

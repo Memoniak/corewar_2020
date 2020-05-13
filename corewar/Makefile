@@ -33,15 +33,23 @@ FILEDIR=	$(LIBDIR)file/
 PROJDIR=	$(SRC_DIR)
 DESTDIR=	$(SRC_DIR)destroy/
 PARS_DIR=	$(SRC_DIR)parsing/
-ERR_PARS_DIR=	$(PARS_DIR)error_handling/
+ERR_DIR=	$(SRC_DIR)error_handling/
 VMDIR=		$(SRC_DIR)virtual_machine/
 EXEC_DIR=	$(SRC_DIR)executions/
 OPT_DIR=	$(SRC_DIR)operations/
+TOOLS_DIR=	$(SRC_DIR)tools/
+PROSS_DIR=	$(SRC_DIR)process/
 
-PROJLIST=	$(SRC_DIR)main.c	\
+PROJLIST=	$(SRC_DIR)main.c \
 		$(SRC_DIR)op.c
 
-VMLIST=		$(VMDIR)tools.c
+VMLIST=
+
+ERRLIST=	$(ERR_DIR)exit_msg.c \
+		$(ERR_DIR)parse_args.c \
+		$(ERR_DIR)check_values.c \
+
+VMLIST=		$(VMDIR)run_vm.c
 
 PARSLIST=	$(PARS_DIR)read_cor.c			\
 		$(PARS_DIR)init_empty_champ.c		\
@@ -56,12 +64,23 @@ DESTLIST=
 
 OPTLIST=
 
+TOOLSLIST=	$(TOOLS_DIR)tools.c
+
+PROSSLIST=	$(PROSS_DIR)add_process.c		\
+		$(PROSS_DIR)exec_process.c		\
+		$(PROSS_DIR)create_champ_process.c	\
+		$(PROSS_DIR)remove_process.c		\
+		$(PROSS_DIR)get_opcode.c
+
 SRC=		$(PROJLIST)	\
 		$(VMLIST)	\
 		$(PARSLIST)     \
 		$(EXECLIST)	\
 		$(DESTLIST)	\
-		$(OPTLIST)
+		$(OPTLIST)	\
+		$(PROSSLIST)	\
+		$(TOOLSLIST)	\
+		$(ERRLIST)
 
 OBJ=		$(SRC:.c=.o)
 POBJ=		$(PROJLIST:.c=.o)
@@ -70,6 +89,10 @@ PAOBJ=		$(PARSLIST:.c=.o)
 EXOBJ=		$(EXECLIST:.c=.o)
 DOBJ=		$(DESTLIST:.c=.o)
 OPOBJ=		$(OPTLIST:.c=.o)
+PROSSOBJ=	$(PROSSLIST:.c=.o)
+TOOLSOBJ=	$(TOOLSLIST:.c=.o)
+ERROBJ=		$(ERRLIST:.c=.o)
+
 
 TUFLAG=		--coverage -lcriterion
 MULFLAG=	-lcsfml-graphics -lcsfml-system -lcsfml-audio
@@ -92,7 +115,8 @@ NAME=		corewar
 all:		title cc_title $(NAME)
 
 obj_title:	Ptitle $(POBJ) VMtitle $(VMOBJ) PAtitle $(PAOBJ) EXtitle $(EXECOBJ)	\
-		Dtitle $(DOB) OPtitle $(OPOBJ)
+		Dtitle $(DOB) OPtitle $(OPOBJ) PROSStitle $(PROSSOBJ) TOOLStitle $(TOOLSOBJ) \
+		ERRtitle $(ERROBJ)
 
 title:
 		@$(ECHO) $(BOLD)$(BLUE)"\n        ╼┪  ─╼━━━━━━━┷━━━━━━━╾─  ┢╾\n    ╼━━━┿╉"	\
@@ -127,6 +151,18 @@ Dtitle:
 OPtitle:
 		@$(ECHO) $(WHITE) && $(ECHO) -n $(OPT_DIR) | tr a-z A-Z |	\
 		sed 's/\//\./' | cut -zd'/' -f1 &&				\
+		$(ECHO) -n $(WHITE)' '$(BLANCO)'/                   \n'$(DEF)
+PROSStitle:
+		@$(ECHO) $(WHITE) && $(ECHO) -n $(PROSS_DIR) | tr a-z A-Z |     \
+		sed 's/\//\./' | cut -zd'/' -f1 &&                              \
+		$(ECHO) -n $(WHITE)' '$(BLANCO)'/                   \n'$(DEF)
+TOOLStitle:
+		@$(ECHO) $(WHITE) && $(ECHO) -n $(TOOLS_DIR) | tr a-z A-Z |     \
+		sed 's/\//\./' | cut -zd'/' -f1 &&                              \
+		$(ECHO) -n $(WHITE)' '$(BLANCO)'/                   \n'$(DEF)
+ERRtitle:
+		@$(ECHO) $(WHITE) && $(ECHO) -n $(ERR_DIR) | tr a-z A-Z |       \
+		sed 's/\//\./' | cut -zd'/' -f1 &&                              \
 		$(ECHO) -n $(WHITE)' '$(BLANCO)'/                   \n'$(DEF)
 
 cc_title:

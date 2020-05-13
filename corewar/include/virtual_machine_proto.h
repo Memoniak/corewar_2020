@@ -8,6 +8,9 @@
 #ifndef VIRTUAL_H
 #define VIRTUAL_H
 
+#define MAX_CHAMPS (4)
+
+
 //read_cor.c
 void reada_file(champ_t *champ);
 
@@ -17,7 +20,20 @@ int get_type(char const *param, char *name);
 int get_binary_type(char const *param);
 int is_typed(int code);
 
-//init_empty_champ.c
+<<<<<<< HEAD
+//vm
+void run_vm(vm_t *vm, champ_t *champs);
+
+//process
+void add_process(champ_t **champ, vm_t *vm);
+void create_champ_process(vm_t *vm, champ_t **champs);
+
+//print
+void print_cycle(vm_t *vm);
+
+//error_handling
+void exit_w_msg(char *msg, vm_t *vm);
+
 champ_t **init_empty_champ(void);
 parser_t *init_parser_t(void);
 int check_parser_values(parser_t *parser);

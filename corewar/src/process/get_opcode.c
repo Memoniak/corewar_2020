@@ -7,15 +7,13 @@
 
 #include "corewar.h"
 
-void add_operation(process_t *p)
+void add_operation()
 {
 
 }
 
-void get_opcode(vm_t *vm, process_t *process)
+void get_opcode(UNSD vm_t *vm, UNSD process_t *process)
 {
-    int opcode = vm->mem[process->pc];
-
-    if (process->operation_to_do);
+    //int opcode = vm->mem[process->pc];
 
 }

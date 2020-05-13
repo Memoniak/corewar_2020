@@ -29,6 +29,7 @@ int main(int ac, char *av[])
 {
     vm_t vm;
     champ_t champ[4];
+
     init_empty_champ(&champ);
     //fonction evan parsing
     if (ac != 2)

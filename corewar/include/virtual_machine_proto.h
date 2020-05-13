@@ -18,6 +18,13 @@ int get_binary_type(char const *param);
 int is_typed(int code);
 
 //init_empty_champ.c
-void init_empty_champ(champ_t champ[][4]);
+champ_t **init_empty_champ(void);
+parser_t *init_parser_t(void);
+int check_parser_values(parser_t *parser);
+int fill_cor_file(char *name, parser_t *parser, champ_t *player);
+int check_cor_file(char *name);
+int check_value_prog(char *name, parser_t *parser);
+int check_value_adress(char *name, parser_t *parser);
+int check_value_dump(char *name, parser_t *parser);
 
 #endif /* !VIRTUAL_H */

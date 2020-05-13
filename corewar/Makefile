@@ -38,13 +38,12 @@ VMDIR=		$(SRC_DIR)virtual_machine/
 EXEC_DIR=	$(SRC_DIR)executions/
 OPT_DIR=	$(SRC_DIR)operations/
 
-PROJLIST=	$(SRC_DIR)main.c	\
-		$(SRC_DIR)op.c
+PROJLIST=
+VMLIST=
 
-VMLIST=		$(VMDIR)tools.c
-
-PARSLIST=	$(PARS_DIR)read_cor.c		\
-		$(PARS_DIR)init_empty_champ.c
+PARSLIST=	$(PARS_DIR)init_empty_champ.c \
+		$(ERR_PARS_DIR)check_values.c \
+		$(ERR_PARS_DIR)main.c
 
 EXECLIST=
 

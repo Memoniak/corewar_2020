@@ -65,6 +65,9 @@ char **my_arrcpy(char **dest, char **arr);
 int count_num(int nb);
 char *intchar(int nb);
 
+//hexa_str_to_int.c
+int hexachar_to_int(char const *hexa);
+
 //is_num.c
 int is_num(char str);
 

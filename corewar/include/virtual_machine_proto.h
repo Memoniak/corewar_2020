@@ -11,6 +11,21 @@
 //read_cor.c
 void reada_file(champ_t *champ);
 
+//pars_readed_champ.c
+void pars_all_values(char *buf, int read_len, champ_t *champ);
+
+//get_champ_content.c
+void get_prog_size(char **buf, int *prog_size);
+void get_prog_name(char **buf, char name[][PROG_NAME_LENGTH]);
+void get_prog_comment(char **buf, char comment[][COMMENT_LENGTH]);
+
+//get_bytes.c
+int read_nbytes(char **buf, int nb, int code);
+int get_nbytes(char **buf, int nb);
+
+//decrypt_champ_content.c
+void decrypt_instruction(unsigned char code, char **buf, int *read_len);
+
 //tools.c
 int power(int nb, int pow);
 int get_type(char const *param, char *name);

@@ -85,4 +85,16 @@ typedef struct virtual_machine {
     process_t *all_process;
 } vm_t;
 
+typedef struct
+{
+    int nb_players;//if nb_dump > nb cor
+    int nb_n;//if nb_dump > nb cor error
+    int nb_a; //if nb_dump > nb cor error
+    int last_n;
+    int last_a;
+    int nb_dump; //if nb_dump > 1 error
+    int min_prog_number;
+    int dump;
+} parser_t;
+
 #endif /* !ASSEMBLER_H_ */

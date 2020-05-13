@@ -40,10 +40,14 @@ OPT_DIR=	$(SRC_DIR)operations/
 TOOLS_DIR=	$(SRC_DIR)tools/
 PROSS_DIR=	$(SRC_DIR)process/
 
-PROJLIST=	$(SRC_DIR)main.c	\
+PROJLIST=	$(SRC_DIR)main.c \
 		$(SRC_DIR)op.c
 
-ERRLIST=	$(ERR_DIR)exit_msg.c
+VMLIST=
+
+ERRLIST=	$(ERR_DIR)exit_msg.c \
+		$(ERR_DIR)parse_args.c \
+		$(ERR_DIR)check_values.c \
 
 VMLIST=		$(VMDIR)run_vm.c
 
@@ -146,16 +150,16 @@ OPtitle:
 		$(ECHO) -n $(WHITE)' '$(BLANCO)'/                   \n'$(DEF)
 PROSStitle:
 		@$(ECHO) $(WHITE) && $(ECHO) -n $(PROSS_DIR) | tr a-z A-Z |     \
-                sed 's/\//\./' | cut -zd'/' -f1 &&                              \
-                $(ECHO) -n $(WHITE)' '$(BLANCO)'/                   \n'$(DEF)
+		sed 's/\//\./' | cut -zd'/' -f1 &&                              \
+		$(ECHO) -n $(WHITE)' '$(BLANCO)'/                   \n'$(DEF)
 TOOLStitle:
 		@$(ECHO) $(WHITE) && $(ECHO) -n $(TOOLS_DIR) | tr a-z A-Z |     \
-                sed 's/\//\./' | cut -zd'/' -f1 &&                              \
-                $(ECHO) -n $(WHITE)' '$(BLANCO)'/                   \n'$(DEF)
+		sed 's/\//\./' | cut -zd'/' -f1 &&                              \
+		$(ECHO) -n $(WHITE)' '$(BLANCO)'/                   \n'$(DEF)
 ERRtitle:
 		@$(ECHO) $(WHITE) && $(ECHO) -n $(ERR_DIR) | tr a-z A-Z |       \
-                sed 's/\//\./' | cut -zd'/' -f1 &&                              \
-                $(ECHO) -n $(WHITE)' '$(BLANCO)'/                   \n'$(DEF)
+		sed 's/\//\./' | cut -zd'/' -f1 &&                              \
+		$(ECHO) -n $(WHITE)' '$(BLANCO)'/                   \n'$(DEF)
 
 cc_title:
 		@$(ECHO) -n $(WHITE)'┧' && $(ECHO) -n ' '$(CC) |\

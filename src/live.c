@@ -9,17 +9,11 @@
 
 static int champ_alive(champ_t *champion, vm_t *vm)
 {
-    char *str;
-
     vm->cycle_to_die = -1;
     vm->nb_live++;
     vm->current_champ = champion;
-//    write(1, "The Champion ", 10);
-    str = champion->file_name;
-    while (*str != '.' && *str)
-        my_printf(1, "The Champion %s is alive\n", str); //avant le %s y'a un truc ?? et str ou str++ ??
-//        write(1, str++, 1);
-//    write(1, " is alive.\n", 11);
+//    while (*str != '.' && *str)
+    my_printf(1, "The player %d(%s)is alive.\n", champion->champ_nb, champion->name); //avant le %s y'a un truc ?? et str ou str++ ??
     return 0;
 }
 

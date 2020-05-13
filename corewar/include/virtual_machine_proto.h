@@ -19,8 +19,6 @@ int power(int nb, int pow);
 int get_type(char const *param, char *name);
 int get_binary_type(char const *param);
 int is_typed(int code);
-
-<<<<<<< HEAD
 //vm
 void run_vm(vm_t *vm, champ_t *champs);
 
@@ -34,7 +32,8 @@ void print_cycle(vm_t *vm);
 //error_handling
 void exit_w_msg(char *msg, vm_t *vm);
 
-champ_t **init_empty_champ(void);
+//champ_t **init_empty_champ(void);
+void init_empty_champ(champ_t new[][4]);
 parser_t *init_parser_t(void);
 int check_parser_values(parser_t *parser);
 int fill_cor_file(char *name, parser_t *parser, champ_t *player);

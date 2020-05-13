@@ -7,27 +7,17 @@
 
 #include "corewar.h"
 
-champ_t **init_empty_champ(void)
+void init_empty_champ(champ_t new[][4])
 {
-    champ_t **new = malloc(sizeof(champ_t*) * 5);
-
-    if (!new)
-        return NULL;
-
     for (ssize_t i = 0; i != 4; i++) {
-        new[i] = malloc(sizeof(champ_t));
-        if (!new[i])
-            return NULL;
         ((*new) + i)->file_name = NULL;
         *((*new) + i)->name = '\0';
         *((*new) + i)->comment = '\0';
         ((*new) + i)->prog = NULL;
         ((*new) + i)->prog_size = 0;
-        new[i]->champ_nb = i + 1;
-        ((*new) + i)->adress = 0;
+        ((*new) + i)->champ_nb = i + 1;
+        ((*new) + i)->champ_pos = 0;
     }
-    new[4] = NULL;
-    return new;
 }
 
 parser_t *init_parser_t(void)

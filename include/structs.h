@@ -42,11 +42,25 @@ typedef struct {
 
 typedef struct process_s{
     int pc;
+    int start_pos;
     char carry;
     int cycle_length;
+    int wait_cycles;
+    int live;
     int registre[REG_NUMBER];
+    struct operation_s *operation_to_do;
     struct process_s *next;
 } process_t;
+
+typedef struct operation_s {
+    int code;
+    int nb_cycles;
+    int pcode;
+    int params;
+    int param_types;
+    void (*operation)();
+    struct operation_s *next;
+} operation_t;
 
 typedef struct {
     char *file_name;
@@ -54,6 +68,7 @@ typedef struct {
     char *prog;
     int prog_size;
     int champ_nb;
+    int champ_pos;
     char name[PROG_NAME_LENGTH];
     process_t *process;
 } champ_t;
@@ -66,7 +81,8 @@ typedef struct virtual_machine {
     int last_live_nb;
     char *last_name;
     char mem[MEM_SIZE];
-    champ_t *current_champ;
+    operation_t *ops;
+    process_t *all_process;
 } vm_t;
 
 

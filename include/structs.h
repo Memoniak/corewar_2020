@@ -69,11 +69,7 @@ typedef struct {
     char *prog;
     int prog_size;
     int champ_nb;
-<<<<<<< HEAD
     int champ_pos;
-    char name[PROG_NAME_LENGTH];
-=======
->>>>>>> 35fe619340fcecd6412e44f92da5f2d81e1f99d6
     process_t *process;
 } champ_t;
 

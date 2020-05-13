@@ -30,38 +30,12 @@ int main(int ac, char *av[])
     vm_t vm;
     champ_t champ[4];
 
-<<<<<<< HEAD
-    champ_t *champs = malloc(sizeof(champ_t) * 4);
-
-    champs[0].champ_pos = 0;
-    champs[0].champ_nb = 1;
-    champs[0].prog = malloc(sizeof(char) * 7);
-    champs[0].prog[0] = 0x0b;
-    champs[0].prog_size = 7;
-    champs[1].champ_pos = 0;
-    champs[1].champ_nb = 2;
-    champs[1].prog = my_strdup("0b000F");
-    champs[1].prog_size = 7;
-    champs[2].champ_pos = 0;
-    champs[2].champ_nb = 2;
-    champs[2].prog = my_strdup("0b000F");
-    champs[2].prog_size = 7;
-    champs[3].champ_pos = 0;
-    champs[3].champ_nb = 3;
-    champs[3].prog = my_strdup("0b000F");
-    champs[3].prog_size = 7;
-
-    if (ac != 2)
-        return EXIT_FAILURE;
-    //reada_file(av[1]);
-=======
     init_empty_champ(&champ);
     if (ac != 2)
         return EXIT_FAILURE;
     champ[0].file_name = av[1];
     reada_file(&champ[0]);
->>>>>>> 35fe619340fcecd6412e44f92da5f2d81e1f99d6
     set_up_vm(&vm);
-    run_vm(&vm, champs);
+    run_vm(&vm, champ);
     return EXIT_SUCCESS;
 }

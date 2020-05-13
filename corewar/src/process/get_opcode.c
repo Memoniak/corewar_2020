@@ -16,5 +16,6 @@ void get_opcode(vm_t *vm, process_t *process)
 {
     int opcode = vm->mem[process->pc];
 
-    //if (process->operation_to_do)
+    if (process->operation_to_do);
+
 }

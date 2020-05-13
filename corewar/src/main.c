@@ -50,12 +50,11 @@ int main(int ac, char *av[])
     champs[3].prog_size = 7;
 
     if (ac != 2)
-	return EXIT_FAILURE;
-    //reada_file(av[1]);
+        return EXIT_FAILURE;
     init_empty_champ(&champ);
     //fonction evan parsing
     if (ac != 2)
-	return EXIT_FAILURE;
+        return EXIT_FAILURE;
     champ[0].file_name = av[1];
     reada_file(&champ[0]);
     set_up_vm(&vm);

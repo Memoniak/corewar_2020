@@ -55,6 +55,9 @@ typedef struct process_s{
 typedef struct operation_s {
     int index;
     int code;
+    int pcode;
+    int params;
+    int param_types;
     int nb_cycles;
     void (*operation)();
     struct operation_s *next;

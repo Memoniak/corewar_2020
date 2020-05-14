@@ -23,11 +23,16 @@ int is_typed(int code);
 void run_vm(vm_t *vm, champ_t *champs);
 
 //process
+void take_care_process(vm_t *vm, champ_t *champ);
 void add_process(champ_t **champ, vm_t *vm);
 void create_champ_process(vm_t *vm, champ_t **champs);
-void remove_process(vm_t *vm, champ_t *champs);
-void get_opcode(vm_t *vm, process_t *process);
+void remove_process(vm_t *vm);
+void get_opcode(vm_t *vm, process_t *process, champ_t *champ);
 void exec_process();
+
+//instruction
+void op_live(UNSD vm_t *vm, UNSD champ_t *champ);
+
 
 //print
 void print_cycle(vm_t *vm);

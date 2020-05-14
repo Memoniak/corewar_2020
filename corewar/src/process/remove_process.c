@@ -17,7 +17,7 @@ static void remove_from_list(process_t **p)
     (*p) = tmp;
 }
 
-void remove_process(vm_t *vm, champ_t *champ)
+void remove_process(vm_t *vm)
 {
     process_t *all_process;
 
@@ -25,12 +25,11 @@ void remove_process(vm_t *vm, champ_t *champ)
     while (all_process) {
         if (!all_process->live) {
             my_printf(2, "%sCHAMP NB:%i has lost a PROCESS\n%s", RED, all_process->registre[1], DEF);
+            printf("Live = %i\n", all_process->live);
             remove_from_list(&all_process);
-            remove_from_list(&champ[all_process->registre[1]].process);
         } else {
             all_process->live = 0;
             all_process = all_process->next;
         }
     }
-    vm->all_process = all_process;
 }

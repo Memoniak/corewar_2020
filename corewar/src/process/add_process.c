@@ -11,9 +11,11 @@ static void add_process_to_mem(vm_t *vm, champ_t *champ)
 {
     int i = 0;
 
-    printf("Champ prog == %s\n", champ->prog);
     while (i < champ->prog_size) {
-        vm->mem[champ->process->start_pos + i] = champ->prog[i];
+        vm->mem[vm->all_process->start_pos + i] = champ->prog[i];
+        //printf("CHAMP_PROG[%i]:%x | ", vm->all_process->start_pos + i, champ->prog[i]);
+        if (i % 4 == 0)
+            my_printf(2, "\n");
         i++;
     }
 }
@@ -43,6 +45,5 @@ void add_process(champ_t **champ, vm_t *vm)
     else {
         vm->all_process = process;
     }
-    (*champ)->process = process;
     add_process_to_mem(vm, (*champ));
 }

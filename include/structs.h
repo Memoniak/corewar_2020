@@ -53,11 +53,7 @@ typedef struct process_s{
 } process_t;
 
 typedef struct operation_s {
-    int code;
     int nb_cycles;
-    int pcode;
-    int params;
-    int param_types;
     void (*operation)();
     struct operation_s *next;
 } operation_t;
@@ -70,7 +66,6 @@ typedef struct {
     int prog_size;
     int champ_nb;
     int champ_pos;
-    process_t *process;
 } champ_t;
 
 typedef struct virtual_machine {

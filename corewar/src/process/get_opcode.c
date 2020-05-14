@@ -7,7 +7,7 @@
 
 #include "corewar.h"
 
-static const void (*operation_table[1]) (vm_t *vm, champ_t *champ) = {
+static void (*operation_table[1]) (vm_t *vm, champ_t *champ) = {
     &op_live
 };
 

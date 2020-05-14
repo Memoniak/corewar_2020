@@ -23,6 +23,16 @@ void print_mem(vm_t *vm)
 void run_vm(vm_t *vm, champ_t champs[][4])
 {
     create_champ_process(vm, champs);
+    my_printf(2, DREDN, vm->all_process->pc);
+    my_printf(2, DLBLUE" ", get_param_type(vm, vm->all_process, 1));
+    my_printf(2, DLBLUE" ", get_param_type(vm, vm->all_process, 2));
+    my_printf(2, DLBLUE" ", get_param_type(vm, vm->all_process, 3));
+    my_printf(2, DLBLUEN, get_param_type(vm, vm->all_process, 4));
+    my_printf(2, DLGREEN" ", get_param_value(vm, vm->all_process, 1));
+    my_printf(2, DLGREEN" ", get_param_value(vm, vm->all_process, 2));
+    my_printf(2, DLGREEN" ", get_param_value(vm, vm->all_process, 3));
+    my_printf(2, DLGREENN, get_param_value(vm, vm->all_process, 4));
+    my_printf(2, DLYELLOWN, get_next_pc(vm, vm->all_process));
     print_mem(vm);
     // while (vm->cycle_to_die > 0 && vm->all_process) {
     //     //take_care_process(vm, champs);

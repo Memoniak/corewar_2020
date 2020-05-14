@@ -33,7 +33,7 @@ void set_up_vm(vm_t *vm, parser_t *parser)
 
 int main(int ac, char *av[])
 {
-    UNSD vm_t vm;
+    vm_t vm;
     champ_t champ[4];
     operation_t *opt = opt_create();;
     parser_t *parser;

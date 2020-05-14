@@ -28,7 +28,7 @@ static void exec_all_process(UNSD vm_t *vm, UNSD champ_t *champ)
 void take_care_process(vm_t *vm, champ_t *champ)
 {
     process_t *tmp;
-    process_t *head;
+    UNSD process_t *head;
 
     tmp = vm->all_process;
     head = tmp;

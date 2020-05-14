@@ -23,6 +23,7 @@ void get_prog_name(char **buf, char name[][PROG_NAME_LENGTH]);
 void get_prog_comment(char **buf, char comment[][COMMENT_LENGTH]);
 
 char **remove_comments(char **file_arr, int len);
+process_t *get_champ_process(vm_t *vm, champ_t *champ);
 
 //get_bytes.c
 int read_nbytes(char **buf, int nb, int code);

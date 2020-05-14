@@ -12,7 +12,7 @@ static void add_process_to_mem(vm_t *vm, champ_t *champ)
     int i = 0;
 
     while (i < champ->prog_size) {
-        vm->mem[vm->all_process->start_pos + i] = champ->prog[i];
+        vm->mem[champ->champ_pos + i] = champ->prog[i];
         i++;
     }
 }

@@ -34,12 +34,21 @@ static int find_usage(int ac, char **av)
     return 0;
 }
 
+int check_filepath(char *filepath)
+{
+    int pos = get_pos_word_in_str(".s", filepath);
+
+    if (pos == -1)
+        return 0;
+    return 1;
+}
+
 int main(int ac, char **av)
 {
     champion_header_t champ = {0};
     funct_t *funct = NULL;
 
-    if (ac != 2)
+    if (ac != 2 || !check_filepath(av[1]))
         return EXIT_FAILURE;
     if (find_usage(ac, av))
         return EXIT_SUCCESS;

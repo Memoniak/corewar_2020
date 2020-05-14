@@ -68,6 +68,7 @@ typedef struct {
     int prog_size;
     int champ_nb;
     int champ_pos;
+    int value[MAX_ARGS_NUMBER];
 } champ_t;
 
 typedef struct virtual_machine {

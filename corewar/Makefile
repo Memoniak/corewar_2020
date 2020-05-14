@@ -62,7 +62,8 @@ EXECLIST=
 
 DESTLIST=
 
-OPTLIST=	$(OPT_DIR)create_opt.c
+OPTLIST=	$(OPT_DIR)create_opt.c		\
+		$(OPT_DIR)live.c
 
 TOOLSLIST=	$(TOOLS_DIR)tools.c
 

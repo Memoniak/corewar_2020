@@ -49,24 +49,19 @@ parser_t *parser_vm(int ac , char **av, champ_t player[][4])
     return parser;
 }
 
-// int main(int ac, char **av)
-// {
-//     champ_t tab_player[4];
-//     init_empty_champ(&tab_player);
-//     parser_t *parser = parser_vm(ac, av, &tab_player);
+parser_t *parse_args(int ac, char **av, champ_t tab_player[][4])
+{
+    parser_t *parser = parser_vm(ac, av, tab_player);
 
-//     if (!parser || check_parser_values(parser) == -1 || check_cor_file(av[ac - 1])) {
-//         my_printf(2, "%sERROR PARSING%s", RED, RED);
-//         //free
-//         return 84;
-//     }
-//     // tab_player[parser->nb_players] = NULL;
-//     for (int i = 0; i < parser->nb_players; i++)
-//     {
-//         my_printf(2,"%sPLAYER[%d]:\n\tname =%s%s\n",
-//         BLUE, i, tab_player[i].file_name, DEF);
-//         my_printf(2,"%s\tchamp_nb =%d%s\n", BLUE,tab_player[i].champ_nb, DEF);
-//         my_printf(2,"%s\tadress =%d%s\n", BLUE,tab_player[i].champ_pos, DEF);
-//     }
-//     return 0;
-// }
+    if (!parser || check_parser_values(parser) == -1 || check_cor_file(av[ac - 1])) {
+        my_printf(2, "%sERROR PARSING%s", RED, RED);
+        return NULL;
+    }
+    for (int i = 0; i < parser->nb_players; i++) {
+        my_printf(2,"%sPLAYER[%d]:\n\tname =%s%s\n",
+        BLUE, i, ((*tab_player) + i)->file_name, DEF);
+        my_printf(2,"%s\tchamp_nb =%d%s\n", BLUE, (*tab_player)[i].champ_nb, DEF);
+        my_printf(2,"%s\tadress =%d%s\n", BLUE, ((*tab_player) + i)->champ_pos, DEF);
+    }
+    return parser;
+}

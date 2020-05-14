@@ -41,8 +41,8 @@ int main(int ac, char *av[])
     parser = parse_args(ac, av, &champ);
     if (!parser)
         return EXIT_FAILURE;
-    champ[0].file_name = av[1];
-    reada_file(&champ[0], opt);
+    for (ssize_t i = 0; i != parser->nb_players; i++)
+        reada_file(&champ[i], opt);
 //    my_printf(2, "opt_len = %d\n", opt_length(opt));
 //    opt_display(opt);
 //    set_up_vm(&vm);

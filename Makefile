@@ -45,6 +45,10 @@ fclean:
 		@make -C $(ASMDIR) fclean --no-print-directory
 		@make -C $(VMDIR) fclean --no-print-directory
 
+debug:
+		@make -C $(ASMDIR) debug --no-print-directory
+		@make -C $(VMDIR) debug --no-print-directory
+
 tests_run:
 		@make -C $(ASMDIR) tests_run --no-print-directory
 		@make -C $(VMDIR) tests_run --no-print-directory

@@ -56,7 +56,8 @@ PARSLIST=	$(PARS_DIR)read_cor.c			\
 		$(PARS_DIR)get_champ_content.c		\
 		$(PARS_DIR)get_bytes.c			\
 		$(PARS_DIR)decrypt_champ_content.c	\
-		$(PARS_DIR)pars_readed_champ.c
+		$(PARS_DIR)pars_readed_champ.c		\
+		$(PARS_DIR)get_mem_info.c
 
 EXECLIST=
 

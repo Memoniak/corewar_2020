@@ -9,24 +9,26 @@
 
 void print_mem(vm_t *vm)
 {
+    unsigned char bite;
+
     for (int i = 0; i < MEM_SIZE; i++) {
+        bite = vm->mem[i];
         if (vm->mem[i] != 0)
-            printf("%s%x%s", YELLOW, vm->mem[i], DEF);
-        else
-        {
-            printf("%s%x%s", LBLUE, vm->mem[i], DEF);
+            my_printf(2, "%s%s%x%s ", YELLOW, (bite < 16) ? "0" : "", bite, DEF);
+        else {
+            my_printf(2, "%s%s%x%s ", LBLUE, (bite < 16) ? "0" : "", bite, DEF);
         }
-        if (i % 78 == 0 && i != 0)
+        if (!((i + 33) % 32))
             printf("\n");
     }
 }
 
-void run_vm(vm_t *vm, champ_t *champs)
+void run_vm(vm_t *vm, champ_t champs[][4])
 {
-    create_champ_process(vm, &champs);
+    create_champ_process(vm, champs);
     print_mem(vm);
     while (vm->cycle_to_die > 0 && vm->all_process) {
-        take_care_process(vm, champs);
+        take_care_process(vm, *champs);
         if (vm->cycle == vm->cycle_to_die) {
             my_printf(2, "%sRESTARTING LOOP\n%s", LRED, DEF);
             remove_process(vm);

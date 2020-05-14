@@ -56,10 +56,10 @@ funct_t *make_struct(char const *filepath, champion_header_t *champion_info)
     int len = get_dbl_arr_len((const char **)file_arr);
     funct_t *functions;
 
-    if (!file_arr) {
-        file_error();
+    if (!file_arr)
         return NULL;
-    }
+    file_arr = remove_comments(file_arr, len);
+    len = get_dbl_arr_len((const char **)file_arr);
     if (fill_champion_info(champion_info, file_arr, len) == 84)
         return NULL;
     create_cor_file(champion_info, filepath);

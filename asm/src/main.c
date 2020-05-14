@@ -10,14 +10,14 @@
 UNSD static void display_funct(funct_t *funct)
 {
     for (int i = 0; i < funct[0].len; i++) {
-        my_printf(2, "%sfunc name --> %s%s\n", BLUE, funct[i].name, DEF);
+//        my_printf(2, "%sfunc name --> %s%s\n", BLUE, funct[i].name, DEF);
         for (int j = 0; j < funct[i].nb_cmd; j++) {
-            my_printf(2, "%scommand:\n\tindex:%i\n\tcode:%i"
-                      "\n\tparam1:%s\n\tparam2:%s\n\tparam3:%s"
-                      "\n\tparam4:%s%s\n", YELLOW, funct[i].commands[j].index,
-                      funct[i].commands[j].code, funct[i].commands[j].param1,
-                      funct[i].commands[j].param2, funct[i].commands[j].param3,
-                      funct[i].commands[j].param4, DEF);
+//            my_printf(2, "%scommand:\n\tindex:%i\n\tcode:%i"
+//                      "\n\tparam1:%s\n\tparam2:%s\n\tparam3:%s"
+//                      "\n\tparam4:%s%s\n", YELLOW, funct[i].commands[j].index,
+//                      funct[i].commands[j].code, funct[i].commands[j].param1,
+//                      funct[i].commands[j].param2, funct[i].commands[j].param3,
+//                      funct[i].commands[j].param4, DEF);
         }
     }
 }
@@ -34,12 +34,21 @@ static int find_usage(int ac, char **av)
     return 0;
 }
 
+int check_filepath(char *filepath)
+{
+    int pos = get_pos_word_in_str(".s", filepath);
+
+    if (pos == -1)
+        return 0;
+    return 1;
+}
+
 int main(int ac, char **av)
 {
     champion_header_t champ = {0};
     funct_t *funct = NULL;
 
-    if (ac != 2)
+    if (ac != 2 || !check_filepath(av[1]))
         return EXIT_FAILURE;
     if (find_usage(ac, av))
         return EXIT_SUCCESS;

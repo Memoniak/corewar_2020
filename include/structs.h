@@ -55,6 +55,9 @@ typedef struct process_s{
 typedef struct operation_s {
     int index;
     int code;
+    int pcode;
+    int params;
+    int param_types;
     int nb_cycles;
     void (*operation)();
     struct operation_s *next;
@@ -78,6 +81,8 @@ typedef struct virtual_machine {
     int nb_live;
     int last_live_nb;
     char *last_name;
+    int dump_cycle;
+    int nb_champs;
     char mem[MEM_SIZE];
     operation_t *ops;
     process_t *all_process;

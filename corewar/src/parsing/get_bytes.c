@@ -12,6 +12,8 @@ int read_nbytes(char **buf, int nb, int code)
     int           result = **buf;
     unsigned char live = **buf;
 
+    if (!nb)
+        return 0;
     for (ssize_t i = 1; i != nb; i++)
     {
         if (!my_strcmp(OTM(code - 1), "live"))

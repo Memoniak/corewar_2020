@@ -28,8 +28,7 @@ void reada_file(champ_t *champ, operation_t *opt)
     int     fd = opena_file(champ->file_name);
 
     read_len = read(fd, &buf, 100000);
-    if (read_len == (-1))
-    {
+    if (read_len == (-1)) {
         my_printf(2, "%sError with read:%s%s '%s'%s\n",
                   RED, BOLD, WHITE, champ->file_name, DEF);
         exit(EXIT_FAILURE);

@@ -80,6 +80,8 @@ typedef struct virtual_machine {
     int nb_live;
     int last_live_nb;
     char *last_name;
+    int dump_cycle;
+    int nb_champs;
     char mem[MEM_SIZE];
     operation_t *ops;
     process_t *all_process;

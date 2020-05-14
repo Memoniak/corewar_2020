@@ -44,7 +44,7 @@ int main(int ac, char *av[])
     parser = parse_args(ac, av, &champ);
     if (!parser)
         return EXIT_FAILURE;
-    for (ssize_t i = 0; i != parser->nb_players; i++)
+    for (ssize_t i = 0; i < parser->nb_players; i++)
         reada_file(&champ[i], opt);
 //    my_printf(2, "opt_len = %d\n", opt_length(opt));
 //    opt_display(opt);

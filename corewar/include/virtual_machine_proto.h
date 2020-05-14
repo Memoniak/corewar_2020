@@ -51,6 +51,7 @@ void print_cycle(vm_t *vm);
 void exit_w_msg(char *msg, vm_t *vm);
 
 //champ_t **init_empty_champ(void);
+parser_t *parse_args(int ac, char **av, champ_t tab_player[][4]);
 void init_empty_champ(champ_t new[][4]);
 parser_t *init_parser_t(void);
 int check_parser_values(parser_t *parser);

@@ -9,13 +9,16 @@
 
 void print_mem(vm_t *vm)
 {
+    unsigned char bite;
+
     for (int i = 0; i < MEM_SIZE; i++) {
+        bite = vm->mem[i];
         if (vm->mem[i] != 0)
-            printf("%s%x%s ", YELLOW, vm->mem[i], DEF);
+            my_printf(2, "%s%s%x%s ", YELLOW, (bite < 16) ? "0" : "", bite, DEF);
         else {
-            printf("%s%x%s ", LBLUE, vm->mem[i], DEF);
+            my_printf(2, "%s%s%x%s ", LBLUE, (bite < 16) ? "0" : "", bite, DEF);
         }
-        if (i % 64 == 0 && i != 0)
+        if (!((i + 33) % 32))
             printf("\n");
     }
 }
@@ -23,16 +26,6 @@ void print_mem(vm_t *vm)
 void run_vm(vm_t *vm, champ_t champs[][4])
 {
     create_champ_process(vm, champs);
-    my_printf(2, DREDN, vm->all_process->pc);
-    my_printf(2, DLBLUE" ", get_param_type(vm, vm->all_process, 1));
-    my_printf(2, DLBLUE" ", get_param_type(vm, vm->all_process, 2));
-    my_printf(2, DLBLUE" ", get_param_type(vm, vm->all_process, 3));
-    my_printf(2, DLBLUEN, get_param_type(vm, vm->all_process, 4));
-    my_printf(2, DLGREEN" ", get_param_value(vm, vm->all_process, 1));
-    my_printf(2, DLGREEN" ", get_param_value(vm, vm->all_process, 2));
-    my_printf(2, DLGREEN" ", get_param_value(vm, vm->all_process, 3));
-    my_printf(2, DLGREENN, get_param_value(vm, vm->all_process, 4));
-    my_printf(2, DLYELLOWN, get_next_pc(vm, vm->all_process));
     print_mem(vm);
     while (vm->cycle_to_die > 0 && vm->all_process) {
         //take_care_process(vm, champs);

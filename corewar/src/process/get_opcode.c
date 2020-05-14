@@ -35,7 +35,6 @@ void get_opcode(UNSD vm_t *vm, UNSD process_t *process, UNSD champ_t *champ)
     op = malloc(sizeof(operation_t));
     vmemset(op, '\0', sizeof(operation_t));
     op->nb_cycles = op_tab[opcode - 1].nbr_cycles;
-    op->next = NULL;
     op->operation = operation_table[opcode - 1];
     process->wait_cycles = op->nb_cycles;
     if (process->operation_to_do)

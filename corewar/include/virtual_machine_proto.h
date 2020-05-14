@@ -22,6 +22,8 @@ void get_prog_size(char **buf, int *prog_size);
 void get_prog_name(char **buf, char name[][PROG_NAME_LENGTH]);
 void get_prog_comment(char **buf, char comment[][COMMENT_LENGTH]);
 
+char **remove_comments(char **file_arr, int len);
+
 //get_bytes.c
 int read_nbytes(char **buf, int nb, int code);
 int get_nbytes(char **buf, int nb);
@@ -35,12 +37,12 @@ int get_type(char const *param, char *name);
 int get_binary_type(char const *param);
 int is_typed(int code);
 //vm
-void run_vm(vm_t *vm, champ_t *champs);
+void run_vm(vm_t *vm, champ_t champs[][4]);
 
 //process
 void take_care_process(vm_t *vm, champ_t *champ);
-void add_process(champ_t **champ, vm_t *vm);
-void create_champ_process(vm_t *vm, champ_t **champs);
+void add_process(champ_t *champ, vm_t *vm);
+void create_champ_process(vm_t *vm, champ_t champs[][4]);
 void remove_process(vm_t *vm);
 void get_opcode(vm_t *vm, process_t *process, champ_t *champ);
 void exec_process();

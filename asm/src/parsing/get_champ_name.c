@@ -11,14 +11,19 @@ char *copy_name(char *str, int pos)
 {
     int name_len = my_strlen(str) - pos;
     char *name;
+    int str_len = 0;
+    int i;
 
-    for (int i = pos; i < pos + name_len; i++) {
+    for (i = pos; i < pos + name_len; i++) {
         if (str[i] == '"') {
             name = get_string_inbetween(str + i, '"');
-            return name;
+            str_len = my_strlen(name);
+            break;
         }
     }
-    return NULL;
+    if (str[i + str_len + 2] != '\0' && str[i + str_len + 2] != '\n')
+        return NULL;
+    return name;
 }
 
 void get_champ_name(champion_header_t *champ, char **file)

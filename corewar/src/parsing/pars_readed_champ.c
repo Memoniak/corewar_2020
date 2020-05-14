@@ -7,7 +7,7 @@
 
 #include "corewar.h"
 
-static void pars_loop(char *buf, int read_len, champ_t *champ)
+static void pars_loop(char *buf, int read_len, champ_t *champ, operation_t *opt)
 {
     int move = 0;
 
@@ -32,17 +32,22 @@ static void pars_loop(char *buf, int read_len, champ_t *champ)
             champ->prog = my_strndup(champ->prog, buf, champ->prog_size);
         if (read_len < champ->prog_size)
         {
+            opt->code = *buf;
+            opt->index = (champ->prog_size - read_len - 1);
+            opt->nb_cycles = op_tab[opt->code - 1].nbr_cycles;
             my_printf(2, STEALN, "━━━━━━━━━━━");
             my_printf(2, SDLTEAL" | ", "code = ", *buf);
             my_printf(2, SDLMAGENTAN, "index = ", (champ->prog_size - read_len - 1));
-            decrypt_instruction(*buf, &buf, &read_len);
+            decrypt_instruction(*buf, &buf, &read_len, opt);
+            opt->next = opt_create();
+            opt = opt->next;
         }
         move++;
         buf++;
     }
 }
 
-void pars_all_values(char *buf, int read_len, champ_t *champ)
+void pars_all_values(char *buf, int read_len, champ_t *champ, operation_t *opt)
 {
     int magic = get_nbytes(&buf, 4);
 
@@ -53,5 +58,5 @@ void pars_all_values(char *buf, int read_len, champ_t *champ)
         exit(EXIT_FAILURE);
     }
     my_printf(2, BOLD SLBLACK XLWHITEN, ".magic  = ", magic);
-    pars_loop(buf, read_len, champ);
+    pars_loop(buf, read_len, champ, opt);
 }

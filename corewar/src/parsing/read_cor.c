@@ -21,7 +21,7 @@ static int opena_file(char *filepath)
     return fd;
 }
 
-void reada_file(champ_t *champ)
+void reada_file(champ_t *champ, operation_t *opt)
 {
     ssize_t read_len;
     char    buf[100000];
@@ -34,5 +34,5 @@ void reada_file(champ_t *champ)
                   RED, BOLD, WHITE, champ->file_name, DEF);
         exit(EXIT_FAILURE);
     }
-    pars_all_values(buf, read_len, champ);
+    pars_all_values(buf, read_len, champ, opt);
 }

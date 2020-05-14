@@ -54,7 +54,7 @@ static bool decrypt_name(unsigned char value)
     return false;
 }
 
-static void decrypt_type(unsigned char value, int params[][4], int code, bool typed)
+static int decrypt_type(unsigned char value, int params[][4], int code, bool typed)
 {
     int type = value;
     int temp = 0;
@@ -62,7 +62,7 @@ static void decrypt_type(unsigned char value, int params[][4], int code, bool ty
     if (!typed)
     {
         (*params)[0] = check_direct(OTM(code - 1));
-        return;
+        return 0;
     }
     my_printf(2, SYELLOW DLYELLOWN, "type = ", type);
     for (ssize_t i = 0; i != 4; i++)
@@ -74,9 +74,10 @@ static void decrypt_type(unsigned char value, int params[][4], int code, bool ty
         else
             (*params)[3 - i] = temp;
     }
+    return type;
 }
 
-void decrypt_instruction(unsigned char code, char **buf, int *read_len)
+void decrypt_instruction(unsigned char code, char **buf, int *read_len, operation_t *opt)
 {
     int  params[4] = {0};
     bool typed = false;
@@ -87,7 +88,7 @@ void decrypt_instruction(unsigned char code, char **buf, int *read_len)
         (*buf)++;
         typed = true;
     }
-    decrypt_type(**buf, &params, code, typed);
+    opt->param_types = decrypt_type(**buf, &params, code, typed);
     my_printf(2, SLGREENN, "params━━━━━━━━━━━━━━━━━━━");
     for (ssize_t i = 0; params[i]; i++)
         decrypt_params(params[i], buf, read_len, code);

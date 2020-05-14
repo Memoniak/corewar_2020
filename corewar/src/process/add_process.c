@@ -44,5 +44,5 @@ void add_process(champ_t **champ, vm_t *vm)
         vm->all_process = process;
     }
     (*champ)->process = process;
-    //add_process_to_mem(vm, (*champ));
+    add_process_to_mem(vm, (*champ));
 }

@@ -25,6 +25,9 @@ void run_vm(vm_t *vm, champ_t *champs);
 //process
 void add_process(champ_t **champ, vm_t *vm);
 void create_champ_process(vm_t *vm, champ_t **champs);
+void remove_process(vm_t *vm, champ_t *champs);
+void get_opcode(vm_t *vm, process_t *process);
+void exec_process();
 
 //print
 void print_cycle(vm_t *vm);

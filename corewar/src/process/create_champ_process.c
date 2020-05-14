@@ -7,7 +7,7 @@
 
 #include "corewar.h"
 
-int get_champ_pos(champ_t *champ, vm_t *vm, int i)
+int get_champ_pos(champ_t *champ, int i)
 {
     int champ_left = 0;
 
@@ -24,7 +24,7 @@ void create_champ_process(vm_t *vm, champ_t **champs)
     int champ_pos = 0;
 
     for (int i = 0; i < 3; i++) {
-        pos_change = get_champ_pos(*champs, vm, i);
+        pos_change = get_champ_pos(*champs, i);
         champ_pos += pos_change;
         champs[i]->champ_pos = champ_pos;
         my_printf(2, "%schamp[%i]_pos--%i%s\n", BLUE, i, champ_pos, DEF);

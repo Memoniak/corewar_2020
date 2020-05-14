@@ -7,7 +7,7 @@
 
 #include "corewar.h"
 
-void take_care_process(vm_t *vm, champ_t *champs)
+void take_care_process(vm_t *vm)
 {
     process_t *tmp;
 
@@ -24,7 +24,7 @@ void take_care_process(vm_t *vm, champ_t *champs)
     }
 }
 
-void exec_process(vm_t *vm, process_t *process)
+void exec_process()
 {
-
+    return;
 }

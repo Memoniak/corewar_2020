@@ -30,7 +30,13 @@ int read_nbytes(char **buf, int nb, int code);
 int get_nbytes(char **buf, int nb);
 
 //decrypt_champ_content.c
+int check_direct(char *name);
 void decrypt_instruction(unsigned char code, char **buf, int *read_len, operation_t *opt);
+
+//get_mem_info.c
+int get_param_type(vm_t *vm, process_t *proc, int nb);
+int get_param_value(vm_t *vm, process_t *proc, int nb);
+int get_next_pc(vm_t *vm, process_t *proc);
 
 //tools.c
 int power(int nb, int pow);

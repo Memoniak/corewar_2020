@@ -7,7 +7,7 @@
 
 #include "corewar.h"
 
-static int check_direct(char *name)
+int check_direct(char *name)
 {
     if (!my_strcmp(name, "zjmp") && !my_strcmp(name, "ldi") &&
         !my_strcmp(name, "fork") && !my_strcmp(name, "sti") &&

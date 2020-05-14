@@ -9,13 +9,16 @@
 
 void print_mem(vm_t *vm)
 {
+    unsigned char bite;
+
     for (int i = 0; i < MEM_SIZE; i++) {
+        bite = vm->mem[i];
         if (vm->mem[i] != 0)
-            printf("%s%x%s ", YELLOW, vm->mem[i], DEF);
+            my_printf(2, "%s%s%x%s ", YELLOW, (bite < 16) ? "0" : "", bite, DEF);
         else {
-            printf("%s%x%s ", LBLUE, vm->mem[i], DEF);
+            my_printf(2, "%s%s%x%s ", LBLUE, (bite < 16) ? "0" : "", bite, DEF);
         }
-        if (i % 64 == 0 && i != 0)
+        if (!((i + 33) % 32))
             printf("\n");
     }
 }

@@ -10,6 +10,7 @@
 
 #define MAX_CHAMPS (4)
 
+typedef void (*op_func)(vm_t *vm, process_t *process);
 
 //read_cor.c
 void reada_file(champ_t *champ, operation_t *opt);
@@ -23,7 +24,6 @@ void get_prog_name(char **buf, char name[][PROG_NAME_LENGTH]);
 void get_prog_comment(char **buf, char comment[][COMMENT_LENGTH]);
 
 char **remove_comments(char **file_arr, int len);
-process_t *get_champ_process(vm_t *vm, champ_t *champ);
 
 //get_bytes.c
 int read_nbytes(char **buf, int nb, int code);
@@ -37,6 +37,9 @@ int power(int nb, int pow);
 int get_type(char const *param, char *name);
 int get_binary_type(char const *param);
 int is_typed(int code);
+process_t *get_champ_process(vm_t *vm, champ_t *champ);
+void move_pc(vm_t *vm, process_t *process);
+
 //vm
 void run_vm(vm_t *vm, champ_t champs[][4]);
 
@@ -49,7 +52,7 @@ void get_opcode(vm_t *vm, process_t *process, champ_t *champ);
 void exec_process();
 
 //instruction
-void op_live(UNSD vm_t *vm, UNSD champ_t *champ);
+void op_live(UNSD vm_t *vm, UNSD process_t *process);
 
 
 //print

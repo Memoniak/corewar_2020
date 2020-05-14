@@ -43,7 +43,7 @@ int main(int ac, char *av[])
         return EXIT_FAILURE;
     champ[0].file_name = av[1];
     reada_file(&champ[0], opt);
-    my_printf(2, "opt_len = %d\n", opt_length(opt));
+//    my_printf(2, "opt_len = %d\n", opt_length(opt));
 //    opt_display(opt);
 //    set_up_vm(&vm);
 //    run_vm(&vm, champ);

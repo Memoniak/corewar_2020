@@ -53,6 +53,8 @@ typedef struct process_s{
 } process_t;
 
 typedef struct operation_s {
+    int index;
+    int code;
     int nb_cycles;
     void (*operation)();
     struct operation_s *next;

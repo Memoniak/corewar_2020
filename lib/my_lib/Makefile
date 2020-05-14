@@ -35,9 +35,10 @@ SRC	=	$(SRCDIR)my_getlen.c		\
 		$(SRCDIR)my_strdup.c		\
 		$(SRCDIR)my_strcpy.c		\
 		$(SRCDIR)int_to_str.c		\
+		$(SRCDIR)hexa_str_to_int.c	\
 		$(SRCDIR)get_file_content.c	\
 		$(SRCDIR)str_to_word_array.c	\
-		$(SRCDIR)custom_strlen.c \
+		$(SRCDIR)custom_strlen.c	\
 		$(SRCDIR)is_num.c
 
 OBJ	=	$(SRC:.c=.o)

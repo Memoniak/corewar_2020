@@ -51,14 +51,18 @@ ERRLIST=	$(ERR_DIR)exit_msg.c \
 
 VMLIST=		$(VMDIR)run_vm.c
 
-PARSLIST=	$(PARS_DIR)read_cor.c		\
-		$(PARS_DIR)init_empty_champ.c
+PARSLIST=	$(PARS_DIR)read_cor.c			\
+		$(PARS_DIR)init_empty_champ.c		\
+		$(PARS_DIR)get_champ_content.c		\
+		$(PARS_DIR)get_bytes.c			\
+		$(PARS_DIR)decrypt_champ_content.c	\
+		$(PARS_DIR)pars_readed_champ.c
 
 EXECLIST=
 
 DESTLIST=
 
-OPTLIST=
+OPTLIST=	$(OPT_DIR)create_opt.c
 
 TOOLSLIST=	$(TOOLS_DIR)tools.c
 

@@ -25,18 +25,27 @@ void set_up_vm(vm_t *vm)
     vm->all_process = NULL;
 }
 
+//! nombre de players : parser->nb_players
+//! nb de cycle : parser->dump
+
 int main(int ac, char *av[])
 {
-    vm_t vm;
+    UNSD vm_t vm;
     champ_t champ[4];
+    operation_t *opt = opt_create();;
+    parser_t *parser;
 
     init_empty_champ(&champ);
-    //fonction evan parsing
-    if (ac != 2)
-	return EXIT_FAILURE;
+    if (ac < 2)
+        return EXIT_FAILURE;
+    parser = parse_args(ac, av, &champ);
+    if (!parser)
+        return EXIT_FAILURE;
     champ[0].file_name = av[1];
-    reada_file(&champ[0]);
-    set_up_vm(&vm);
-    run_vm(&vm, champ);
+    reada_file(&champ[0], opt);
+//    my_printf(2, "opt_len = %d\n", opt_length(opt));
+//    opt_display(opt);
+//    set_up_vm(&vm);
+//    run_vm(&vm, champ);
     return EXIT_SUCCESS;
 }

@@ -1,0 +1,5 @@
+int get_param_value(char *mem, int pc, int code, int nb);
+
+int get_param_type(char *mem, int pc, int code, int nb);
+
+int get_next_pc(char *mem, int pc, int code);

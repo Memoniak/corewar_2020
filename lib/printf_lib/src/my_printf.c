@@ -7,13 +7,14 @@
 
 #include "my_printf.h"
 
-static print_t print_tab[12] = {
+static print_t print_tab[13] = {
     {'c', &void_putchar}, {'i', &void_put_nbr},
     {'s', &void_putstr}, {'d', &void_put_nbr},
     {'x', &void_puthexa}, {'X', &void_puthexa_c},
     {'b', &void_putbin}, {'S', &void_putoct},
     {'u', &void_putunsnbr}, {'o', &void_putoctal},
-    {'a', &void_put_word_array}, {'A', &void_putword_array}
+    {'a', &void_put_word_array}, {'A', &void_putword_array},
+    {'@', &void_putstr}
 };
 
 int dies_test(int output, char *str, int i)

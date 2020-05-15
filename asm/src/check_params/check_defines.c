@@ -10,7 +10,7 @@
 int check_label_name(char *name, funct_t *labels)
 {
     int i = 0;
-    if (check_label_chars(name))
+    if (name[0] == '\0' || check_label_chars(name))
         return 1;
     while (i < labels[0].len) {
         if(my_strcmp(labels[i].name, name))

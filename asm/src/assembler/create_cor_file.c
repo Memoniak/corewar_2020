@@ -12,7 +12,7 @@ void create_cor_file(champion_header_t *champ, char const *file_name)
     char *name = my_strdup(file_name);
 
     for (int i = 0; name[i]; i++) {
-        if (name[i] == '.')
+        if (name[i] == '.' && name[i + 1] == 's')
             name[i] = '\0';
     }
     champ->file_name = malloc(sizeof(char) * my_strlen(file_name) + 4);

@@ -46,12 +46,12 @@ int get_param_value(vm_t *vm, process_t *proc, int nb)
     int result = 0;
 
     result = read_nbytes(&next, byte, code);
-    if (byte == 1)
-        my_printf(2, SRED, "REG ");
-    else if (byte == 2)
-        my_printf(2, SRED, "DIR ");
-    else
-        my_printf(2, SRED, "IND ");
+    // if (byte == 1)
+    //     my_printf(2, SRED, "REG ");
+    // else if (byte == 2)
+    //     my_printf(2, SRED, "DIR ");
+    // else
+    //     my_printf(2, SRED, "IND ");
     return result;
 }
 

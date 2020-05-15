@@ -9,16 +9,11 @@
 
 static void init_operation_table(op_func *table)
 {
-    table[10] = &op_live;
-}
-
-void op_live(vm_t *vm, process_t *process)
-{
-    if (!process->live) {
-        process->live = 1;
-        my_printf(2, SLREDN, "PROCESS CALLED LIVE");
-    }
-    return;
+    table[0] = &my_live;
+    table[5] = &my_and;
+    table[8] = &my_zjmp;
+    table[10] = &my_sti;
+    table[13] = &fork_operation;
 }
 
 void add_operation(process_t *process, operation_t *op)

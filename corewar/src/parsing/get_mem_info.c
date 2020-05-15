@@ -14,7 +14,10 @@ int get_param_type(vm_t *vm, process_t *proc, int nb)
     int temp = 0;
 
     if (!is_typed(code - 1))
-        return 0;
+    {
+        params[0] = check_direct(OTM(code - 1));
+        return params[nb - 1];
+    }
     for (ssize_t i = 0; i != 4; i++)
     {
         temp = vm->mem[proc->pc + 1] >> (2 * i);
@@ -31,9 +34,10 @@ static int move(vm_t *vm, process_t *proc, int nb)
 {
     int temp = 0;
 
-    for (ssize_t i = 0; i != nb; i++)
+    for (ssize_t i = 1; i != nb; i++)
     {
         temp += get_param_type(vm, proc, i);
+        my_printf(2, "%d ", temp);
     }
     return (proc->pc + is_typed(vm->mem[proc->pc] - 1) + temp);
 }
@@ -45,13 +49,13 @@ int get_param_value(vm_t *vm, process_t *proc, int nb)
     char *next = vm->mem + move(vm, proc, nb) + 1;
     int result = 0;
 
-    result = read_nbytes(&next, byte, code);
     if (byte == 1)
         my_printf(2, SRED, "REG ");
     else if (byte == 2)
         my_printf(2, SRED, "DIR ");
     else
         my_printf(2, SRED, "IND ");
+    result = read_nbytes(&next, byte, code);
     return result;
 }
 

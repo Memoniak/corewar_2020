@@ -36,7 +36,7 @@ static void decrypt_params(int byte, char **buf, int *read_len, unsigned char co
         (*read_len)--;
         (*buf)++;
         value = **buf;
-        my_printf(2, SBLUE XBLUE"  ", (value < 16) ? "0" : "", value);
+        my_printf(2, SBLUE XBLUE" ", (value < 16) ? "0" : "", value);
     }
     my_printf(2, "\n");
 }
@@ -64,7 +64,7 @@ static int decrypt_type(unsigned char value, int params[][4], int code, bool typ
         (*params)[0] = check_direct(OTM(code - 1));
         return 0;
     }
-    my_printf(2, SYELLOW DLYELLOWN, "type = ", type);
+    my_printf(2, SXLYELLOWN, "type = ", type);
     for (ssize_t i = 0; i != 4; i++)
     {
         temp = type >> (2 * i);

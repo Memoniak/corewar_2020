@@ -49,11 +49,12 @@ int fork_operation(vm_t *vm, process_t *process)
         exit_w_msg("Failed to create new process\n", vm);
     vmemset(new, '\0', sizeof(process_t));
     copy_process(&new, old, sizeof(process_t));
-    insert_process(vm, process);
+    insert_process(vm, old);
     adr = get_param_value(vm, process, 1);
     new->wait_cycles = 0;
     new->operation_to_do = NULL;
     new->pc = (process->pc + adr) % IDX_MOD;
     move_pc(vm, process);
+    printf("end of fork\n");
     return 0;
 }

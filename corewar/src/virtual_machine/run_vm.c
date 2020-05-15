@@ -27,7 +27,6 @@ void run_vm(vm_t *vm, champ_t champs[][4])
     print_mem(vm);
     while (vm->cycle_to_die > 0 && vm->all_process) {
         take_care_process(vm, *champs);
-        usleep(10000);
         if (vm->cycle == vm->cycle_to_die) {
             return;
             //my_printf(2, "%sRESTARTING LOOP\n%s", LRED, DEF);

@@ -39,7 +39,7 @@ void run_vm(vm_t *vm, champ_t champs[][4])
         }
         vm->cycle++;
         vm->total_cycle++;
-        CLEAR;
+        //CLEAR;
         print_cycle(vm);
         dump_mem(vm);
     }

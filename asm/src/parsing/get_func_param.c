@@ -14,7 +14,7 @@ int get_func_param(char *str, cmd_t *cmd, char *func_name)
 
     parsed[0] = check_name(parsed[0], func_name);
     parsed[0] = remove_first_spaces(parsed[0]);
-    while ((parsed[0][i] != ' ' || parsed[0][i] == 9) && parsed[0][i] != '\0')
+    while ((parsed[0][i] != ' ' && parsed[0][i] != 9) && parsed[0][i] != '\0')
         i++;
     cmd->code = get_code(parsed[0], i);
     if (!cmd->code && parsed[0][0] != '\0')

@@ -70,6 +70,7 @@ int check_errors_instructions(funct_t *labels)
         {
             if (check_instructions(labels[y].commands[x], op_tab, labels))
             {
+                my_printf(2, "%sy = %d x = %d%s\n", RED, y, x, DEF);
                 return 1;
             }
         }

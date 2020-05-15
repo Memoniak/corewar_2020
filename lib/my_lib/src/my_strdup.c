@@ -28,7 +28,7 @@ char *my_strdup_w_no_spaces(char const *src)
     len = my_strlen(src);
     tab = malloc(sizeof(char) * (len + 1));
     for (int i = 0; i < len; i++) {
-        if (src[i] != ' ') {
+        if (src[i] != ' ' && src[i] != 9) {
             tab[z] = src[i];
             z++;
         }

@@ -14,7 +14,7 @@ int my_live(vm_t *vm, process_t *process)
     vm->nb_live++;
     vm->last_live_nb = p_nb;
     process->live++;
-    my_printf(2, "\n%sA process show that player %d is alive%s\n", RED, p_nb, DEF);
+//    my_printf(2, "\n%sA process show that player %d is alive%s\n", RED, p_nb, DEF);
     move_pc(vm, process);
     return 0;
 }

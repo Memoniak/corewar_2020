@@ -23,6 +23,6 @@ int my_sti(vm_t *vm, process_t *process)
     vm->mem[adr + 2] = (process->registre[param1] >> 8) & 0xFF;
     vm->mem[adr + 3] = process->registre[param1] & 0xFF;
     move_pc(vm, process);
-    my_printf(2, SREDN, "Executing STI operation");
+//    my_printf(2, SREDN, "Executing STI operation");
     return 0;
 }

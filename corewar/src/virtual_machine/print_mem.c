@@ -22,7 +22,7 @@ void show_champ(vm_t *vm, int i, int len, int nb)
     }
 }
 
-void print_pcs(vm_t *vm, champ_t *champ, int i, int nb)
+void print_pcs(vm_t *vm, UNSD champ_t *champ, int i, int nb)
 {
     unsigned char byte = vm->mem[i];
     process_t *p = vm->all_process;

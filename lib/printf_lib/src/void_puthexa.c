@@ -9,24 +9,20 @@
 
 void void_puthexa(int output, int nb)
 {
-    flags_t flags = {0, 0, '\0', 0, malloc(sizeof(int) + 1)};
+    char hexa[16] = {'0'};
+    int len = (!nb) ? 1 : 0;
+    int temp  = 0;
 
-    while (nb >= 16) {
-        flags.quot = nb / 16;
-        flags.rest = nb % 16;
-        if (flags.rest <= 9)
-            flags.c = flags.rest + 48;
+    while(nb)
+    {
+        temp = nb % 16;
+        if(temp < 10)
+            hexa[len] = temp + 48;
         else
-            flags.c = flags.rest + 87;
-        flags.str[flags.i] = flags.c;
-        nb = flags.quot;
-        flags.i++;
+            hexa[len] = temp + 87;
+        nb /= 16;
+        len++;
     }
-    if (nb <= 9)
-        flags.c = nb + 48;
-    else
-        flags.c = nb + 87;
-    flags.str[flags.i] = flags.c;
-    write(output, my_revstr(flags.str), my_strlen(flags.str));
-    free(flags.str);
+    while (len--)
+        write(output, &hexa[len], 1);
 }

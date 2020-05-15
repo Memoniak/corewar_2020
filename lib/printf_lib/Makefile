@@ -43,7 +43,7 @@ OBJ     =       $(SRC:.c=.o)
 
 ARRC	=	ar rc
 
-CFLAGS	+=	-Wall -W -Werror	\
+CFLAGS	+=	-Wall -W -Werror -g	\
 		-I $(INCDIR)
 
 NAME    =       libprintf.a

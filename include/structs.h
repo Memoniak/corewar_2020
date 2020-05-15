@@ -59,7 +59,7 @@ typedef struct operation_s {
     int params;
     int param_types;
     int nb_cycles;
-    void (*operation)();
+    int (*operation)();
     struct operation_s *next;
 } operation_t;
 

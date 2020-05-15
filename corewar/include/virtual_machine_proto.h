@@ -10,7 +10,7 @@
 
 #define MAX_CHAMPS (4)
 
-typedef void (*op_func)(vm_t *vm, process_t *process);
+typedef int (*op_func)(vm_t *vm, process_t *process);
 
 //read_cor.c
 void reada_file(champ_t *champ, operation_t *opt);
@@ -58,8 +58,12 @@ void get_opcode(vm_t *vm, process_t *process, champ_t *champ);
 void exec_process();
 
 //instruction
-void op_live(UNSD vm_t *vm, UNSD process_t *process);
-
+int op_live(UNSD vm_t *vm, UNSD process_t *process);
+int fork_operation(vm_t *vm, process_t *process);
+int my_zjmp(vm_t *vm, process_t *process);
+int my_sti(vm_t *vm, process_t *process);
+int my_and(vm_t *vm, process_t *process);
+int my_live(vm_t *vm, process_t *process);
 
 //print
 void print_cycle(vm_t *vm);

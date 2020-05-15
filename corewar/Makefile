@@ -68,6 +68,16 @@ OPTLIST=	$(OPT_DIR)create_opt.c		\
 
 TOOLSLIST=	$(TOOLS_DIR)tools.c
 
+OPTLIST=		$(OPT_DIR)create_opt.c		\
+			$(OPT_DIR)fork_op.c		\
+			$(OPT_DIR)my_and.c		\
+			$(OPT_DIR)my_live.c		\
+			$(OPT_DIR)my_sti.c		\
+			$(OPT_DIR)my_zjmp.c
+
+TOOLSLIST=	$(TOOLS_DIR)tools.c		\
+			$(TOOLS_DIR)move_pc.c
+
 PROSSLIST=	$(PROSS_DIR)add_process.c		\
 		$(PROSS_DIR)exec_process.c		\
 		$(PROSS_DIR)create_champ_process.c	\

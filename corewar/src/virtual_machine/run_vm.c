@@ -7,27 +7,6 @@
 
 #include "corewar.h"
 
-static const int DISP_SIZE = 32;
-
-void print_mem(vm_t *vm)
-{
-    unsigned char bite;
-
-    for (int i = 0; i < MEM_SIZE; i++) {
-        bite = vm->mem[i];
-        if (i == vm->all_process->pc)
-            my_printf(2, SXYELLOW" ", (bite < 16) ? "0" : "", bite);
-        else if (vm->mem[i] != 0) {
-            my_printf(2, SXYELLOW" ", (bite < 16) ? "0" : "", bite);
-
-        } else {
-            my_printf(2, SXYELLOW" ", (bite < 16) ? "0" : "", bite);
-        }
-        if (!((i + DISP_SIZE + 1) % DISP_SIZE))
-            printf("\n");
-    }
-}
-
 void print_end(vm_t *vm)
 {
     if (vm->last_live_nb)
@@ -49,7 +28,6 @@ void run_vm(vm_t *vm, champ_t champs[][4])
     while (vm->cycle_to_die > 0 && vm->all_process) {
         take_care_process(vm, *champs);
         if (vm->cycle == vm->cycle_to_die) {
-            print_mem(vm);
             return;
             //my_printf(2, "%sRESTARTING LOOP\n%s", LRED, DEF);
             remove_process(vm);
@@ -61,6 +39,8 @@ void run_vm(vm_t *vm, champ_t champs[][4])
         }
         vm->cycle++;
         vm->total_cycle++;
+        CLEAR;
+        print_cycle(vm);
         dump_mem(vm);
     }
     print_end(vm);

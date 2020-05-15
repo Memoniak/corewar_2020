@@ -9,13 +9,9 @@
 
 static int get_champ_pos(champ_t *champ, int i, int max)
 {
-    int champ_left = 1;
-
     if (champ[i].champ_pos || i == 0)
         return champ[i].champ_pos;
-    for (; i < max; i++)
-        champ_left++;
-    return (MEM_SIZE / champ_left);
+    return (i *(MEM_SIZE / max));
 }
 
 void create_champ_process(vm_t *vm, champ_t champs[][4])

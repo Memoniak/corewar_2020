@@ -49,7 +49,8 @@ ERRLIST=	$(ERR_DIR)exit_msg.c \
 		$(ERR_DIR)parse_args.c \
 		$(ERR_DIR)check_values.c \
 
-VMLIST=		$(VMDIR)run_vm.c
+VMLIST=		$(VMDIR)run_vm.c	\
+			$(VMDIR)print_mem.c
 
 PARSLIST=	$(PARS_DIR)read_cor.c			\
 		$(PARS_DIR)init_empty_champ.c		\
@@ -74,7 +75,8 @@ OPTLIST=	$(OPT_DIR)create_opt.c	\
 			$(OPT_DIR)my_xor.c     \
 
 TOOLSLIST=	$(TOOLS_DIR)tools.c		\
-			$(TOOLS_DIR)move_pc.c
+			$(TOOLS_DIR)move_pc.c	\
+			$(TOOLS_DIR)get_champ_process.c
 
 PROSSLIST=	$(PROSS_DIR)add_process.c		\
 		$(PROSS_DIR)exec_process.c		\

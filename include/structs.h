@@ -40,7 +40,8 @@ typedef struct {
     int len;
 } champion_header_t;
 
-typedef struct process_s{
+typedef struct process_s {
+    int id;
     int pc;
     int start_pos;
     char carry;

@@ -47,10 +47,10 @@ void init_cmd_struct(cmd_t *commands, int len);
 
 int count_cmd_len(char **arr, int pos);
 int count_cmd_len_first(char **arr, int pos);
-int get_full_cmd_len(char **str, int start_pos);
+int get_full_cmd_len(char **str, int start_pos, bool first);
 
 funct_t *make_struct(char const *filepath, champion_header_t *champion_info);
-int create_command(char **str, funct_t *func, int start_pos);
+int create_command(char **str, funct_t *func, int start_pos, bool first);
 int fill_champion_info(champion_header_t *champ, char **file, int len);
 
 int command_loop(char **str, int start_pos, funct_t *func, int len);

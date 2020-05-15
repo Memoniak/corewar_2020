@@ -16,5 +16,5 @@ process_t *get_champ_process(vm_t *vm, champ_t *champ)
             return res;
         res = res->next;
     }
-    return res;
+    return NULL;
 }

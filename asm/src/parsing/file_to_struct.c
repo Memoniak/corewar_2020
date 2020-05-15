@@ -30,12 +30,12 @@ int fill_champion_info(champion_header_t *champ, char **file, int len)
     return 1;
 }
 
-int create_command(char **str, funct_t *func, int start_pos)
+int create_command(char **str, funct_t *func, int start_pos, bool first)
 {
     int len = 0;
     int tmp = 0;
 
-    len = get_full_cmd_len(str, start_pos);
+    len = get_full_cmd_len(str, start_pos, first);
     func->name = get_func_name(str[start_pos]);
     if (func->name && check_label_chars(func->name))
         return 84;

@@ -49,6 +49,7 @@ void move_pc(vm_t *vm, process_t *process);
 //vm
 void run_vm(vm_t *vm, champ_t champs[][4]);
 void print_mem(vm_t *vm);
+champ_t get_champ_from_process(process_t *process, vm_t *vm);
 
 //process
 void take_care_process(vm_t *vm, champ_t *champ);

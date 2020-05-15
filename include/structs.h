@@ -84,6 +84,7 @@ typedef struct virtual_machine {
     int dump_cycle;
     int nb_champs;
     char mem[MEM_SIZE];
+    champ_t champ[4];
     operation_t *ops;
     process_t *all_process;
 } vm_t;

@@ -38,10 +38,12 @@ void take_care_process(vm_t *vm, champ_t *champ)
 //            my_printf(2, STEALN, "\n━━━━━━━━━━━\n");
             if (!tmp->operation_to_do)
                 get_opcode(vm, tmp, champ);
+            else {
+                exec_all_process(vm);
+            }
         } else {
             tmp->wait_cycles--;
         }
         tmp = tmp->next;
     }
-    exec_all_process(vm);
 }

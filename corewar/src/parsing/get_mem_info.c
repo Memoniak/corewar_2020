@@ -34,10 +34,9 @@ static int move(vm_t *vm, process_t *proc, int nb)
 {
     int temp = 0;
 
-    for (ssize_t i = 1; i != nb; i++)
-    {
-        temp += get_param_type(vm, proc, i);
-        my_printf(2, "%d ", temp);
+    for (ssize_t i = 1; i != nb; i++) {
+            temp += get_param_type(vm, proc, i);
+            //my_printf(2, "%d ", temp);
     }
     return (proc->pc + is_typed(vm->mem[proc->pc] - 1) + temp);
 }

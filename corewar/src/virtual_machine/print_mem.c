@@ -48,8 +48,11 @@ void print_pcs(vm_t *vm, UNSD champ_t *champ, int i, int nb)
 
 void print_mem(vm_t *vm)
 {
+    unsigned char byte;
+
     for (int i = 0; i < MEM_SIZE; i++) {
-        my_printf(2, SXLBLACK " ", (vm->mem[i] < 16) ? "0" : "", vm->mem[i]);
+        byte = vm->mem[i];
+        my_printf(2, SXLBLACK " ", (byte < 16) ? "0" : "",byte);
         if (!((i + DISP_SIZE + 1) % DISP_SIZE))
             my_printf(2, "\n");
     }

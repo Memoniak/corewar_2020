@@ -73,7 +73,10 @@ OPTLIST=		$(OPT_DIR)create_opt.c		\
 			$(OPT_DIR)my_and.c		\
 			$(OPT_DIR)my_live.c		\
 			$(OPT_DIR)my_sti.c		\
-			$(OPT_DIR)my_zjmp.c
+			$(OPT_DIR)my_zjmp.c     \
+			$(OPT_DIR)my_sub.c     \
+			$(OPT_DIR)my_or.c     \
+			$(OPT_DIR)my_xor.c     \
 
 TOOLSLIST=	$(TOOLS_DIR)tools.c		\
 			$(TOOLS_DIR)move_pc.c

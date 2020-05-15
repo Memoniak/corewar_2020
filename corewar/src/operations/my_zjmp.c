@@ -12,9 +12,8 @@ int my_zjmp(vm_t *vm, process_t *process)
     int param;
 
     if (process->carry) {
-        param = get_param_value(vm, process, 2);
-        process->pc -= 5;
-        //process->pc + (param % IDX_MOD);
+        param = get_param_value(vm, process, 1);
+        process->pc += (param % IDX_MOD);
     } else {
         move_pc(vm, process);
     }

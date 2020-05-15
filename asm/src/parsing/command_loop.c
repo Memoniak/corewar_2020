@@ -41,10 +41,13 @@ int arr_func_loop(int len, char **file_arr, funct_t *functions)
 {
     int z = 0;
     int i;
+    bool first = false;
 
     for (i = 2; i < len; i++) {
+        if (z > 1)
+            first  = true;
         if (check_line(file_arr[i])) {
-            i = create_command(file_arr, &functions[z], i);
+            i = create_command(file_arr, &functions[z], i, first);
             z++;
         }
     }

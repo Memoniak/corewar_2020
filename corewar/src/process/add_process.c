@@ -37,6 +37,7 @@ void add_process(champ_t *champ, vm_t *vm)
     process->registre[1] = champ->champ_nb;
     process->pc = champ->champ_pos;
     process->start_pos = process->pc;
+    process->id = champ->champ_nb;
     if (vm->all_process)
         put_process_in_list(vm, process);
     else {

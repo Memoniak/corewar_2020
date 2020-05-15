@@ -26,8 +26,8 @@ static void insert_process(vm_t *vm, process_t *process)
 
     p = vm->all_process;
     while (p) {
-        if (p->registre[1] == process->registre[1]) {
-            while (p && p->registre[1] == process->registre[1]) {
+        if (p->id == process->id) {
+            while (p && p->id == process->id) {
                 previous = p;
                 p = p->next;
             }

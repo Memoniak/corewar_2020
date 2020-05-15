@@ -49,23 +49,13 @@ int get_param_value(vm_t *vm, process_t *proc, int nb)
     char *next = vm->mem + move(vm, proc, nb) + 1;
     int result = 0;
 
-<<<<<<< HEAD
-    result = read_nbytes(&next, byte, code);
     // if (byte == 1)
     //     my_printf(2, SRED, "REG ");
     // else if (byte == 2)
     //     my_printf(2, SRED, "DIR ");
     // else
     //     my_printf(2, SRED, "IND ");
-=======
-    if (byte == 1)
-        my_printf(2, SRED, "REG ");
-    else if (byte == 2)
-        my_printf(2, SRED, "DIR ");
-    else
-        my_printf(2, SRED, "IND ");
     result = read_nbytes(&next, byte, code);
->>>>>>> ec8023edf95020c211b3988a607f16c7a06a864c
     return result;
 }
 

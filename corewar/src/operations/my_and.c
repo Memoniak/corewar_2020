@@ -22,5 +22,6 @@ int my_and(vm_t *vm, process_t *process)
     else
         process->carry = 0;
     move_pc(vm, process);
+    my_printf(2, SREDN, "Executing AND operation");
     return 0;
 }

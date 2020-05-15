@@ -1,7 +1,13 @@
+/*
+** EPITECH PROJECT, 2020
+** ldi
+** File description:
+** instruction ldi
+*/
 
 #include "corewar.h"
 
-int ldi(vm_t *vm, process_t *process)
+int my_ldi(vm_t *vm, process_t *process)
 {
     int a = get_param_value(vm, process, 1);
     int b = get_param_value(vm, process, 2);

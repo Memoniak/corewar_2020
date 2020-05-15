@@ -68,9 +68,9 @@ typedef struct {
     char name[PROG_NAME_LENGTH];
     char comment[COMMENT_LENGTH];
     char *prog;
-    int prog_size;
-    int champ_nb;
-    int champ_pos;
+//    int prog_size;
+//    int champ_nb;
+//    int champ_pos;
     int value[MAX_ARGS_NUMBER];
     int  prog_size;
     int  champ_nb;

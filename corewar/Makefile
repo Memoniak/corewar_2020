@@ -64,7 +64,6 @@ EXECLIST=
 DESTLIST=
 
 OPTLIST=	$(OPT_DIR)create_opt.c		\
-		$(OPT_DIR)live.c
 
 TOOLSLIST=	$(TOOLS_DIR)tools.c
 
@@ -77,6 +76,7 @@ OPTLIST=		$(OPT_DIR)create_opt.c		\
 			$(OPT_DIR)my_sub.c     \
 			$(OPT_DIR)my_or.c     \
 			$(OPT_DIR)my_xor.c     \
+			$(OPT_DIR)ld.c		\
 
 TOOLSLIST=	$(TOOLS_DIR)tools.c		\
 			$(TOOLS_DIR)move_pc.c

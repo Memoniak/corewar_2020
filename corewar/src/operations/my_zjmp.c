@@ -9,7 +9,7 @@
 
 int my_zjmp(vm_t *vm, process_t *process)
 {
-    int param;
+    UNSD int param;
 
     if (process->carry) {
         param = get_param_value(vm, process, 2);

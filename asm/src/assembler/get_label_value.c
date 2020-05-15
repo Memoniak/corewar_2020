@@ -23,7 +23,6 @@ static char *replace_label(char *param, int nb)
 
 static int get_value(char *param, funct_t **funct, cmd_t cmd)
 {
-//    my_printf(2, "%sparam = %s%s\n", RED, param, DEF);
     for (int i = 0; i != (*funct)[0].len; i++) {
         if (my_strcmp((*funct)[i].name, param + 2))
             return ((*funct)[i].index - cmd.index);
@@ -49,10 +48,6 @@ void get_label_value(funct_t **funct)
 {
     for (int i = 0; i != (*funct)[0].len; i++) {
         for (int j = 0; j != (*funct)[i].nb_cmd; j++) {
-//            my_printf(2, "%s-%s-%s\n", GREEN, FC(i, j).param1, DEF);
-//            my_printf(2, "%s-%s-%s\n", GREEN, FC(i, j).param2, DEF);
-//            my_printf(2, "%s-%s-%s\n", GREEN, FC(i, j).param3, DEF);
-//            my_printf(2, "%s-%s-%s\n", GREEN, FC(i, j).param4, DEF);
             check_label(&FC(i, j).param1, funct, FC(i, j));
             check_label(&FC(i, j).param2, funct, FC(i, j));
             check_label(&FC(i, j).param3, funct, FC(i, j));

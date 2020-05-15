@@ -147,14 +147,14 @@
 // !putstrnbr_color
 
 // putstrnbr_color
-#define SXBLACK   "\e[30m%s%d\e[m"
-#define SXRED     "\e[31m%s%d\e[m"
-#define SXGREEN   "\e[32m%s%d\e[m"
-#define SXYELLOW  "\e[33m%s%d\e[m"
-#define SXBLUE    "\e[34m%s%d\e[m"
-#define SXMAGENTA "\e[35m%s%d\e[m"
-#define SXTEAL    "\e[36m%s%d\e[m"
-#define SXWHITE   "\e[37m%s%d\e[m"
+#define SXBLACK   "\e[30m%s%x\e[m"
+#define SXRED     "\e[31m%s%x\e[m"
+#define SXGREEN   "\e[32m%s%x\e[m"
+#define SXYELLOW  "\e[33m%s%x\e[m"
+#define SXBLUE    "\e[34m%s%x\e[m"
+#define SXMAGENTA "\e[35m%s%x\e[m"
+#define SXTEAL    "\e[36m%s%x\e[m"
+#define SXWHITE   "\e[37m%s%x\e[m"
 // !putstrnbr_color
 
 /***********LIGHT***********/
@@ -215,14 +215,14 @@
 // !puthexa_light_color
 
 // puthexa_light_color
-#define SXLBLACK   "\e[90m%s%d\e[m"
-#define SXLRED     "\e[91m%s%d\e[m"
-#define SXLGREEN   "\e[92m%s%d\e[m"
-#define SXLYELLOW  "\e[93m%s%d\e[m"
-#define SXLBLUE    "\e[94m%s%d\e[m"
-#define SXLMAGENTA "\e[95m%s%d\e[m"
-#define SXLTEAL    "\e[96m%s%d\e[m"
-#define SXLWHITE   "\e[97m%s%d\e[m"
+#define SXLBLACK   "\e[90m%s%x\e[m"
+#define SXLRED     "\e[91m%s%x\e[m"
+#define SXLGREEN   "\e[92m%s%x\e[m"
+#define SXLYELLOW  "\e[93m%s%x\e[m"
+#define SXLBLUE    "\e[94m%s%x\e[m"
+#define SXLMAGENTA "\e[95m%s%x\e[m"
+#define SXLTEAL    "\e[96m%s%x\e[m"
+#define SXLWHITE   "\e[97m%s%x\e[m"
 // !puthexa_light_color
 
 /*||||| CHARIOT MODE ||||||*/
@@ -285,14 +285,14 @@
 // !putstrnbr_color_\n
 
 // putstrnbr_color_\n
-#define SXBLACKN   "\e[30m%s%d\e[m\n"
-#define SXREDN     "\e[31m%s%d\e[m\n"
-#define SXGREENN   "\e[32m%s%d\e[m\n"
-#define SXYELLOWN  "\e[33m%s%d\e[m\n"
-#define SXBLUEN    "\e[34m%s%d\e[m\n"
-#define SXMAGENTAN "\e[35m%s%d\e[m\n"
-#define SXTEALN    "\e[36m%s%d\e[m\n"
-#define SXWHITEN   "\e[37m%s%d\e[m\n"
+#define SXBLACKN   "\e[30m%s%x\e[m\n"
+#define SXREDN     "\e[31m%s%x\e[m\n"
+#define SXGREENN   "\e[32m%s%x\e[m\n"
+#define SXYELLOWN  "\e[33m%s%x\e[m\n"
+#define SXBLUEN    "\e[34m%s%x\e[m\n"
+#define SXMAGENTAN "\e[35m%s%x\e[m\n"
+#define SXTEALN    "\e[36m%s%x\e[m\n"
+#define SXWHITEN   "\e[37m%s%x\e[m\n"
 // !putstrnbr_color_\n
 
 /***********LIGHT***********/
@@ -353,14 +353,14 @@
 // !puthexa_light_color_\n
 
 // puthexa_light_color_\n
-#define SXLBLACKN   "\e[90m%s%d\e[m\n"
-#define SXLREDN     "\e[91m%s%d\e[m\n"
-#define SXLGREENN   "\e[92m%s%d\e[m\n"
-#define SXLYELLOWN  "\e[93m%s%d\e[m\n"
-#define SXLBLUEN    "\e[94m%s%d\e[m\n"
-#define SXLMAGENTAN "\e[95m%s%d\e[m\n"
-#define SXLTEALN    "\e[96m%s%d\e[m\n"
-#define SXLWHITEN   "\e[97m%s%d\e[m\n"
+#define SXLBLACKN   "\e[90m%s%x\e[m\n"
+#define SXLREDN     "\e[91m%s%x\e[m\n"
+#define SXLGREENN   "\e[92m%s%x\e[m\n"
+#define SXLYELLOWN  "\e[93m%s%x\e[m\n"
+#define SXLBLUEN    "\e[94m%s%x\e[m\n"
+#define SXLMAGENTAN "\e[95m%s%x\e[m\n"
+#define SXLTEALN    "\e[96m%s%x\e[m\n"
+#define SXLWHITEN   "\e[97m%s%x\e[m\n"
 // !puthexa_light_color_\n
 
 #endif /* !THE_DEFINEF */

@@ -42,7 +42,7 @@ static void pars_loop(char *buf, int read_len, champ_t *champ, operation_t *opt)
             opt->nb_cycles = op_tab[opt->code - 1].nbr_cycles;
             my_printf(2, STEALN, "━━━━━━━━━━━");
             my_printf(2, SXLTEAL" | ", "code = ", *buf);
-            my_printf(2, SDLMAGENTAN, "index = ", (champ->prog_size - read_len - 1));
+            my_printf(2, SDLMAGENTA" | ", "index = ", (champ->prog_size - read_len - 1));
             decrypt_instruction(*buf, &buf, &read_len, opt);
             opt->next = opt_create();
             opt = opt->next;

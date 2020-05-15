@@ -7,6 +7,8 @@
 
 #include "corewar.h"
 
+static const int DISP_SIZE = 32;
+
 void print_mem(vm_t *vm)
 {
     unsigned char bite;
@@ -14,13 +16,14 @@ void print_mem(vm_t *vm)
     for (int i = 0; i < MEM_SIZE; i++) {
         bite = vm->mem[i];
         if (i == vm->all_process->pc)
-            printf("%s%s%x%s ", LRED, (bite < 16) ? "0" : "", bite, DEF);
+            my_printf(2, SXYELLOW" ", (bite < 16) ? "0" : "", bite);
         else if (vm->mem[i] != 0) {
-            printf("%s%s%x%s ", YELLOW, (bite < 16) ? "0" : "", bite, DEF);
+            my_printf(2, SXYELLOW" ", (bite < 16) ? "0" : "", bite);
+
         } else {
-            printf("%s%s%x%s ", LBLUE, (bite < 16) ? "0" : "", bite, DEF);
+            my_printf(2, SXYELLOW" ", (bite < 16) ? "0" : "", bite);
         }
-        if (!((i + 33) % 32))
+        if (!((i + DISP_SIZE + 1) % DISP_SIZE))
             printf("\n");
     }
 }

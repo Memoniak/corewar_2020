@@ -13,7 +13,7 @@ void void_putoctal(int output, int nb)
     int len = (!nb) ? 1 : 0;
     int temp  = 0;
 
-    while(nb)
+    while (nb)
     {
         temp = nb % 8;
         octa[len] = temp + 48;

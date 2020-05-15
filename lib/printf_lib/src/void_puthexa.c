@@ -13,10 +13,10 @@ void void_puthexa(int output, int nb)
     int len = (!nb) ? 1 : 0;
     int temp  = 0;
 
-    while(nb)
+    while (nb)
     {
         temp = nb % 16;
-        if(temp < 10)
+        if (temp < 10)
             hexa[len] = temp + 48;
         else
             hexa[len] = temp + 87;

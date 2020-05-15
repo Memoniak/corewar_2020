@@ -14,7 +14,7 @@ static void copy_process(process_t **dest, process_t *src, size_t n)
 
     source = (unsigned char *)src;
     destination = (unsigned char *)*dest;
-    while(n--)
+    while (n--)
         *destination++ = *source++;
     return;
 }
@@ -55,6 +55,6 @@ int fork_operation(vm_t *vm, process_t *process)
     new->operation_to_do = NULL;
     new->pc = (process->pc + adr) % IDX_MOD;
     move_pc(vm, process);
-    printf("end of fork\n");
+    my_printf(2, "end of fork\n");
     return 0;
 }

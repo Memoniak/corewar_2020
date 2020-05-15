@@ -15,7 +15,6 @@ cmd_t *remove_command(cmd_t *command, int pos, int len)
     for (int i = 0; i < len; i++) {
         if (i == pos && i + 1 != len)
             i++;
-//        my_printf(2, "%si = %i%s\n", BLUE, i, DEF);
         new[z].code = command[i].code;
         new[z].index = command[i].index;
         new[z].param1 = my_strdup(command[i].param1);

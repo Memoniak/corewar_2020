@@ -33,7 +33,7 @@ void get_opcode(vm_t *vm, process_t *process, UNSD champ_t *champ)
     operation_t *op;
     op_func table[16];
 
-    printf("OPCODE == %i\n", opcode);
+    my_printf(2, "OPCODE == %i\n", opcode);
     init_operation_table(table);
     op = malloc(sizeof(operation_t));
     vmemset(op, '\0', sizeof(operation_t));

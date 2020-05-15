@@ -8,6 +8,7 @@
 #include "arr.h"
 
 int my_strncmp(char const *s1, char const *s2, int n);
+
 int my_strlen(char const *str);
 
 size_t get_pos_word_in_str(char const  *word, char const *str)

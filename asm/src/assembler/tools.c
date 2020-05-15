@@ -21,9 +21,9 @@ int get_type(char const *param, char *name)
     } if (*param == 'r') {
         return 1;
     } else if (*param == DIRECT_CHAR &&
-               !my_strcmp(name, "zjmp") && !my_strcmp(name, "ldi") &&
-               !my_strcmp(name, "fork") && !my_strcmp(name, "sti") &&
-               !my_strcmp(name, "lfork") && !my_strcmp(name, "lldi")) {
+    !my_strcmp(name, "zjmp") && !my_strcmp(name, "ldi") &&
+    !my_strcmp(name, "fork") && !my_strcmp(name, "sti") &&
+    !my_strcmp(name, "lfork") && !my_strcmp(name, "lldi")) {
         return DIR_SIZE;
     }
     return IND_SIZE;

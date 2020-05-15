@@ -77,7 +77,7 @@ void func_cmd_error(int line);
 int check_label_name(char *name, funct_t *labels);
 int check_value(char *value, funct_t *labels);
 int check_label_chars(char *name);
-int check_instructions(cmd_t cmd_line, const op_t* op_tab, funct_t *labels);
+int check_instructions(cmd_t cmd_line, const op_t *op_tab, funct_t *labels);
 int check_errors_instructions(funct_t *labels);
 
 #endif /*PROTO_H*/

@@ -7,7 +7,6 @@
 
 #include "corewar.h"
 
-
 int check_line(char *line)
 {
     if (!line)

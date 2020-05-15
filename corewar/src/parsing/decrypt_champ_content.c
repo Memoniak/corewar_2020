@@ -16,7 +16,8 @@ int check_direct(char *name)
     return IND_SIZE;
 }
 
-static void decrypt_params(int byte, char **buf, int *read_len, unsigned char code)
+static void decrypt_params(int byte, char **buf,
+int *read_len, unsigned char code)
 {
     unsigned char value;
     int           result;
@@ -28,9 +29,8 @@ static void decrypt_params(int byte, char **buf, int *read_len, unsigned char co
         my_printf(2, SRED, "DIR ");
     else
         my_printf(2, SRED, "IND ");
-    my_printf(2, "%ssize:%s%d  %s", GREEN, BOLD, byte, DEF);
     result = read_nbytes(&temp, byte, code);
-    my_printf(2, DLBLUE"  ", result);
+    my_printf(2, "%ssize:%s%d %s%d %s", GREEN, BOLD, byte, LBLUE, result, DEF);
     for (ssize_t i = 0; i != byte; i++)
     {
         (*read_len)--;
@@ -54,7 +54,8 @@ static bool decrypt_name(unsigned char value)
     return false;
 }
 
-static int decrypt_type(unsigned char value, int params[][4], int code, bool typed)
+static int decrypt_type(unsigned char value, int params[][4],
+int code, bool typed)
 {
     int type = value;
     int temp = 0;
@@ -77,7 +78,8 @@ static int decrypt_type(unsigned char value, int params[][4], int code, bool typ
     return type;
 }
 
-void decrypt_instruction(unsigned char code, char **buf, int *read_len, operation_t *opt)
+void decrypt_instruction(unsigned char code, char **buf,
+int *read_len, operation_t *opt)
 {
     int  params[4] = {0};
     bool typed = false;

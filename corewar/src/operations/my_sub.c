@@ -16,7 +16,7 @@ int my_sub(vm_t *vm, process_t *proc)
     int type_b = get_param_type(vm, proc, 2);
     int type_c = get_param_type(vm, proc, 3);
 
-    if(type_a != T_REG || type_b != T_REG || type_c != T_REG)
+    if (type_a != T_REG || type_b != T_REG || type_c != T_REG)
         return -1;
     a = proc->registre[a];
     b = proc->registre[b];

@@ -1,8 +1,16 @@
+/*
+** EPITECH PROJECT, 2020
+** check_value.c
+** File description:
+** check values
+*/
+
 #include "corewar.h"
 
 int check_parser_values(parser_t *parser)
 {
-    my_printf(2, "nb_dump = %d nb_n = %d nb_a = %d\n", parser->nb_dump, parser->nb_n, parser->nb_a);
+    my_printf(2, "nb_dump = %d nb_n = %d nb_a = %d\n",
+    parser->nb_dump, parser->nb_n, parser->nb_a);
     if (parser->nb_a > parser->nb_players ||
         parser->nb_dump > 1 || parser->nb_n > parser->nb_players)
     {

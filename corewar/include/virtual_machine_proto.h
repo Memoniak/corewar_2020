@@ -31,7 +31,8 @@ int get_nbytes(char **buf, int nb);
 
 //decrypt_champ_content.c
 int check_direct(char *name);
-void decrypt_instruction(unsigned char code, char **buf, int *read_len, operation_t *opt);
+void decrypt_instruction(unsigned char code, char **buf,
+int *read_len, operation_t *opt);
 
 //get_mem_info.c
 int get_param_type(vm_t *vm, process_t *proc, int nb);
@@ -48,6 +49,8 @@ void move_pc(vm_t *vm, process_t *process);
 
 //vm
 void run_vm(vm_t *vm, champ_t champs[][4]);
+void print_mem(vm_t *vm);
+champ_t get_champ_from_process(process_t *process, vm_t *vm);
 
 //process
 void take_care_process(vm_t *vm, champ_t *champ);

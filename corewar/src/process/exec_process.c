@@ -32,15 +32,18 @@ void take_care_process(vm_t *vm, champ_t *champ)
     tmp = vm->all_process;
     while (tmp) {
         if (tmp->wait_cycles == 0) {
-            //my_printf(2, STEALN, "\n━━━━━━━━━━━\n");
-            //my_printf(2, SREDN, "Getting new operation");
-            //my_printf(2, STEALN, "\n━━━━━━━━━━━\n");
+//            my_printf(2, STEALN, "\n━━━━━━━━━━━\n");
+//            my_printf(2, "%sGetting new operation for cycle pc = %d%s",
+//            LRED, tmp->pc, DEF);
+//            my_printf(2, STEALN, "\n━━━━━━━━━━━\n");
             if (!tmp->operation_to_do)
                 get_opcode(vm, tmp, champ);
+            else {
+                exec_all_process(vm);
+            }
         } else {
             tmp->wait_cycles--;
         }
         tmp = tmp->next;
     }
-    exec_all_process(vm);
 }

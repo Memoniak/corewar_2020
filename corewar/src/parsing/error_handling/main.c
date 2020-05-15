@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2020
+** no se
+** File description:
+** no se hmm
+*/
+
 #include "corewar.h"
 
 static const char *flags[3] = {"-dump", "-n", "-a"};
@@ -37,7 +44,7 @@ parser_t *parser_vm(int ac , char **av, champ_t **player)
 
     if (!parser)
         return NULL;
-    while(i < ac) {
+    while (i < ac) {
         ret = choice(i, av, parser, player[i_player]);
         if (ret == -1) {
             return NULL;
@@ -47,25 +54,4 @@ parser_t *parser_vm(int ac , char **av, champ_t **player)
         i += ret;
     }
     return parser;
-}
-
-int main(int ac, char **av)
-{
-    champ_t **tab_player = init_empty_champ();
-    parser_t *parser = parser_vm(ac, av, tab_player);
-
-    if (!parser || check_parser_values(parser) == -1 || check_cor_file(av[ac - 1])) {
-        my_printf(2, "%sERROR PARSING%s", RED, RED);
-        //free
-        return 84;
-    }
-    tab_player[parser->nb_players] = NULL;
-    for (int i = 0; tab_player[i]; i++)
-    {
-        my_printf(2,"%sPLAYER[%d]:\n\tname =%s%s\n",
-        BLUE, i,tab_player[i]->file_name, DEF);
-        my_printf(2,"%s\tchamp_nb =%d%s\n", BLUE,tab_player[i]->champ_nb, DEF);
-        my_printf(2,"%s\tadress =%d%s\n", BLUE,tab_player[i]->adress, DEF);
-    }
-    return 0;
 }

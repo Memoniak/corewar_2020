@@ -26,6 +26,14 @@ static void pars_header(int move, char *buf, champ_t *champ)
     }
 }
 
+static void disp_codex(char *buf, champ_t *champ, int read_len)
+{
+    my_printf(2, STEALN, "━━━━━━━━━━━");
+    my_printf(2, SXLTEAL" | ", "code = ", *buf);
+    my_printf(2, SDLMAGENTA" | ", "index = ",
+    (champ->prog_size - read_len - 1));
+}
+
 static void pars_loop(char *buf, int read_len, champ_t *champ, operation_t *opt)
 {
     int move = 0;
@@ -40,9 +48,7 @@ static void pars_loop(char *buf, int read_len, champ_t *champ, operation_t *opt)
             opt->code = *buf;
             opt->index = (champ->prog_size - read_len - 1);
             opt->nb_cycles = op_tab[opt->code - 1].nbr_cycles;
-            my_printf(2, STEALN, "━━━━━━━━━━━");
-            my_printf(2, SXLTEAL" | ", "code = ", *buf);
-            my_printf(2, SDLMAGENTA" | ", "index = ", (champ->prog_size - read_len - 1));
+            disp_codex(buf, champ, read_len);
             decrypt_instruction(*buf, &buf, &read_len, opt);
             opt->next = opt_create();
             opt = opt->next;
@@ -59,7 +65,7 @@ void pars_all_values(char *buf, int read_len, champ_t *champ, operation_t *opt)
     if (magic != COREWAR_EXEC_MAGIC)
     {
         my_printf(2, "%sError with Magic Number:%s%s %d != %d%s\n",
-                  RED, BOLD, WHITE, magic, COREWAR_EXEC_MAGIC, DEF);
+        RED, BOLD, WHITE, magic, COREWAR_EXEC_MAGIC, DEF);
         exit(EXIT_FAILURE);
     }
     my_printf(2, BOLD SLBLACK XLWHITEN, ".magic  = ", magic);

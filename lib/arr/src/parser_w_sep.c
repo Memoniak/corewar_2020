@@ -8,6 +8,7 @@
 #include "arr.h"
 
 int my_strlen(char *str);
+
 char *my_strdup(char *str);
 
 static char *set_memory(char *tab, int len)

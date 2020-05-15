@@ -15,7 +15,7 @@ static int opena_file(char *filepath)
     if (fd == -1)
     {
         my_printf(2, "%sError with open:%s%s '%s'%s\n",
-                  RED, BOLD, WHITE, filepath, DEF);
+        RED, BOLD, WHITE, filepath, DEF);
         exit(EXIT_FAILURE);
     }
     return fd;
@@ -30,7 +30,7 @@ void reada_file(champ_t *champ, operation_t *opt)
     read_len = read(fd, &buf, 100000);
     if (read_len == (-1)) {
         my_printf(2, "%sError with read:%s%s '%s'%s\n",
-                  RED, BOLD, WHITE, champ->file_name, DEF);
+        RED, BOLD, WHITE, champ->file_name, DEF);
         exit(EXIT_FAILURE);
     }
     pars_all_values(buf, read_len, champ, opt);

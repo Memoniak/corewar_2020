@@ -7,33 +7,23 @@
 
 #include "corewar.h"
 
-static const int DISP_SIZE = 32;
-
-void print_mem(vm_t *vm)
+champ_t get_champ_from_process(process_t *process, vm_t *vm)
 {
-    unsigned char bite;
+    process_t *tmp = process;
 
-    for (int i = 0; i < MEM_SIZE; i++) {
-        bite = vm->mem[i];
-        if (i == vm->all_process->pc)
-            my_printf(2, SXYELLOW" ", (bite < 16) ? "0" : "", bite);
-        else if (vm->mem[i] != 0) {
-            my_printf(2, SXYELLOW" ", (bite < 16) ? "0" : "", bite);
-
-        } else {
-            my_printf(2, SXYELLOW" ", (bite < 16) ? "0" : "", bite);
+    while (tmp) {
+        for (int i = 0; i < vm->nb_champs; i++) {
+            if (tmp->id == vm->champ[i].champ_nb)
+                return vm->champ[i];
         }
-        if (!((i + DISP_SIZE + 1) % DISP_SIZE))
-            printf("\n");
+        tmp = tmp->next;
     }
+    return vm->champ[0];
 }
 
-void print_end(vm_t *vm)
+void print_end(vm_t *vm, UNSD champ_t champ[][4])
 {
-    if (vm->last_live_nb)
-        my_printf(2, "Player %i has won\n", vm->last_live_nb);
-    else
-        my_printf(2, SLGREENN, "Awh there are no winners\n");
+    my_printf(2, "The player %i(%s) has won...", vm->last_live_nb, vm->last_name);
 }
 
 void dump_mem(vm_t *vm)
@@ -49,9 +39,6 @@ void run_vm(vm_t *vm, champ_t champs[][4])
     while (vm->cycle_to_die > 0 && vm->all_process) {
         take_care_process(vm, *champs);
         if (vm->cycle == vm->cycle_to_die) {
-            print_mem(vm);
-            return;
-            //my_printf(2, "%sRESTARTING LOOP\n%s", LRED, DEF);
             remove_process(vm);
             if (vm->nb_live >= NBR_LIVE) {
                 vm->cycle_to_die -= CYCLE_DELTA;
@@ -61,7 +48,8 @@ void run_vm(vm_t *vm, champ_t champs[][4])
         }
         vm->cycle++;
         vm->total_cycle++;
+        print_cycle(vm);
         dump_mem(vm);
     }
-    print_end(vm);
+    print_end(vm, champs);
 }

@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2020
+** parse_arg.c
+** File description:
+** parse args
+*/
+
 #include "corewar.h"
 
 static const char *flags[3] = {"-dump", "-n", "-a"};
@@ -37,7 +44,7 @@ parser_t *parser_vm(int ac , char **av, champ_t player[][4])
 
     if (!parser)
         return NULL;
-    while(i < ac) {
+    while (i < ac) {
         ret = choice(i, av, parser, &(*player)[i_player]);
         if (ret == -1) {
             return NULL;
@@ -53,15 +60,18 @@ parser_t *parse_args(int ac, char **av, champ_t tab_player[][4])
 {
     parser_t *parser = parser_vm(ac, av, tab_player);
 
-    if (!parser || check_parser_values(parser) == -1 || check_cor_file(av[ac - 1])) {
+    if (!parser || check_parser_values(parser) == -1 ||
+        check_cor_file(av[ac - 1])) {
         my_printf(2, "%sERROR PARSING%s", RED, RED);
         return NULL;
     }
     for (int i = 0; i < parser->nb_players; i++) {
-        my_printf(2,"%sPLAYER[%d]:\n\tname =%s%s\n",
+        my_printf(2, "%sPLAYER[%d]:\n\tname =%s%s\n",
         BLUE, i, ((*tab_player) + i)->file_name, DEF);
-        my_printf(2,"%s\tchamp_nb =%d%s\n", BLUE, (*tab_player)[i].champ_nb, DEF);
-        my_printf(2,"%s\tadress =%d%s\n", BLUE, ((*tab_player) + i)->champ_pos, DEF);
+        my_printf(2, "%s\tchamp_nb =%d%s\n",
+        BLUE, (*tab_player)[i].champ_nb, DEF);
+        my_printf(2, "%s\tadress =%d%s\n",
+        BLUE, ((*tab_player) + i)->champ_pos, DEF);
     }
     return parser;
 }

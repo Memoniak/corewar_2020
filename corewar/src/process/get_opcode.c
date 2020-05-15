@@ -13,7 +13,7 @@ static void init_operation_table(op_func *table)
     table[5] = &my_and;
     table[8] = &my_zjmp;
     table[10] = &my_sti;
-    table[13] = &fork_operation;
+    table[11] = &fork_operation;
 }
 
 void add_operation(process_t *process, operation_t *op)
@@ -33,6 +33,7 @@ void get_opcode(vm_t *vm, process_t *process, UNSD champ_t *champ)
     operation_t *op;
     op_func table[16];
 
+    my_printf(2, "OPCODE == %i\n", opcode);
     init_operation_table(table);
     op = malloc(sizeof(operation_t));
     vmemset(op, '\0', sizeof(operation_t));

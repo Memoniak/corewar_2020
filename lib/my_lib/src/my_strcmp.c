@@ -9,6 +9,8 @@
 
 bool my_strcmp(char const *first, char const *second)
 {
+    if (!first || !second)
+        return false;
     if (my_strlen(first) != my_strlen(second))
         return false;
     for (int i = 0; first[i]; i++)

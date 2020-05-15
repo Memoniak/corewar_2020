@@ -8,6 +8,7 @@
 #include "arr.h"
 
 int my_strlen(char const *str);
+
 char *my_memset(int len, char *str);
 
 char *remove_tabs(char *str)

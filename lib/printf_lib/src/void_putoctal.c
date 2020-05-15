@@ -7,19 +7,19 @@
 
 #include "my_printf.h"
 
-void void_putoctal(int output, unsigned int nb)
+void void_putoctal(int output, int nb)
 {
-    unsflags_t flags = {0, 0, '\0', 0, malloc(sizeof(unsigned int) + 1)};
+    char octa[16] = {'0'};
+    int len = (!nb) ? 1 : 0;
+    int temp  = 0;
 
-    while (nb >= 8) {
-        flags.quot = nb / 8;
-        flags.rest = nb % 8;
-        flags.str[flags.i] = flags.rest + 48;
-        nb = flags.quot;
-        flags.i++;
+    while (nb)
+    {
+        temp = nb % 8;
+        octa[len] = temp + 48;
+        nb /= 8;
+        len++;
     }
-    flags.rest = nb % 8;
-    flags.str[flags.i] = flags.rest + 48;
-    write(output, my_revstr(flags.str), my_strlen(flags.str));
-    free(flags.str);
+    while (len--)
+        write(output, &octa[len], 1);
 }

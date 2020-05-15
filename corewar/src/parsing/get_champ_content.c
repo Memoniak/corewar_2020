@@ -13,7 +13,7 @@ void get_prog_size(char **buf, int *prog_size)
     if (*prog_size > MEM_SIZE / 6)
     {
         my_printf(2, "%sError Champ too big: %d > %d%s\n",
-                  RED, *prog_size, MEM_SIZE / 6, DEF);
+        RED, *prog_size, MEM_SIZE / 6, DEF);
         exit(EXIT_FAILURE);
     }
 }

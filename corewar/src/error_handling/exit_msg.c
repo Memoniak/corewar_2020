@@ -10,6 +10,5 @@
 void exit_w_msg(char *msg, UNSD vm_t *vm)
 {
     my_printf(2, "%s%s%s\n", RED, msg, DEF);
-    //destroy vm
     exit(1);
 }

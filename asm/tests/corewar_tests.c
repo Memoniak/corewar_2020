@@ -32,7 +32,7 @@ Test(values, get_param_values, .init = redirect_all_std)
     int *values = values_to_deca(&cmd);
 
     my_printf(1, "%d %d %d %d",
-              values[0], values[1], values[2], values[3]);
+    values[0], values[1], values[2], values[3]);
     cr_assert_stdout_eq(solved);
 }
 

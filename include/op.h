@@ -1,11 +1,8 @@
 /*
-** op.h for  korewar
-**
-** Made by Astek
-** Login   <astek@epitech.net>
-**
-** Started on  Mon Mar 30 11:14:31 2009 Astek
-** Last update Tue Mar 22 16:44:20 2011 Astek
+** EPITECH PROJECT, 2020
+** op.h
+** File description:
+** op header
 */
 
 #ifndef _OP_H_
@@ -30,16 +27,16 @@
 */
 #define REG_NUMBER      16      /* r1 <--> rx */
 #define T_REG           1       /* register */
-#define T_DIR           2       /* direct  (ld  #1,r1  put 1 into r1) */
+#define T_DIR           2       /* direct  (ld  #1, r1  put 1 into r1) */
 #define T_IND           4       /* indirect always relative */
 #define T_LAB           8       /* LABEL */
 
 /*
 ** live
 */
-#define CYCLE_TO_DIE    1536    /* number of cycle before beig declared dead */
+#define CYCLE_TO_DIE    100    /* number of cycle before beig declared dead */
 #define CYCLE_DELTA     5
-#define NBR_LIVE        40
+#define NBR_LIVE        1
 
 /*
 ** size (in bytes)
@@ -64,20 +61,20 @@ typedef struct header_s header_t;
 */
 struct  op_s
 {
-   char         *mnemonique;
-   char         nbr_args;
-   args_type_t  type[MAX_ARGS_NUMBER];
-   char         code;
-   int          nbr_cycles;
-   char         *comment;
+    char         *mnemonique;
+    char         nbr_args;
+    args_type_t  type[MAX_ARGS_NUMBER];
+    char         code;
+    int          nbr_cycles;
+    char         *comment;
 };
 
 struct header_s
 {
-   int  magic;
-   char prog_name[PROG_NAME_LENGTH + 1];
-   int  prog_size;
-   char comment[COMMENT_LENGTH + 1];
+    int  magic;
+    char prog_name[PROG_NAME_LENGTH + 1];
+    int  prog_size;
+    char comment[COMMENT_LENGTH + 1];
 };
 
 #endif

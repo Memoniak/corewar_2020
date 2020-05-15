@@ -1,9 +1,8 @@
 /*
 ** EPITECH PROJECT, 2020
-** include/structs.h
 ** structs.h
 ** File description:
-** structs
+** structs header
 */
 
 #ifndef STRUCT_H
@@ -33,23 +32,24 @@ typedef struct {
 typedef struct {
     char name[PROG_NAME_LENGTH];
     char comment[COMMENT_LENGTH];
-    int magic;
-    int prog_size;
+    int  magic;
+    int  prog_size;
     char *file_name;
-    int fd;
-    int len;
+    int  fd;
+    int  len;
 } champion_header_t;
 
-typedef struct process_s{
-    int pc;
-    int start_pos;
+typedef struct process_s {
+    int  id;
+    int  pc;
+    int  start_pos;
     char carry;
-    int cycle_length;
-    int wait_cycles;
-    int live;
-    int registre[REG_NUMBER];
+    int  cycle_length;
+    int  wait_cycles;
+    int  live;
+    int  registre[REG_NUMBER];
     struct operation_s *operation_to_do;
-    struct process_s *next;
+    struct process_s   *next;
 } process_t;
 
 typedef struct operation_s {
@@ -72,30 +72,34 @@ typedef struct {
     int champ_nb;
     int champ_pos;
     int value[MAX_ARGS_NUMBER];
+    int  prog_size;
+    int  champ_nb;
+    int  champ_pos;
 } champ_t;
 
 typedef struct virtual_machine {
-    int cycle;
-    int total_cycle;
-    int cycle_to_die;
-    int nb_live;
-    int last_live_nb;
+    int  cycle;
+    int  total_cycle;
+    int  cycle_to_die;
+    int  nb_live;
+    int  last_live_nb;
     char *last_name;
-    int dump_cycle;
-    int nb_champs;
+    int  dump_cycle;
+    int  nb_champs;
     char mem[MEM_SIZE];
+    champ_t champ[4];
     operation_t *ops;
-    process_t *all_process;
+    process_t   *all_process;
 } vm_t;
 
 typedef struct
 {
-    int nb_players;//if nb_dump > nb cor
-    int nb_n;//if nb_dump > nb cor error
-    int nb_a; //if nb_dump > nb cor error
+    int nb_players;
+    int nb_n;
+    int nb_a;
     int last_n;
     int last_a;
-    int nb_dump; //if nb_dump > 1 error
+    int nb_dump;
     int min_prog_number;
     int dump;
 } parser_t;

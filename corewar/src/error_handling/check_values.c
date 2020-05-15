@@ -1,8 +1,14 @@
+/*
+** EPITECH PROJECT, 2020
+** check_values
+** File description:
+** check values
+*/
+
 #include "corewar.h"
 
 int check_parser_values(parser_t *parser)
 {
-    my_printf(2, "nb_dump = %d nb_n = %d nb_a = %d\n", parser->nb_dump, parser->nb_n, parser->nb_a);
     if (parser->nb_a > parser->nb_players ||
         parser->nb_dump > 1 || parser->nb_n > parser->nb_players) {
         my_printf(2, "%sError:NbArguments\n%s", GREEN, GREEN);
@@ -16,10 +22,9 @@ int fill_cor_file(char *name, parser_t *parser, champ_t *player)
 
     if (check_cor_file(name))
         return -1;
-    printf("NAME = %s\n", name);
+    my_printf(2, "NAME = %s\n", name);
     if (parser->last_n != parser->nb_players)
         player->champ_nb = parser->last_n;
-    //TODO : regler l'histoire des prog number avec le plus petit libre
     player->champ_pos = parser->last_a;
     player->file_name = my_strdup(name);
     parser->last_a = 0;
@@ -41,7 +46,6 @@ int check_value_prog(char *name, parser_t *parser)
         }
     }
     parser->last_n = my_getnbr(name);
-    //if lasts player == champ_nb augmenter de 1 le champ nb des lasts en ?
     parser->nb_n++;
     return 2;
 }

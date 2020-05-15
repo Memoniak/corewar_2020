@@ -7,11 +7,7 @@
 
 #include <criterion/criterion.h>
 #include <criterion/redirect.h>
-#include "assembler.h"
-
-char *get_func_name(char *str);
-void get_func_param(char *str, cmd_t *cmd, char *func_name);
-funct_t *make_struct(char const *filepath, champion_header_t *champion_info);
+#include "corewar.h"
 
 void redirect_all_str(void)
 {

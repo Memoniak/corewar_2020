@@ -28,12 +28,10 @@ int count_cmd_len_first(char **arr, int pos)
 
 int count_cmd_len(char **arr, int pos)
 {
-    char *name = NULL;
-    char *new = NULL;
+    char *name = get_func_name(arr[pos]);
+    char *new = get_func_name(arr[pos]);
     int len = 0;
 
-    name = get_func_name(arr[pos]);
-    new = get_func_name(arr[pos]);
     if (!check_line(arr[pos] + my_strlen(name))) {
         pos++;
         len++;

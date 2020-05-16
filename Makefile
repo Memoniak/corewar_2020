@@ -7,50 +7,46 @@
 
 ECHO=           /bin/echo -e
 DEF=            "\e[m"
-BLACK=          "\e[1;30m"
+BLACK=          "\e[30m"
 RED=            "\e[31m"
 GREEN=          "\e[32m"
 YELLOW=         "\e[33m"
 BLUE=           "\e[34m"
 MAGENTA=        "\e[35m"
-TEAL=           "\e[1;36m"
-WHITE=          "\e[1;37m"
-BLINK=          "\e[5m"
+TEAL=           "\e[36m"
+WHITE=          "\e[37m"
 BOLD=           "\e[1m"
-BORDER=         "\e[9m"
-BLANCO=         "\e[9;37m"
-BLACKY=         "\e[9;30m"
+BLINK=          "\e[5m"
 FONT=           "\e[7m"
+BORDER=         "\e[9m"
 
 ASMDIR=		asm/
 VMDIR=		corewar/
 
-all:		build
-
-build:
-		@make -C $(ASMDIR) --no-print-directory
-		@make -C $(VMDIR) --no-print-directory
+all:		asm core
 
 asm:
-		@make -C $(ASMDIR) --no-print-directory
+		@make -C $(ASMDIR) -s
 
 core:
-		@make -C $(VMDIR) --no-print-directory
+		@make -C $(VMDIR) -s
 
 clean:
-		@make -C $(ASMDIR) clean --no-print-directory
-		@make -C $(VMDIR) clean --no-print-directory
+		@make -C $(ASMDIR) clean -s
+		@make -C $(VMDIR) clean -s
 
 fclean:
-		@make -C $(ASMDIR) fclean --no-print-directory
-		@make -C $(VMDIR) fclean --no-print-directory
+		@make -C $(ASMDIR) fclean -s
+		@make -C $(VMDIR) fclean -s
 
 debug:
-		@make -C $(ASMDIR) debug --no-print-directory
-		@make -C $(VMDIR) debug --no-print-directory
+		@make -C $(ASMDIR) debug -s
+		@make -C $(VMDIR) debug -s
 
 tests_run:
-		@make -C $(ASMDIR) tests_run --no-print-directory
-		@make -C $(VMDIR) tests_run --no-print-directory
+		@make -C $(ASMDIR) tests_run -s
+		@make -C $(VMDIR) tests_run -s
 
 re:		fclean all
+
+.PHONY:		asm core clean fclean debug tests_run re all

@@ -72,8 +72,11 @@ int code, bool typed)
         temp &= 0x03;
         if (temp == 2)
             (*params)[3 - i] = check_direct(OTM(code - 1));
+        else if (temp == 3)
+            (*params)[3 - i] = temp - 1;
         else
             (*params)[3 - i] = temp;
+        my_printf(2, DMAGENTA" ", temp);
     }
     return type;
 }

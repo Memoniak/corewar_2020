@@ -84,8 +84,8 @@ cc_title:
 		@$(ECHO) -n $(WHITE)╵
 
 tests_run:	title cc_title obj_title $(OBJ)
-		@make -C $(MYDIR) --no-print-directory
-		@make -C $(PRINTDIR) --no-print-directory
+		@make -C $(MYDIR) -s
+		@make -C $(PRINTDIR) -s
 		@$(CC) -o $(TEST) $(OBJ) $(CFLAGS) $(LDFLAGS) && $(ECHO)                        \
 		$(BOLD)$(GREEN)"\n\n\t     ╽ ─╼━━━━━━━━━╾─ ╽\n\t ╼━━┿╉"$(DEF)                   \
 		$(BOLD)"BUILD SUCCESS "$(GREEN)"╊┿━━╾\n\t     ╿ ─╼━━━━━━━━━╾─ ╿\n"$(DEF) ||     \

@@ -9,9 +9,12 @@
 
 void print_cycle(vm_t *vm)
 {
-    my_printf(1, "CYCLE NUMBER[%d]\t", vm->total_cycle);
-    my_printf(1, "CYCLE[%d]\t", vm->cycle);
-    my_printf(1, "CYCLE_TO_DIE[%d]\t\r", vm->cycle_to_die);
+    my_printf(1, "CYCLE NUMBER[%s"DYELLOW"]\t",
+    F1000(vm->total_cycle), vm->total_cycle);
+    my_printf(1, "CYCLE[%s"DGREEN"]\t",
+    F1000(vm->cycle), vm->cycle);
+    my_printf(1, "CYCLE_TO_DIE[%s"DBLUE"]\t\r",
+    F1000(vm->cycle_to_die), vm->cycle_to_die);
     fflush(stdout);
 }
 

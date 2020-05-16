@@ -171,7 +171,7 @@ debug:		CFLAGS += -g
 debug:		re
 
 tests_run:	fclean lib_maker
-		@make -C $(TESTDIR) tests_run --no-print-directory
+		@make -C $(TESTDIR) tests_run -s
 		@./$(TEST)
 		@$(ECHO)
 

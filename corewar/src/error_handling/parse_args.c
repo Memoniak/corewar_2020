@@ -14,7 +14,11 @@ int check_cor_file(char *name)
     int len = my_strlen(name);
     int i = 0;
 
-    for (; name[i] && name[i] != '.'; i++);
+    for (; name[i] ; i++)
+    {
+        if (name[i] == '.' && (name[i + 1] != '.' && name[i + 1] != '/'))
+            break;
+    }
     if (len == i || !my_strcmp(name + i, ".cor")) {
         my_printf(2, "%sError:NameFile: [%s]\n%s", GREEN, name, GREEN);
         return 1;

@@ -23,6 +23,7 @@ static void init_operation_table(op_func *table)
     table[11] = &fork_operation;
     table[12] = &my_lld;
     table[13] = &my_lldi;
+    //table[14] = &my_llfork;
     table[15] = &my_aff;
 }
 

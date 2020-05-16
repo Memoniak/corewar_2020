@@ -67,6 +67,7 @@ int my_zjmp(vm_t *vm, process_t *process);
 int my_sti(vm_t *vm, process_t *process);
 int my_and(vm_t *vm, process_t *process);
 int my_live(vm_t *vm, process_t *process);
+<<<<<<< HEAD
 int my_ld(vm_t *vm, process_t *process);
 int my_st(vm_t *vm, process_t *proc);
 int my_or(vm_t *vm, process_t *proc);
@@ -78,6 +79,19 @@ int my_sub(vm_t *vm, process_t *proc);
 int my_xor(vm_t *vm, process_t *proc);
 int my_ldi(vm_t *vm, process_t *process);
 
+=======
+int my_add(vm_t *vm, process_t *proc);
+int my_sub(vm_t *vm, process_t *proc);
+int my_or(vm_t *vm, process_t *proc);
+int my_xor(vm_t *vm, process_t *proc);
+int my_st(vm_t *vm, process_t *proc);
+int my_add(vm_t *vm, process_t *proc);
+int my_ld(vm_t *vm, process_t *proc);
+int my_ldi(vm_t *vm, process_t *proc);
+int my_lld(vm_t *vm, process_t *proc);
+int my_lldi(vm_t *vm, process_t *proc);
+int my_aff(vm_t *vm, process_t *proc);
+>>>>>>> d522572bed50ff2b093c5eb9054dd5974ad75ac4
 //print
 void print_cycle(vm_t *vm);
 

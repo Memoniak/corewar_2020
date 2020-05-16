@@ -41,6 +41,6 @@ int my_sti(vm_t *vm, process_t *process)
     for (int i = 0; i < 4; i++)
         vm->mem[check_adr(process, adr + i)] =
         (process->registre[param1] >> (8 * (3 - i))) & 0xFF;
-    process->pc += tmp_pc;
+    process->pc = check_adr(process, tmp_pc);
     return 0;
 }

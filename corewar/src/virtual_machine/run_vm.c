@@ -28,14 +28,17 @@ void print_end(vm_t *vm, UNSD champ_t champ[][4])
 
 void dump_mem(vm_t *vm)
 {
-    if (vm->dump_cycle == vm->cycle)
+    if (vm->dump_cycle == vm->cycle) {
+        CLEAR;
         print_mem(vm);
+        print_cycle(vm);
+    }
 }
 
 void run_vm(vm_t *vm, champ_t champs[][4])
 {
+    //CLEAR_ALL;
     create_champ_process(vm, champs);
-    print_mem(vm);
     while (vm->cycle_to_die > 0 && vm->all_process) {
         take_care_process(vm, *champs);
         if (vm->cycle == vm->cycle_to_die) {
@@ -48,8 +51,8 @@ void run_vm(vm_t *vm, champ_t champs[][4])
         }
         vm->cycle++;
         vm->total_cycle++;
-        //print_cycle(vm);
-        dump_mem(vm);
+        //dump_mem(vm);
+        //usleep(100000);
     }
     print_end(vm, champs);
 }

@@ -84,6 +84,7 @@ OPTLIST=		$(OPT_DIR)create_opt.c		\
 			$(OPT_DIR)my_sub.c		\
 			$(OPT_DIR)my_zjmp.c     \
 			$(OPT_DIR)my_xor.c     	\
+			$(OPT_DIR)my_lfork.c	\
 
 
 TOOLSLIST=	$(TOOLS_DIR)tools.c		\

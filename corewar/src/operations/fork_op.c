@@ -7,7 +7,7 @@
 
 #include "corewar.h"
 
-static void copy_process(process_t **dest, process_t *src, size_t n)
+void copy_process(process_t **dest, process_t *src, size_t n)
 {
     unsigned char *source;
     unsigned char *destination;
@@ -19,7 +19,7 @@ static void copy_process(process_t **dest, process_t *src, size_t n)
     return;
 }
 
-static void insert_process(vm_t *vm, process_t *new)
+void insert_process(vm_t *vm, process_t *new)
 {
     process_t *p;
     process_t *previous;
@@ -44,7 +44,10 @@ int fork_operation(vm_t *vm, process_t *process)
     process_t *new;
     process_t *old = process;
     int adr;
+    int type = get_param_type(vm, process, 1);
 
+    if (type != IND_SIZE)
+        return -1;
     if (!(new = malloc(sizeof(process_t))))
         exit_w_msg("Failed to create new process\n", vm);
     vmemset(new, '\0', sizeof(process_t));

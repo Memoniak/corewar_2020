@@ -9,11 +9,15 @@
 
 int my_zjmp(vm_t *vm, process_t *process)
 {
-    UNSD int param;
+    int param;
+    int type1 = get_param_type(vm, process, 1);
 
+    if (type1 != T_DIR)
+        return -1;
     if (process->carry) {
         param = get_param_value(vm, process, 1);
-        process->pc += (param % IDX_MOD);
+        process->pc += param;
+        process->pc %= MEM_SIZE;
     } else {
         move_pc(vm, process);
     }

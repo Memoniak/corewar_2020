@@ -63,6 +63,7 @@ int main(int ac, char **av)
         destroy_all(funct, &champ);
         return EXIT_FAILURE;
     }
+    display_funct(funct);
     destroy_all(funct, &champ);
     return EXIT_SUCCESS;
 }

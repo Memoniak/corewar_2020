@@ -23,7 +23,7 @@ static void init_operation_table(op_func *table)
     table[11] = &fork_operation;
     table[12] = &my_lld;
     table[13] = &my_lldi;
-    //table[14] = &my_llfork;
+    table[14] = &my_lfork;
     table[15] = &my_aff;
 }
 
@@ -40,31 +40,24 @@ void add_operation(process_t *process, operation_t *op)
 
 void get_opcode(vm_t *vm, process_t *process, UNSD champ_t *champ)
 {
-    printf("process->pc id %i == %i\n", process->id, process->pc);
-    printf("mem == %x\n", vm->mem[process->pc]);
-    print_mem(vm);
     int opcode = vm->mem[process->pc];
     operation_t *op;
-    op_func table[16];
+    op_func table[17];
 
-    printf("OPCODE TO GET == %i\n", opcode);
     init_operation_table(table);
     op = malloc(sizeof(operation_t));
     vmemset(op, '\0', sizeof(operation_t));
-    op->nb_cycles = op_tab[opcode - 1].nbr_cycles;
-    //
-    if (opcode == 0) {
-        remove_process(vm);
+    if (opcode <= 0 || opcode > 16) {
+        //printf("Lost process\n");
+        process->pc = (process->pc + 1) % MEM_SIZE;
         return;
     }
-    else
-        op->operation = table[opcode - 1];
-    //
+    op->operation = table[opcode - 1];
+    op->nb_cycles = op_tab[opcode - 1].nbr_cycles;
     op->code = opcode;
     process->wait_cycles = op->nb_cycles;
     if (process->operation_to_do)
         add_operation(process, op);
-    else {
+    else
         process->operation_to_do = op;
-    }
 }

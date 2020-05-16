@@ -7,7 +7,8 @@
 
 #include "corewar.h"
 
-static const int DISP_SIZE = 32;
+static const int DISP_SIZE = 64;
+#define F16(a)    ((a < 16) ? "0" : "")
 
 void show_champ(vm_t *vm, int i, int len, int nb)
 {
@@ -50,22 +51,15 @@ void print_mem(vm_t *vm)
 {
     unsigned char byte;
 
-    for (int i = 0; i < MEM_SIZE / 6; i++) {
+    for (int i = 0; i < MEM_SIZE; i++) {
         byte = vm->mem[i];
-        if (byte != 0)
-            my_printf(2, SXLYELLOW " ", (byte < 16) ? "0" : "",byte);
+        if (i == vm->all_process->pc)
+            my_printf(2, FBG SXRED " ", F16(byte), byte);
+        else if (i > vm->champ->prog_size)
+           my_printf(2, DARK SXWHITE " ", F16(byte), byte);
         else
-            my_printf(2, SXLBLACK " ", (byte < 16) ? "0" : "",byte);
+            my_printf(2, SXRED " ", F16(byte), byte);
         if (!((i + DISP_SIZE + 1) % DISP_SIZE))
             my_printf(2, "\n");
     }
 }
-
-
-        // if (i == champ->champ_pos) {
-        //     print_pcs(vm, champ, i, champ->champ_nb);
-        //     show_champ(vm, i, champ->prog_size, champ->champ_nb);
-        // }
-        // my_printf(2, SXLBLACK " ", (vm->mem[i] < 16) ? "0" : "", vm->mem[i]);
-        // if (!((i + DISP_SIZE + 1) % DISP_SIZE))
-        //     my_printf(2, "\n");

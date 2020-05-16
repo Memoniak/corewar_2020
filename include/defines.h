@@ -26,4 +26,7 @@
 #define OTM(a)   op_tab[a].mnemonique
 #define FC(a, b) (*funct)[a].commands[b]
 
+#define CLEAR     my_printf(2, "\e[H")
+#define CLEAR_ALL my_printf(2, "\e[H\e[J")
+
 #endif /*DEFINES_H*/

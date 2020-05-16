@@ -9,9 +9,9 @@
 
 int my_lldi(vm_t *vm, process_t *process)
 {
-    int a = get_param_value(vm, process, 1);
-    int b = get_param_value(vm, process, 2);
-    int c = get_param_value(vm, process, 3);
+    UNSD int a = get_param_value(vm, process, 1);
+    UNSD int b = get_param_value(vm, process, 2);
+    UNSD int c = get_param_value(vm, process, 3);
     int param1 = get_param_type(vm, process, 1);
     int param2 = get_param_type(vm, process, 2);
     int param3 = get_param_type(vm, process, 3);

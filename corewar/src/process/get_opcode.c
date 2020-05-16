@@ -52,7 +52,14 @@ void get_opcode(vm_t *vm, process_t *process, UNSD champ_t *champ)
     op = malloc(sizeof(operation_t));
     vmemset(op, '\0', sizeof(operation_t));
     op->nb_cycles = op_tab[opcode - 1].nbr_cycles;
-    op->operation = table[opcode - 1];
+    //
+    if (opcode == 0) {
+        remove_process(vm);
+        return;
+    }
+    else
+        op->operation = table[opcode - 1];
+    //
     op->code = opcode;
     process->wait_cycles = op->nb_cycles;
     if (process->operation_to_do)

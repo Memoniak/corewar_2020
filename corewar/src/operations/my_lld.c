@@ -7,7 +7,7 @@
 
 #include "corewar.h"
 
-int my_lld(process_t *process, vm_t *vm)
+int my_lld(vm_t *vm, process_t *process)
 {
     int a = get_param_value(vm, process, 1);
     int b = get_param_value(vm, process, 2);

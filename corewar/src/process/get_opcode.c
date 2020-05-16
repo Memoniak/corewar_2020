@@ -10,10 +10,21 @@
 static void init_operation_table(op_func *table)
 {
     table[0] = &my_live;
+    table[1] = &my_ld;
+    table[2] = &my_st;
+    table[3] = &my_add;
+    table[4] = &my_sub;
     table[5] = &my_and;
+    table[6] = &my_or;
+    table[7] = &my_xor;
     table[8] = &my_zjmp;
+    table[9] = &my_ldi;
     table[10] = &my_sti;
     table[11] = &fork_operation;
+    table[12] = &my_lld;
+    table[13] = &my_lldi;
+    //table[14] = &my_llfork;
+    table[15] = &my_aff;
 }
 
 void add_operation(process_t *process, operation_t *op)

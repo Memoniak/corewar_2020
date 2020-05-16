@@ -50,9 +50,12 @@ void print_mem(vm_t *vm)
 {
     unsigned char byte;
 
-    for (int i = 0; i < MEM_SIZE; i++) {
+    for (int i = 0; i < MEM_SIZE / 6; i++) {
         byte = vm->mem[i];
-        my_printf(2, SXLBLACK " ", (byte < 16) ? "0" : "",byte);
+        if (byte != 0)
+            my_printf(2, SXLYELLOW " ", (byte < 16) ? "0" : "",byte);
+        else
+            my_printf(2, SXLBLACK " ", (byte < 16) ? "0" : "",byte);
         if (!((i + DISP_SIZE + 1) % DISP_SIZE))
             my_printf(2, "\n");
     }

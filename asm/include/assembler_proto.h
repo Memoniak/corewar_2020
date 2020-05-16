@@ -11,6 +11,8 @@
 #include "includes.h"
 #include "structs.h"
 
+void display_funct(funct_t *funct);
+
 //sim_main.c
 bool write_params(cmd_t *cmd, op_t op_tab[], int fd);
 bool sim_main(funct_t *funct, char *file_name, champion_header_t *champ);

@@ -32,10 +32,8 @@ int count_cmd_len(char **arr, int pos)
     char *new = get_func_name(arr[pos]);
     int len = 0;
 
-    if (!check_line(arr[pos] + my_strlen(name))) {
-        pos++;
-        len++;
-    }
+    if (!check_line(arr[pos] + my_strlen(name)) && get_func_name(arr[pos + 1]))
+        return 1;
     while (my_strcmp(name, new) && arr[pos]) {
         if (new)
             free(new);

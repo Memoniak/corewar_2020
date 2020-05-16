@@ -16,13 +16,13 @@ static void exec_all_process(vm_t *vm)
         while (tmp->operation_to_do) {
             last_op = tmp->operation_to_do;
             tmp->operation_to_do = tmp->operation_to_do->next;
+            printf("PC->%i\n", tmp->pc);
             last_op->operation(vm, tmp);
             last_op->operation = NULL;
             free(last_op);
         }
         tmp = tmp->next;
     }
-    return;
 }
 
 void take_care_process(vm_t *vm, champ_t *champ)
@@ -40,6 +40,7 @@ void take_care_process(vm_t *vm, champ_t *champ)
                 get_opcode(vm, tmp, champ);
             else {
                 exec_all_process(vm);
+                break;
             }
         } else {
             tmp->wait_cycles--;

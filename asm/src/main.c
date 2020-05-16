@@ -7,7 +7,7 @@
 
 #include "corewar.h"
 
-UNSD static void display_funct(funct_t *funct)
+UNSD void display_funct(funct_t *funct)
 {
     for (int i = 0; i < funct[0].len; i++) {
         my_printf(2, "%sfunc name --> %s%s\n", BLUE, funct[i].name, DEF);
@@ -53,6 +53,7 @@ int main(int ac, char **av)
     if (find_usage(ac, av))
         return EXIT_SUCCESS;
     if (!(funct = make_struct(av[1], &champ))) {
+        display_funct(funct);
         destroy_all(funct, &champ);
         return EXIT_FAILURE;
     } if (check_errors_instructions(funct)) {

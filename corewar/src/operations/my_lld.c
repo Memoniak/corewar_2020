@@ -7,7 +7,7 @@
 
 #include "corewar.h"
 
-int my_lld(process_t *process, vm_t *vm)
+int my_lld(vm_t *vm, process_t *process)
 {
     int a = get_param_value(vm, process, 1);
     int b = get_param_value(vm, process, 2);
@@ -18,5 +18,8 @@ int my_lld(process_t *process, vm_t *vm)
         return -1;
     if (param2 != T_REG)
         return -1;
+    process->registre[b] = a;
+    a == 0 ? process->carry = 1 : 0;
+    move_pc(vm, process);
     return 0;
 }

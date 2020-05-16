@@ -17,6 +17,5 @@ int my_zjmp(vm_t *vm, process_t *process)
     } else {
         move_pc(vm, process);
     }
-    //my_printf(2, SREDN, "Executing zjmp operation");
     return 0;
 }

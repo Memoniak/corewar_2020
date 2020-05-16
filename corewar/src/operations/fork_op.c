@@ -55,6 +55,5 @@ int fork_operation(vm_t *vm, process_t *process)
     new->operation_to_do = NULL;
     new->pc = (process->pc + adr) % IDX_MOD;
     move_pc(vm, process);
-    my_printf(2, "end of fork\n");
     return 0;
 }

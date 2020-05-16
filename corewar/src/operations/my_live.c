@@ -19,8 +19,8 @@ int my_live(vm_t *vm, process_t *process)
         free(vm->last_name);
     vm->last_name = my_strdup(champ.name);
     process->live++;
-//    my_printf(2, "\n%sA process show that player %d is alive%s\n",
-//    RED, p_nb, DEF);
+    my_printf(2, "\n%sThe player %i (%s) is alive.%s\n", RED, p_nb,
+    vm->last_name, DEF);
     move_pc(vm, process);
     return 0;
 }

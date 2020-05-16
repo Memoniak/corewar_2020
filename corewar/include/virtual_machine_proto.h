@@ -58,8 +58,8 @@ void add_process(champ_t *champ, vm_t *vm);
 void create_champ_process(vm_t *vm, champ_t champs[][4]);
 void remove_process(vm_t *vm);
 void get_opcode(vm_t *vm, process_t *process, champ_t *champ);
-void exec_process();
-
+void insert_process(vm_t *vm, process_t *new);
+void copy_process(process_t **dest, process_t *src, size_t n);
 //instruction
 int op_live(UNSD vm_t *vm, UNSD process_t *process);
 int fork_operation(vm_t *vm, process_t *process);
@@ -67,17 +67,18 @@ int my_zjmp(vm_t *vm, process_t *process);
 int my_sti(vm_t *vm, process_t *process);
 int my_and(vm_t *vm, process_t *process);
 int my_live(vm_t *vm, process_t *process);
+int my_ld(vm_t *vm, process_t *process);
+int my_st(vm_t *vm, process_t *proc);
+int my_or(vm_t *vm, process_t *proc);
+int my_lldi(vm_t *vm, process_t *process);
+int my_lld(vm_t *vm, process_t *process);
+int my_aff(vm_t *vm, process_t *proc);
 int my_add(vm_t *vm, process_t *proc);
 int my_sub(vm_t *vm, process_t *proc);
-int my_or(vm_t *vm, process_t *proc);
 int my_xor(vm_t *vm, process_t *proc);
-int my_st(vm_t *vm, process_t *proc);
-int my_add(vm_t *vm, process_t *proc);
-int my_ld(vm_t *vm, process_t *proc);
-int my_ldi(vm_t *vm, process_t *proc);
-int my_lld(vm_t *vm, process_t *proc);
-int my_lldi(vm_t *vm, process_t *proc);
-int my_aff(vm_t *vm, process_t *proc);
+int my_ldi(vm_t *vm, process_t *process);
+int my_lfork(vm_t *vm, process_t *process);
+
 //print
 void print_cycle(vm_t *vm);
 

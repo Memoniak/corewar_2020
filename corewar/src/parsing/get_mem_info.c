@@ -13,13 +13,11 @@ int get_param_type(vm_t *vm, process_t *proc, int nb)
     int params[4] = {0};
     int temp = 0;
 
-    if (!is_typed(code - 1))
-    {
+    if (!is_typed(code - 1)) {
         params[0] = check_direct(OTM(code - 1));
         return params[nb - 1];
     }
-    for (ssize_t i = 0; i != 4; i++)
-    {
+    for (ssize_t i = 0; i != 4; i++) {
         temp = vm->mem[proc->pc + 1] >> (2 * i);
         temp &= 0x03;
         if (temp == 2)
@@ -61,7 +59,5 @@ int get_next_pc(vm_t *vm, process_t *proc)
     {
         result += get_param_type(vm, proc, i);
     }
-    if (!is_typed(code - 1))
-        return result + 1;
-    return result + 2;
+    return result + 1 + is_typed(code - 1);
 }

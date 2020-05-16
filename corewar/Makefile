@@ -70,20 +70,22 @@ TOOLSLIST=	$(TOOLS_DIR)tools.c
 
 OPTLIST=		$(OPT_DIR)create_opt.c		\
 			$(OPT_DIR)fork_op.c		\
-			$(OPT_DIR)my_and.c		\
-			$(OPT_DIR)my_live.c		\
-			$(OPT_DIR)my_st.c		\
-			$(OPT_DIR)my_sti.c		\
-			$(OPT_DIR)my_zjmp.c     \
-			$(OPT_DIR)my_sub.c     \
-			$(OPT_DIR)my_or.c     \
-			$(OPT_DIR)my_xor.c     \
-			$(OPT_DIR)my_ld.c		\
-			$(OPT_DIR)my_lld.c		\
-			$(OPT_DIR)my_ldi.c		\
-			$(OPT_DIR)my_lldi.c		\
 			$(OPT_DIR)my_add.c		\
 			$(OPT_DIR)my_aff.c		\
+			$(OPT_DIR)my_and.c		\
+			$(OPT_DIR)my_ld.c		\
+			$(OPT_DIR)my_ldi.c		\
+			$(OPT_DIR)my_live.c		\
+			$(OPT_DIR)my_lld.c		\
+			$(OPT_DIR)my_lldi.c		\
+			$(OPT_DIR)my_or.c		\
+			$(OPT_DIR)my_st.c		\
+			$(OPT_DIR)my_sti.c		\
+			$(OPT_DIR)my_sub.c		\
+			$(OPT_DIR)my_zjmp.c     \
+			$(OPT_DIR)my_xor.c     	\
+			$(OPT_DIR)my_lfork.c	\
+
 
 TOOLSLIST=	$(TOOLS_DIR)tools.c		\
 			$(TOOLS_DIR)move_pc.c	\

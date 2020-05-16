@@ -55,18 +55,3 @@ void print_mem(vm_t *vm)
             my_printf(2, "\n");
     }
 }
-
-/*
-void print_mem(vm_t *vm)
-{
-    for (int i = 0; i < MEM_SIZE; i++) {
-        if (i == vm->champ->champ_pos) {
-            print_pcs(vm, vm->champ, i, vm->champ->champ_nb);
-            show_champ(vm, i, vm->champ->prog_size, vm->champ->champ_nb);
-        }
-        my_printf(2, SXLBLACK " ", (vm->mem[i] < 16) ? "0" : "", vm->mem[i]);
-        if (!((i + DISP_SIZE + 1) % DISP_SIZE))
-            my_printf(2, "\n");
-    }
-}
-*/

@@ -40,8 +40,7 @@ void add_process(champ_t *champ, vm_t *vm)
     process->id = champ->champ_nb;
     if (vm->all_process)
         put_process_in_list(vm, process);
-    else {
+    else
         vm->all_process = process;
-    }
     add_process_to_mem(vm, champ);
 }

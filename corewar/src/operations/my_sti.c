@@ -7,22 +7,40 @@
 
 #include "corewar.h"
 
+static int check_adr(process_t *ps, int value)
+{
+    value = ps->pc + value;
+    if (value > 0)
+        value %= MEM_SIZE;
+    else if (value < 0)
+        value = (value % MEM_SIZE) + MEM_SIZE;
+    return value;
+}
+
+static void check_reg_type(vm_t *vm, process_t *process, int nb, int *value)
+{
+    if (get_param_type(vm, process, nb) == T_REG)
+        *value = process->registre[get_param_value(vm, process, nb)];
+    else
+        *value = get_param_value(vm, process, nb);
+}
+
+
 int my_sti(vm_t *vm, process_t *process)
 {
-    int param1;
-    int param2;
-    int param3;
-    int adr;
+    int param1 = 0;
+    int adr = 0;
+    int value2 = 0;
+    int value3 = 0;
+    int tmp_pc = get_next_pc(vm, process);
 
     param1 = get_param_value(vm, process, 1);
-    param2 = get_param_value(vm, process, 2);
-    param3 = get_param_value(vm, process, 3);
-    adr = process->pc + (param2 + param3);
-    vm->mem[adr] = (process->registre[param1] >> 24) & 0xFF;
-    vm->mem[adr + 1] = (process->registre[param1] >> 16) & 0xFF;
-    vm->mem[adr + 2] = (process->registre[param1] >> 8) & 0xFF;
-    vm->mem[adr + 3] = process->registre[param1] & 0xFF;
-    move_pc(vm, process);
-//    my_printf(2, SREDN, "Executing STI operation");
+    check_reg_type(vm, process, 2, &value2);
+    check_reg_type(vm, process, 3, &value3);
+    adr = value2 + value3;
+    for (int i = 0; i < 4; i++)
+        vm->mem[check_adr(process, adr + i)] =
+        (process->registre[param1] >> (8 * (3 - i))) & 0xFF;
+    process->pc = check_adr(process, tmp_pc);
     return 0;
 }

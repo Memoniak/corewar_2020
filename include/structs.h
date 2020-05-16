@@ -47,7 +47,7 @@ typedef struct process_s {
     int  cycle_length;
     int  wait_cycles;
     int  live;
-    int  registre[REG_NUMBER];
+    int  registre[REG_NUMBER + 2];
     struct operation_s *operation_to_do;
     struct process_s   *next;
 } process_t;
@@ -68,9 +68,6 @@ typedef struct {
     char name[PROG_NAME_LENGTH];
     char comment[COMMENT_LENGTH];
     char *prog;
-//    int prog_size;
-//    int champ_nb;
-//    int champ_pos;
     int value[MAX_ARGS_NUMBER];
     int  prog_size;
     int  champ_nb;

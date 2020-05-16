@@ -22,5 +22,8 @@ int my_lldi(vm_t *vm, process_t *process)
         return -1;
     if(param3 != T_REG)
         return -1;
+    process->registre[c] = a + b;
+    (a + b) == 0 ? process->carry = 1 : 0;
+    move_pc(vm, process);
     return 0;
 }

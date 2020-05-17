@@ -17,11 +17,11 @@ int my_lldi(vm_t *vm, process_t *process)
     int param3 = get_param_type(vm, process, 3);
     int sum = (a + b);
 
-    if(param1 != T_REG || param1 != T_DIR || param1 != T_IND)
+    if (param1 != T_REG || param1 != T_DIR || param1 != T_IND)
         return -1;
-    if(param2 != T_IND || param2 != T_DIR)
+    if (param2 != T_IND || param2 != T_DIR)
         return -1;
-    if(param3 != T_REG)
+    if (param3 != T_REG)
         return -1;
     process->registre[c] = vm->mem[MEME((process->pc + sum))];
     if (!vm->mem[MEME((process->pc + sum))])

@@ -53,15 +53,15 @@ int check_usage(char *av[])
 int main(int ac, char *av[])
 {
     vm_t vm;
-    operation_t *opt = opt_create();;
+    operation_t *opt = opt_create();
     parser_t *parser;
 
+    if (ac < 2)
+        return EXIT_FAILURE;
     if (check_usage(av))
         return EXIT_SUCCESS;
     vmemset(&vm, '\0', sizeof(vm_t));
     init_empty_champ(&vm.champ);
-    if (ac < 2)
-        return EXIT_FAILURE;
     parser = parse_args(ac, av, &vm.champ);
     if (!parser) {
         //destroy all

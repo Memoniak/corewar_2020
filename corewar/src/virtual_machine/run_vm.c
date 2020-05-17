@@ -23,7 +23,8 @@ champ_t get_champ_from_process(process_t *process, vm_t *vm)
 
 void print_end(vm_t *vm, UNSD champ_t champ[][4])
 {
-    my_printf(2, "The player %i(%s) has won.\n", vm->last_live_nb, vm->last_name);
+    my_printf(2, "The player %i(%s) has won.\n",
+    vm->last_live_nb, vm->last_name);
 }
 
 void dump_mem(vm_t *vm)

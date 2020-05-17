@@ -31,7 +31,7 @@ int choice(int i, char **av, parser_t *parser, champ_t *player)
     if (!av[i + 1])
         return fill_cor_file(av[i], parser, player);
     if (my_strcmp(av[i], flags[0]))
-        return check_value_dump(av[i + 1], parser); //Pour sauter l'argument
+        return check_value_dump(av[i + 1], parser);
     if (my_strcmp(av[i], flags[1]))
         return check_value_prog(av[i + 1], parser);
     if (my_strcmp(av[i], flags[2]))

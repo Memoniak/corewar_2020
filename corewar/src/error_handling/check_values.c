@@ -79,7 +79,6 @@ int check_value_dump(char *name, parser_t *parser)
             return -1;
         }
     }
-    //TODO: check si dumpis ok
     parser->dump = my_getnbr(name);
     parser->nb_dump++;
     return 2;

@@ -40,7 +40,6 @@ static void pars_loop(char *buf, int read_len, champ_t *champ, operation_t *opt)
 
     while (read_len--)
     {
-        my_printf(2, "-- %d\n", *buf);
         pars_header(move, buf, champ);
         if (read_len == champ->prog_size - 1)
             champ->prog = my_strndup(champ->prog, buf, champ->prog_size);

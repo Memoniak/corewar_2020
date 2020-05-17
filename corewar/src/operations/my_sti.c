@@ -7,7 +7,7 @@
 
 #include "corewar.h"
 
-UNSD static int check_adr(process_t *ps, int value)
+static int check_adr(process_t *ps, int value)
 {
     value = MEME((ps->pc + (value % IDX_MOD)));
     return value;
@@ -20,7 +20,6 @@ static void check_reg_type(vm_t *vm, process_t *process, int nb, int *value)
     else
         *value = get_param_value(vm, process, nb);
 }
-
 
 int my_sti(vm_t *vm, process_t *process)
 {

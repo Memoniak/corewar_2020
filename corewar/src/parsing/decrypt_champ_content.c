@@ -60,8 +60,7 @@ int code, bool typed)
     int type = value;
     int temp = 0;
 
-    if (!typed)
-    {
+    if (!typed) {
         (*params)[0] = check_direct(OTM(code - 1));
         return 0;
     }
@@ -76,7 +75,6 @@ int code, bool typed)
             (*params)[3 - i] = temp - 1;
         else
             (*params)[3 - i] = temp;
-        my_printf(2, DMAGENTA" ", temp);
     }
     return type;
 }

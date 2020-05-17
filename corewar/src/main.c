@@ -60,14 +60,19 @@ int main(int ac, char *av[])
         return EXIT_SUCCESS;
     vmemset(&vm, '\0', sizeof(vm_t));
     init_empty_champ(&vm.champ);
-    if (ac < 2)
+    if (ac < 2) {
+        destroy_operation_t(opt);
         return EXIT_FAILURE;
+    }
     parser = parse_args(ac, av, &vm.champ);
-    if (!parser)
+    if (!parser) {
+        destroy_all_vm(parser, opt, &vm);
         return EXIT_FAILURE;
+    }
     for (ssize_t i = 0; i < parser->nb_players; i++)
         reada_file(&vm.champ[i], opt);
     set_up_vm(&vm, parser);
     run_vm(&vm, &vm.champ);
+    destroy_all_vm(parser, opt, &vm);
     return EXIT_SUCCESS;
 }

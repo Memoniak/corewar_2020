@@ -41,7 +41,8 @@ TOOLS_DIR=	$(SRC_DIR)tools/
 PROSS_DIR=	$(SRC_DIR)process/
 
 PROJLIST=	$(SRC_DIR)main.c \
-		$(SRC_DIR)op.c
+		$(SRC_DIR)op.c \
+		$(SRC_DIR)destroy_all.c
 
 VMLIST=
 
@@ -83,7 +84,7 @@ OPTLIST=		$(OPT_DIR)create_opt.c		\
 			$(OPT_DIR)my_sti.c		\
 			$(OPT_DIR)my_sub.c		\
 			$(OPT_DIR)my_zjmp.c     \
-			$(OPT_DIR)my_xor.c     	\
+			$(OPT_DIR)my_xor.c	\
 			$(OPT_DIR)my_lfork.c	\
 
 

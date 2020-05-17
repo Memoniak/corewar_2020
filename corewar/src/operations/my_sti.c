@@ -7,7 +7,7 @@
 
 #include "corewar.h"
 
-static int check_adr(process_t *ps, int value)
+UNSD static int check_adr(process_t *ps, int value)
 {
     value = MEME((ps->pc + (value % IDX_MOD)));
     return value;

@@ -23,21 +23,20 @@ BLACKY  =       "\e[9;30m"
 FONT    =       "\e[7m"
 
 INCDIR  =       ../include/
-SRCDIR  =       ../src/
-LIBDIR  =       ../lib/
-MYDIR   =       $(LIBDIR)my/
+SRCDIR  =       ./src/
+LIBDIR  =       ../../lib/
+MYDIR   =       $(LIBDIR)my_lib/
 PRINTDIR=       $(LIBDIR)printf_lib/
 PROJDIR =       $(SRCDIR)
-ASMDIR	=	$(SRCDIR)assembler/
 
-PROJLIST=	$(PROJDIR)op.c
+PROJLIST=	../src/op.c
 
-ASMLIST=	$(ASMDIR)types.c	\
-			$(ASMDIR)get_indexes.c	\
-			$(ASMDIR)values.c	\
-			$(ASMDIR)tools.c
+ASMLIST=	../src/check_params/check_command.c \
+			../src/check_params/check_defines.c \
+			../src/check_params/check_type_arg.c \
+			../src/parsing/check_label_char.c
 
-SRC     =	corewar_tests.c		\
+SRC     =	test_check_line.c		\
 		$(PROJLIST)		\
 		$(ASMLIST)
 

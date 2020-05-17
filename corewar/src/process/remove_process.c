@@ -7,7 +7,7 @@
 
 #include "corewar.h"
 
-static void remove_from_list(process_t **p, process_t *previous, vm_t *vm)
+void remove_from_list(process_t **p, process_t *previous, vm_t *vm)
 {
     process_t *tmp;
 
@@ -24,16 +24,38 @@ static void remove_from_list(process_t **p, process_t *previous, vm_t *vm)
     }
 }
 
+void remove_all_process(vm_t *vm)
+{
+    process_t *tmp = vm->all_process;
+    process_t *prev = NULL;
+
+    while (tmp)
+        remove_from_list(&tmp, prev, vm);
+}
+
+void check_if_diff(process_t *prev, process_t *p, int *value)
+{
+    process_t *tmp = p;
+    process_t *prev_tmp = prev;
+
+    if (prev)
+        while (tmp)  {
+            if (tmp->id != prev_tmp->id)
+                *value = 1;
+            tmp = tmp->next;
+        }
+}
+
 void remove_process(vm_t *vm)
 {
     process_t *all_process;
     process_t *previous = NULL;
+    int check_diff = 0;
 
     all_process = vm->all_process;
     while (all_process) {
+        check_if_diff(previous, all_process, &check_diff);
         if (!all_process->live) {
-            // my_printf(2, "%sCHAMP NB:%i has lost a PROCESS\n%s",
-            //    RED, all_process->registre[1], DEF);
             remove_from_list(&all_process, previous, vm);
         } else {
             all_process->live = 0;
@@ -41,4 +63,6 @@ void remove_process(vm_t *vm)
             all_process = all_process->next;
         }
     }
+    if (!check_diff)
+        remove_all_process(vm);
 }

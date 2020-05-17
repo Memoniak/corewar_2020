@@ -15,15 +15,17 @@ int my_live(vm_t *vm, process_t *process)
 
     if (param1_type != DIR_SIZE)
         return -1;
-    vm->nb_live++;
-    vm->last_live_nb = p_nb;
-    if (vm->last_name)
-        free(vm->last_name);
-    vm->last_name = my_strdup(champ.name);
-    process->live++;
+    if (process->id == p_nb) {
+        process->live++;
+        vm->nb_live++;
+        vm->last_live_nb = p_nb;
+        if (vm->last_name)
+            free(vm->last_name);
+        vm->last_name = my_strdup(champ.name);
+    }
     my_printf(2, "\n"SRED BOLD DLBLUE, "The player ", p_nb);
     my_printf(2, " ("DARK BOLD SWHITE")"SRED, vm->last_name, " is alive = ");
-    my_printf(2, BOLD SDYELLOW"       \n", F1000(process->live), process->live);
+    my_printf(2, BOLD SDYELLOW"      \n", F1000(process->live), process->live);
     move_pc(vm, process);
     return 0;
 }

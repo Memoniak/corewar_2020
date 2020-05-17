@@ -22,7 +22,6 @@ int fill_cor_file(char *name, parser_t *parser, champ_t *player)
 
     if (check_cor_file(name))
         return -1;
-    my_printf(2, "NAME = %s\n", name);
     if (parser->last_n != parser->nb_players)
         player->champ_nb = parser->last_n;
     player->champ_pos = parser->last_a;

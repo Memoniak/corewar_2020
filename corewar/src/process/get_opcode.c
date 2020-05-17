@@ -38,6 +38,30 @@ void add_operation(process_t *process, operation_t *op)
     process->operation_to_do = head;
 }
 
+void fill_operation(operation_t *op, int opcode, op_func *table, process_t *p)
+{
+    op->operation = table[opcode - 1];
+    op->nb_cycles = op_tab[opcode - 1].nbr_cycles;
+    op->code = opcode;
+    p->wait_cycles = op->nb_cycles;
+}
+
+int process_with_id(vm_t *vm, process_t *p)
+{
+    process_t *all = vm->all_process;
+    process_t *prev = NULL;
+
+    while (all) {
+        if (all->pc == p->pc && all->id != p->id) {
+            remove_from_list(&p, prev, vm);
+            return 1;
+        }
+        prev = all;
+        all = all->next;
+    }
+    return 0;
+}
+
 void get_opcode(vm_t *vm, process_t *process, UNSD champ_t *champ)
 {
     int opcode = vm->mem[process->pc];
@@ -47,15 +71,13 @@ void get_opcode(vm_t *vm, process_t *process, UNSD champ_t *champ)
     init_operation_table(table);
     op = malloc(sizeof(operation_t));
     vmemset(op, '\0', sizeof(operation_t));
+    //if (process_with_id(vm, process, champ))
+    //    return;
     if (opcode <= 0 || opcode > 16) {
-        my_printf(2, "Process lost id == %i\n", process->id);
         process->pc = (process->pc + 1) % MEM_SIZE;
         return;
     }
-    op->operation = table[opcode - 1];
-    op->nb_cycles = op_tab[opcode - 1].nbr_cycles;
-    op->code = opcode;
-    process->wait_cycles = op->nb_cycles;
+    fill_operation(op, opcode, table, process);
     if (process->operation_to_do)
         add_operation(process, op);
     else

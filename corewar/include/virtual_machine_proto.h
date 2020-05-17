@@ -61,6 +61,8 @@ void remove_process(vm_t *vm);
 void get_opcode(vm_t *vm, process_t *process, champ_t *champ);
 void insert_process(vm_t *vm, process_t *new);
 void copy_process(process_t **dest, process_t *src, size_t n);
+void remove_from_list(process_t **p, process_t *previous, vm_t *vm);
+
 //instruction
 int op_live(UNSD vm_t *vm, UNSD process_t *process);
 int fork_operation(vm_t *vm, process_t *process);
@@ -102,5 +104,9 @@ operation_t *opt_create(void);
 int opt_length(operation_t *opt);
 void opt_display(operation_t *opt);
 void opt_push_back(operation_t *opt, operation_t *new);
+
+void destroy_all_vm(parser_t *parser, operation_t *op, vm_t *vm);
+void remove_all_process(vm_t *vm);
+void destroy_operation_t(operation_t *op);
 
 #endif /* !VIRTUAL_H */

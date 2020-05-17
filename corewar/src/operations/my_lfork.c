@@ -11,6 +11,7 @@ int my_lfork(vm_t *vm, process_t *process)
 {
     process_t *new;
     process_t *old = process;
+    champ_t champ = get_champ_from_process(process, vm);
     int adr;
     int type = get_param_type(vm, process, 1);
 
@@ -25,6 +26,7 @@ int my_lfork(vm_t *vm, process_t *process)
     new->wait_cycles = 0;
     new->operation_to_do = NULL;
     new->pc = MEME((process->pc + adr));
+    new->id = champ.champ_nb;
     move_pc(vm, process);
     return 0;
 }

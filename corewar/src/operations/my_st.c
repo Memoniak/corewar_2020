@@ -20,11 +20,9 @@ int my_st(vm_t *vm, process_t *proc)
         proc->registre[b] = proc->registre[a];
     else {
         for (int i = 0; i < 4; i++)
-            vm->mem[(ABS(proc->pc + ((b + i) % IDX_MOD))) % MEM_SIZE] =
-                (proc->registre[a] >> (8 * (3 - i))) & 0xFF;
+            vm->mem[MEME((proc->pc + ((b + i) % IDX_MOD)))] =
+            (proc->registre[a] >> (8 * (3 - i))) & 0xFF;
     }
-    if (!proc->registre[a])
-        proc->carry = 1;
     move_pc(vm, proc);
     return 0;
 }

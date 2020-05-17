@@ -23,8 +23,8 @@ int my_ldi(vm_t *vm, process_t *process)
         return -1;
     if(param3 != T_REG)
         return -1;
-    process->registre[c] = vm->mem[ABS((process->pc + sum)) % MEM_SIZE];
-    if (!vm->mem[ABS((process->pc + sum)) % MEM_SIZE])
+    process->registre[c] = vm->mem[MEME((process->pc + sum))];
+    if (!vm->mem[MEME((process->pc + sum))])
         process->carry = 1;
     move_pc(vm, process);
     return 0;

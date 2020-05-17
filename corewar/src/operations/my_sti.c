@@ -7,9 +7,9 @@
 
 #include "corewar.h"
 
-static int check_adr(process_t *ps, int value)
+UNSD static int check_adr(process_t *ps, int value)
 {
-    value = (ABS(ps->pc + (value % IDX_MOD))) % MEM_SIZE;
+    value = MEME((ps->pc + (value % IDX_MOD)));
     return value;
 }
 
@@ -24,19 +24,18 @@ static void check_reg_type(vm_t *vm, process_t *process, int nb, int *value)
 
 int my_sti(vm_t *vm, process_t *process)
 {
-    int param1 = get_param_value(vm, process, 1);;
+    int param1 = get_param_value(vm, process, 1);
     int adr = 0;
     int value2 = 0;
     int value3 = 0;
-    int tmp_pc = get_next_pc(vm, process) % MEM_SIZE;
+    int tmp_pc = MEME(get_next_pc(vm, process));
 
     check_reg_type(vm, process, 2, &value2);
     check_reg_type(vm, process, 3, &value3);
     adr = value2 + value3;
     for (int i = 0; i < 4; i++)
-        vm->mem[check_adr(process, adr + i)] =
+        vm->mem[MEME((process->pc + (adr + i) % IDX_MOD))] =
         (process->registre[param1] >> (8 * (3 - i))) & 0xFF;
-    (!adr) ? process->carry = 1 : 0;
-    process->pc = check_adr(process, tmp_pc);
+    process->pc = tmp_pc;
     return 0;
 }

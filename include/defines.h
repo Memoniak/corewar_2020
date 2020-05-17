@@ -15,6 +15,7 @@
 
 #define UNSD __attribute__((unused))
 
+#define MEME(a)   ((a >= 0) ? (a % MEM_SIZE) : (a % MEM_SIZE + MEM_SIZE))
 #define ABS(a)    ((a < 0) ? -a : a)
 #define MAX(a, b) ((a > b) ? a : b)
 #define MIN(a, b) ((a < b) ? a : b)

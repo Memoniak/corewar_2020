@@ -45,7 +45,7 @@ static int disp_all_pc(vm_t *vm, int i)
     while (proc)
     {
         if (i == proc->pc)
-            return i;
+            return proc->id;
         proc = proc->next;
     }
     return -1;
@@ -59,8 +59,8 @@ static void two_champions(vm_t *vm)
     for (int i = 0; i < MEM_SIZE; i++) {
         byte = vm->mem[i];
         temp = disp_all_pc(vm, i);
-        if (temp == i)
-            my_printf(2, FBG SXYELLOW " ", F16(byte), byte);
+        if (temp >= 0)
+            my_printf(2, FBG SXYELLOW" ", F16(byte), byte);
         else if ((i >= vm->champ[0].prog_size && i < vm->champ[1].champ_pos) ||
                  i >= vm->champ[1].prog_size + vm->champ[1].champ_pos)
             my_printf(2, SXLBLACK " ", F16(byte), byte);
@@ -83,7 +83,7 @@ static void solo_champion(vm_t *vm)
     for (int i = 0; i < MEM_SIZE; i++) {
         byte = vm->mem[i];
         temp = disp_all_pc(vm, i);
-        if (temp == i)
+        if (temp >= 0)
             my_printf(2, FBG SXYELLOW " ", F16(byte), byte);
         else if (i >= vm->champ[0].prog_size)
             my_printf(2, SXLBLACK " ", F16(byte), byte);

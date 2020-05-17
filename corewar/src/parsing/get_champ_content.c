@@ -9,7 +9,8 @@
 
 void get_prog_size(char **buf, int *prog_size)
 {
-    *prog_size = read_nbytes(buf, 4, 1);
+    *prog_size = get_nbytes(buf, 4);
+    my_printf(2, SDREDN, "prog_size = ", *prog_size);
     if (*prog_size > MEM_SIZE)
     {
         my_printf(2, "%sError Champ too big: %d > %d%s\n",

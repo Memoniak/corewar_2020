@@ -36,7 +36,6 @@ static int move(vm_t *vm, process_t *proc, int nb)
 
     for (ssize_t i = 1; i != nb; i++) {
             temp += get_param_type(vm, proc, i);
-//            my_printf(2, DLBLUEN, temp);
     }
     return (proc->pc + is_typed(vm->mem[proc->pc] - 1) + temp);
 }
@@ -49,7 +48,6 @@ int get_param_value(vm_t *vm, process_t *proc, int nb)
     int  result = 0;
 
     result = get_next_nbytes(&next, byte, code);
-//    my_printf(2, "-"DMAGENTA"-"DLGREEN"-"DBLUEN, nb, result, byte);
     return result;
 }
 

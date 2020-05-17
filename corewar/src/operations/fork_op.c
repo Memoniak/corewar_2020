@@ -46,7 +46,7 @@ int fork_operation(vm_t *vm, process_t *process)
     int adr;
     int type = get_param_type(vm, process, 1);
 
-    if (type != IND_SIZE)
+    if (type != T_DIR)
         return -1;
     if (!(new = malloc(sizeof(process_t))))
         exit_w_msg("Failed to create new process\n", vm);
@@ -55,6 +55,7 @@ int fork_operation(vm_t *vm, process_t *process)
     insert_process(vm, new);
     adr = get_param_value(vm, process, 1);
     new->wait_cycles = 0;
+    new->id = process->id + 1;
     new->operation_to_do = NULL;
     new->pc = (process->pc + adr) % IDX_MOD;
     move_pc(vm, process);

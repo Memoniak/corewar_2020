@@ -15,7 +15,7 @@ int my_st(vm_t *vm, process_t *proc)
     int type_b = get_param_type(vm, proc, 2);
     int reg = 0;
 
-    if (type_a != T_REG || (type_b != T_REG && type_b != T_IND))
+    if (type_a != T_REG || (type_b != T_REG && type_b != IND_SIZE))
         return -1;
     reg = proc->registre[b];
     if (type_b == T_REG)

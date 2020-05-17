@@ -15,7 +15,6 @@ void print_cycle(vm_t *vm)
     F1000(vm->cycle), vm->cycle);
     my_printf(1, "CYCLE_TO_DIE[%s"DBLUE"]\t\r",
     F1000(vm->cycle_to_die), vm->cycle_to_die);
-    fflush(stdout);
 }
 
 void set_up_vm(vm_t *vm, parser_t *parser)

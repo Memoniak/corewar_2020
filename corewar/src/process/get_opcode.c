@@ -48,6 +48,7 @@ void get_opcode(vm_t *vm, process_t *process, UNSD champ_t *champ)
     op = malloc(sizeof(operation_t));
     vmemset(op, '\0', sizeof(operation_t));
     if (opcode <= 0 || opcode > 16) {
+        printf("Process lost id == %i\n", process->id);
         //printf("Lost process\n");
         process->pc = (process->pc + 1) % MEM_SIZE;
         return;

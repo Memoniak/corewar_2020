@@ -32,8 +32,8 @@ void remove_process(vm_t *vm)
     all_process = vm->all_process;
     while (all_process) {
         if (!all_process->live) {
-            my_printf(2, "%sCHAMP NB:%i has lost a PROCESS\n%s",
-            RED, all_process->registre[1], DEF);
+           // my_printf(2, "%sCHAMP NB:%i has lost a PROCESS\n%s",
+        //    RED, all_process->registre[1], DEF);
             remove_from_list(&all_process, previous, vm);
         } else {
             all_process->live = 0;

@@ -37,10 +37,11 @@ void dump_mem(vm_t *vm)
 
 void run_vm(vm_t *vm, champ_t champs[][4])
 {
-    //CLEAR_ALL;
+    CLEAR_ALL;
     create_champ_process(vm, champs);
     while (vm->cycle_to_die > 0 && vm->all_process) {
-        print_mem(vm);
+        //CLEAR;
+        //print_mem(vm);
         take_care_process(vm, *champs);
         if (vm->cycle == vm->cycle_to_die) {
             remove_process(vm);

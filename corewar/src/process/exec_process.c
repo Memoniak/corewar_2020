@@ -7,8 +7,7 @@
 
 #include "corewar.h"
 
-/*
-static void exec_all_process(vm_t *vm)
+UNSD static void exec_all_process(vm_t *vm)
 {
     process_t *tmp = vm->all_process;
     operation_t *last_op;
@@ -24,23 +23,6 @@ static void exec_all_process(vm_t *vm)
             free(last_op);
         }
         tmp = tmp->next;
-    }
-}
-*/
-
-static void exec_c_process(vm_t *vm, process_t *process)
-{
-    process_t *tmp = process;
-    operation_t *last_op;
-
-    while (tmp->operation_to_do) {
-        last_op = tmp->operation_to_do;
-        tmp->operation_to_do = tmp->operation_to_do->next;
-        //printf("executing operation of code == %i\n", last_op->code);
-        if (last_op->operation(vm, tmp) == -1)
-            tmp->pc = (tmp->pc + 1) % MEM_SIZE;
-        last_op->operation = NULL;
-        free(last_op);
     }
 }
 

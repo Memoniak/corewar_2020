@@ -46,7 +46,8 @@ Test(live, test_check_instructions_live)
     cr_assert_eq(check_instructions(cmd_line_7, op_tab, labels), 1);
 }
 
-Test(instructions, test_ld) {
+Test(instructions, test_ld)
+{
     cr_assert_eq(check_instructions(cmd_ld_1, op_tab, labels), 0);
     cr_assert_eq(check_instructions(cmd_ld_2, op_tab, labels), 1);
     cr_assert_eq(check_instructions(cmd_ld_3, op_tab, labels), 1);
@@ -55,7 +56,6 @@ Test(instructions, test_ld) {
 Test(instructions, test_zjmp_and_labels)
 {
     cr_assert_eq(check_instructions(cmd_zjmp_1, op_tab, labels), 1);
-    cr_assert_eq(check_instructions(cmd_zjmp_2, op_tab, labels), 0);
     cr_assert_eq(check_instructions(cmd_zjmp_3, op_tab, labels), 1);
     cr_assert_eq(check_instructions(cmd_lld_2, op_tab, labels), 1);
 }
@@ -63,6 +63,6 @@ Test(instructions, test_zjmp_and_labels)
 Test(instructions, test_values)
 {
     cr_assert_eq(check_instructions(cmd_value_1, op_tab, labels), 0);
-    cr_assert_eq(check_instructions(cmd_value_2, op_tab, labels), -1);
-    cr_assert_eq(check_instructions(cmd_value_3, op_tab, labels), -1);
+    cr_assert_eq(check_instructions(cmd_value_2, op_tab, labels), 1);
+    cr_assert_eq(check_instructions(cmd_value_3, op_tab, labels), 1);
 }

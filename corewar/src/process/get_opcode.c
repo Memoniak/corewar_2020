@@ -71,8 +71,6 @@ void get_opcode(vm_t *vm, process_t *process, UNSD champ_t *champ)
     init_operation_table(table);
     op = malloc(sizeof(operation_t));
     vmemset(op, '\0', sizeof(operation_t));
-    //if (process_with_id(vm, process, champ))
-    //    return;
     if (opcode <= 0 || opcode > 16) {
         process->pc = (process->pc + 1) % MEM_SIZE;
         return;

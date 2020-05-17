@@ -63,10 +63,8 @@ int main(int ac, char *av[])
     vmemset(&vm, '\0', sizeof(vm_t));
     init_empty_champ(&vm.champ);
     parser = parse_args(ac, av, &vm.champ);
-    if (!parser) {
-        destroy_all_vm(parser, opt, &vm);
+    if (!parser)
         return EXIT_FAILURE;
-    }
     for (ssize_t i = 0; i < parser->nb_players; i++)
         reada_file(&vm.champ[i], opt);
     set_up_vm(&vm, parser);

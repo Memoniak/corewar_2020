@@ -16,7 +16,6 @@ UNSD static void exec_all_process(vm_t *vm)
         while (tmp->operation_to_do) {
             last_op = tmp->operation_to_do;
             tmp->operation_to_do = tmp->operation_to_do->next;
-//          my_printf(2, "executing operation of code == %i\n", last_op->code);
             if (last_op->operation(vm, tmp) == -1)
                 tmp->pc = (tmp->pc + 1) % MEM_SIZE;
             last_op->operation = NULL;
@@ -34,7 +33,6 @@ static void exec_c_process(vm_t *vm, process_t *process)
     while (tmp->operation_to_do) {
         last_op = tmp->operation_to_do;
         tmp->operation_to_do = tmp->operation_to_do->next;
-//      my_printf(2, "executing operation of code == %i\n", last_op->code);
         if (last_op->operation(vm, tmp) == -1)
             tmp->pc = (tmp->pc + 1) % MEM_SIZE;
         last_op->operation = NULL;

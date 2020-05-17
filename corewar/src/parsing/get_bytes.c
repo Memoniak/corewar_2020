@@ -7,32 +7,6 @@
 
 #include "corewar.h"
 
-int read_nbytes(char **buf, int nb, int code)
-{
-    int result = **buf;
-    unsigned char live = **buf;
-
-    if (!nb)
-        return 0;
-    for (ssize_t i = 1; i != nb; i++)
-    {
-        if (!my_strcmp(OTM(code - 1), "live"))
-        {
-            result <<= 8;
-            result += *(*buf + i);
-            result %= power(2, 8);
-        } else
-        {
-            live <<= 8;
-            live += *(*buf + i);
-            live %= power(2, 8 * (nb - 1));
-        }
-    }
-    if (!my_strcmp(OTM(code - 1), "live"))
-        return result;
-    return live;
-}
-
 int get_next_nbytes(char **buf, int nb, int code)
 {
     int result = **buf;

@@ -13,16 +13,18 @@ int my_st(vm_t *vm, process_t *proc)
     int b = get_param_value(vm, proc, 2);
     int type_a = get_param_type(vm, proc, 1);
     int type_b = get_param_type(vm, proc, 2);
-    int reg = 0;
 
-    if (type_a != T_REG || (type_b != T_REG && type_b != T_IND))
+    if (type_a != T_REG || (type_b != T_REG && type_b != IND_SIZE))
         return -1;
-    reg = proc->registre[b];
     if (type_b == T_REG)
-        proc->registre[a] = reg;
-    else
-        proc->registre[a] = b;
-    (a == 0) ? proc->carry = 1 : 0;
+        proc->registre[b] = proc->registre[a];
+    else {
+        for (int i = 0; i < 4; i++)
+            vm->mem[(ABS(proc->pc + ((b + i) % IDX_MOD))) % MEM_SIZE] =
+                (proc->registre[a] >> (8 * (3 - i))) & 0xFF;
+    }
+    if (!proc->registre[a])
+        proc->carry = 1;
     move_pc(vm, proc);
     return 0;
 }

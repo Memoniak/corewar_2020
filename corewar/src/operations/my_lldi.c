@@ -9,12 +9,13 @@
 
 int my_lldi(vm_t *vm, process_t *process)
 {
-    UNSD int a = get_param_value(vm, process, 1);
-    UNSD int b = get_param_value(vm, process, 2);
-    UNSD int c = get_param_value(vm, process, 3);
+    int a = get_param_value(vm, process, 1);
+    int b = get_param_value(vm, process, 2);
+    int c = get_param_value(vm, process, 3);
     int param1 = get_param_type(vm, process, 1);
     int param2 = get_param_type(vm, process, 2);
     int param3 = get_param_type(vm, process, 3);
+    int sum = (a + b);
 
     if(param1 != T_REG || param1 != T_DIR || param1 != T_IND)
         return -1;
@@ -22,8 +23,9 @@ int my_lldi(vm_t *vm, process_t *process)
         return -1;
     if(param3 != T_REG)
         return -1;
-    process->registre[c] = a + b;
-    (a + b) == 0 ? process->carry = 1 : 0;
+    process->registre[c] = vm->mem[ABS((process->pc + sum)) % MEM_SIZE];
+    if (!vm->mem[ABS((process->pc + sum)) % MEM_SIZE])
+        process->carry = 1;
     move_pc(vm, process);
     return 0;
 }

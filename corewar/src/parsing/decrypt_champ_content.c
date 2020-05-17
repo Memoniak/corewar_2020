@@ -26,10 +26,10 @@ int *read_len, unsigned char code)
     if (byte == 1)
         my_printf(2, SRED, "REG ");
     else if (byte == 2)
-        my_printf(2, SRED, "DIR ");
-    else
         my_printf(2, SRED, "IND ");
-    result = read_nbytes(&temp, byte, code);
+    else
+        my_printf(2, SRED, "DIR ");
+    result = get_next_nbytes(&temp, byte, code);
     my_printf(2, "%ssize:%s%d %s%d %s", GREEN, BOLD, byte, LBLUE, result, DEF);
     for (ssize_t i = 0; i != byte; i++)
     {

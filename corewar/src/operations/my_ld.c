@@ -18,7 +18,7 @@ int my_ld(vm_t *vm, process_t *process)
         return -1;
     if (param2 != T_REG)
         return -1;
-    process->registre[b] = a;
+    process->registre[b] = (a % IDX_MOD);
     if (!a)
         process->carry = 1;
     move_pc(vm, process);

@@ -24,7 +24,7 @@ int my_lfork(vm_t *vm, process_t *process)
     adr = get_param_value(vm, process, 1);
     new->wait_cycles = 0;
     new->operation_to_do = NULL;
-    new->pc = (process->pc + adr);
+    new->pc = ABS((process->pc + adr)) % MEM_SIZE;
     move_pc(vm, process);
     return 0;
 }

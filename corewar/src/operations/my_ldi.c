@@ -15,6 +15,7 @@ int my_ldi(vm_t *vm, process_t *process)
     int param1 = get_param_type(vm, process, 1);
     int param2 = get_param_type(vm, process, 2);
     int param3 = get_param_type(vm, process, 3);
+    int sum = (a + b) % IDX_MOD;
 
     if (param1 != IND_SIZE && param1 != T_REG)
         return -1;
@@ -22,8 +23,8 @@ int my_ldi(vm_t *vm, process_t *process)
         return -1;
     if(param3 != T_REG)
         return -1;
-    process->registre[c] = vm->mem[process->pc + (a + b)] % IDX_MOD;
-    if (!vm->mem[process->pc + (a + b)])
+    process->registre[c] = vm->mem[ABS((process->pc + sum)) % MEM_SIZE];
+    if (!vm->mem[ABS((process->pc + sum)) % MEM_SIZE])
         process->carry = 1;
     move_pc(vm, process);
     return 0;

@@ -28,6 +28,7 @@ char **remove_comments(char **file_arr, int len);
 //get_bytes.c
 int read_nbytes(char **buf, int nb, int code);
 int get_nbytes(char **buf, int nb);
+int get_next_nbytes(char **buf, int nb, int code);
 
 //decrypt_champ_content.c
 int check_direct(char *name);

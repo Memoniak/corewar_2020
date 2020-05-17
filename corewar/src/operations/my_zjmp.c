@@ -16,8 +16,7 @@ int my_zjmp(vm_t *vm, process_t *process)
         return -1;
     if (process->carry) {
         param = get_param_value(vm, process, 1);
-        process->pc += param;
-        process->pc %= MEM_SIZE;
+        process->pc = ABS(((process->pc + param % IDX_MOD) % MEM_SIZE));
     } else {
         move_pc(vm, process);
     }

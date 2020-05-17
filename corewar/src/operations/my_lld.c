@@ -9,8 +9,8 @@
 
 int my_lld(vm_t *vm, process_t *process)
 {
-    UNSD int a = get_param_value(vm, process, 1);
-    UNSD int b = get_param_value(vm, process, 2);
+    int a = get_param_value(vm, process, 1);
+    int b = get_param_value(vm, process, 2);
     int param1 = get_param_type(vm, process, 1);
     int param2 = get_param_type(vm, process, 2);
 

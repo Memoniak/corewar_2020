@@ -56,7 +56,7 @@ int fork_operation(vm_t *vm, process_t *process)
     adr = get_param_value(vm, process, 1);
     new->wait_cycles = 0;
     new->operation_to_do = NULL;
-    new->pc = (process->pc + adr) % IDX_MOD;
+    new->pc = (ABS(process->pc + (adr % IDX_MOD))) % MEM_SIZE;
     move_pc(vm, process);
     return 0;
 }

@@ -18,7 +18,7 @@ int my_xor(vm_t *vm, process_t *proc)
 
     if (type_a == 0 || type_b == 0 || type_c != T_REG)
         return -1;
-    proc->registre[c] = a ^ b;
+    proc->registre[c] = (a ^ b);
     (a ^ b) == 0 ? proc->carry = 1 : 0;
     move_pc(vm, proc);
     return 0;

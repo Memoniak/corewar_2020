@@ -9,7 +9,7 @@
 
 int read_nbytes(char **buf, int nb, int code)
 {
-    int           result = **buf;
+    int result = **buf;
     unsigned char live = **buf;
 
     if (!nb)
@@ -31,6 +31,21 @@ int read_nbytes(char **buf, int nb, int code)
     if (!my_strcmp(OTM(code - 1), "live"))
         return result;
     return live;
+}
+
+int get_next_nbytes(char **buf, int nb, int code)
+{
+    int result = **buf;
+    int typed = (code != 9 && code != 12 && code != 15) ? 0 : 1;
+
+    for (ssize_t i = 1; i != nb; i++)
+    {
+        result <<= 8;
+        result += *(*buf + i);
+    }
+    if (typed)
+        result %= power(2, 8);
+    return result % IDX_MOD;
 }
 
 int get_nbytes(char **buf, int nb)

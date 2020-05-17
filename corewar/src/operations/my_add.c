@@ -20,8 +20,8 @@ int my_add(vm_t *vm, process_t *proc)
         return -1;
     a = proc->registre[a];
     b = proc->registre[b];
-    proc->registre[c] = a + b;
-    a + b == 0 ? proc->carry = 1 : 0;
+    proc->registre[c] = (a + b);
+    (a + b) == 0 ? proc->carry = 1 : 0;
     move_pc(vm, proc);
     return 0;
 }

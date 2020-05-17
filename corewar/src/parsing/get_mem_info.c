@@ -22,6 +22,8 @@ int get_param_type(vm_t *vm, process_t *proc, int nb)
         temp &= 0x03;
         if (temp == 2)
             params[3 - i] = check_direct(OTM(code - 1));
+        else if (temp == 3)
+            params[3 - i] = temp - 1;
         else
             params[3 - i] = temp;
     }
@@ -34,19 +36,20 @@ static int move(vm_t *vm, process_t *proc, int nb)
 
     for (ssize_t i = 1; i != nb; i++) {
             temp += get_param_type(vm, proc, i);
-            //my_printf(2, "%d ", temp);
+//            my_printf(2, DLBLUEN, temp);
     }
     return (proc->pc + is_typed(vm->mem[proc->pc] - 1) + temp);
 }
 
 int get_param_value(vm_t *vm, process_t *proc, int nb)
 {
-    int code = vm->mem[proc->pc];
-    int byte = get_param_type(vm, proc, nb);
+    int  code = vm->mem[proc->pc];
+    int  byte = get_param_type(vm, proc, nb);
     char *next = vm->mem + move(vm, proc, nb) + 1;
-    int result = 0;
+    int  result = 0;
 
-    result = read_nbytes(&next, byte, code);
+    result = get_next_nbytes(&next, byte, code);
+//    my_printf(2, "-"DMAGENTA"-"DLGREEN"-"DBLUEN, nb, result, byte);
     return result;
 }
 

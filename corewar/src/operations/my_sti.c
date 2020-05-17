@@ -21,7 +21,6 @@ static void check_reg_type(vm_t *vm, process_t *process, int nb, int *value)
         *value = get_param_value(vm, process, nb);
 }
 
-
 int my_sti(vm_t *vm, process_t *process)
 {
     int param1 = get_param_value(vm, process, 1);;

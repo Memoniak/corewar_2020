@@ -9,20 +9,17 @@
 
 static void pars_header(int move, char *buf, champ_t *champ)
 {
-    if (move == 4)
-    {
+    if (move == 4) {
         get_prog_name(&buf, &champ->name);
         my_printf(2, BOLD SLBLACK SLWHITEN, ".name   = ", champ->name);
     }
-    if (move == 8 + PROG_NAME_LENGTH)
-    {
+    if (move == 8 + PROG_NAME_LENGTH) {
         get_prog_size(&buf, &champ->prog_size);
         my_printf(2, BOLD SLBLACK DLWHITEN, ".size   = ", champ->prog_size);
     }
-    if (move == 12 + PROG_NAME_LENGTH)
-    {
+    if (move == 12 + PROG_NAME_LENGTH){
         get_prog_comment(&buf, &champ->comment);
-        my_printf(2, BOLD SLBLACK SLWHITEN, ".comment= ", champ->comment);
+        my_printf(2, BOLD SLBLACK SLWHITEN, ".comment = ", champ->comment);
     }
 }
 
@@ -62,8 +59,7 @@ void pars_all_values(char *buf, int read_len, champ_t *champ, operation_t *opt)
 {
     int magic = get_nbytes(&buf, 4);
 
-    if (magic != COREWAR_EXEC_MAGIC)
-    {
+    if (magic != COREWAR_EXEC_MAGIC) {
         my_printf(2, "%sError with Magic Number:%s%s %d != %d%s\n",
         RED, BOLD, WHITE, magic, COREWAR_EXEC_MAGIC, DEF);
         exit(EXIT_FAILURE);

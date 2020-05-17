@@ -35,8 +35,8 @@ static int move(vm_t *vm, process_t *proc, int nb)
     int temp = 0;
 
     for (ssize_t i = 1; i != nb; i++) {
-            temp += get_param_type(vm, proc, i);
-//            my_printf(2, DLBLUEN, temp);
+        temp += get_param_type(vm, proc, i);
+//        my_printf(2, DLBLUEN, temp);
     }
     return (proc->pc + is_typed(vm->mem[proc->pc] - 1) + temp);
 }
@@ -59,8 +59,6 @@ int get_next_pc(vm_t *vm, process_t *proc)
     int code = vm->mem[proc->pc];
 
     for (ssize_t i = 1; i != 5; i++)
-    {
         result += get_param_type(vm, proc, i);
-    }
     return result + 1 + is_typed(code - 1);
 }

@@ -19,9 +19,9 @@ int my_ldi(vm_t *vm, process_t *process)
 
     if (param1 != IND_SIZE && param1 != T_REG)
         return -1;
-    if(param2 != IND_SIZE)
+    if (param2 != IND_SIZE)
         return -1;
-    if(param3 != T_REG)
+    if (param3 != T_REG)
         return -1;
     process->registre[c] = vm->mem[ABS((process->pc + sum)) % MEM_SIZE];
     if (!vm->mem[ABS((process->pc + sum)) % MEM_SIZE])

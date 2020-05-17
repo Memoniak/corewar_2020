@@ -14,8 +14,7 @@ int check_cor_file(char *name)
     int len = my_strlen(name);
     int i = 0;
 
-    for (; name[i] ; i++)
-    {
+    for (; name[i] ; i++) {
         if (name[i] == '.' && (name[i + 1] != '.' && name[i + 1] != '/'))
             break;
     }
@@ -31,7 +30,7 @@ int choice(int i, char **av, parser_t *parser, champ_t *player)
     if (!av[i + 1])
         return fill_cor_file(av[i], parser, player);
     if (my_strcmp(av[i], flags[0]))
-        return check_value_dump(av[i + 1], parser); //Pour sauter l'argument
+        return check_value_dump(av[i + 1], parser);
     if (my_strcmp(av[i], flags[1]))
         return check_value_prog(av[i + 1], parser);
     if (my_strcmp(av[i], flags[2]))
@@ -70,11 +69,11 @@ parser_t *parse_args(int ac, char **av, champ_t tab_player[][4])
         return NULL;
     }
     for (int i = 0; i < parser->nb_players; i++) {
-        my_printf(2, "%sPLAYER[%d]:\n\tname =%s%s\n",
+        my_printf(2, "%sPLAYER[%d]:\n\tname = %s%s\n",
         BLUE, i, ((*tab_player) + i)->file_name, DEF);
-        my_printf(2, "%s\tchamp_nb =%d%s\n",
+        my_printf(2, "%s\tchamp_nb = %d%s\n",
         BLUE, (*tab_player)[i].champ_nb, DEF);
-        my_printf(2, "%s\tadress =%d%s\n",
+        my_printf(2, "%s\tadress = %d%s\n",
         BLUE, ((*tab_player) + i)->champ_pos, DEF);
     }
     return parser;

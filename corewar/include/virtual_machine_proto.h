@@ -105,4 +105,8 @@ int opt_length(operation_t *opt);
 void opt_display(operation_t *opt);
 void opt_push_back(operation_t *opt, operation_t *new);
 
+void destroy_all_vm(parser_t *parser, operation_t *op, vm_t *vm);
+void remove_all_process(vm_t *vm);
+void destroy_operation_t(operation_t *op);
+
 #endif /* !VIRTUAL_H */

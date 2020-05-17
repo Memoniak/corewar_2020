@@ -23,15 +23,25 @@ champ_t get_champ_from_process(process_t *process, vm_t *vm)
 
 void print_end(vm_t *vm, UNSD champ_t champ[][4])
 {
+    CLEAR;
     my_printf(2, "The player %i(%s) has won.\n", vm->last_live_nb, vm->last_name);
 }
 
 void dump_mem(vm_t *vm)
 {
-    if (vm->dump_cycle == vm->cycle) {
+
+    if (ANIM) {
+        print_mem(vm);
+        print_cycle(vm);
+        return;
+    }
+    if (!vm->dump_cycle)
+        return;
+    if (!(vm->total_cycle % vm->dump_cycle)) {
         CLEAR;
         print_mem(vm);
         print_cycle(vm);
+        usleep(1000000);
     }
 }
 
@@ -40,7 +50,6 @@ void run_vm(vm_t *vm, champ_t champs[][4])
     CLEAR_ALL;
     create_champ_process(vm, champs);
     while (vm->cycle_to_die > 0 && vm->all_process) {
-        print_mem(vm);
         CLEAR;
         take_care_process(vm, *champs);
         if (vm->cycle == vm->cycle_to_die) {
@@ -50,11 +59,9 @@ void run_vm(vm_t *vm, champ_t champs[][4])
             vm->cycle = 0;
             vm->nb_live = 0;
         }
+        dump_mem(vm);
         vm->cycle++;
         vm->total_cycle++;
-        print_cycle(vm);
-        dump_mem(vm);
-        CLEAR;
     }
     print_end(vm, champs);
 }

@@ -22,6 +22,8 @@
 #define ROTATION_DIST (1000)
 #define SPEED_DIST    (2000)
 
+#define ANIM (true)
+
 #define INFO (true)
 
 #define OTM(a)   op_tab[a].mnemonique

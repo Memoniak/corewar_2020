@@ -46,7 +46,7 @@ void fill_operation(operation_t *op, int opcode, op_func *table, process_t *p)
     p->wait_cycles = op->nb_cycles;
 }
 
-int process_with_id(vm_t *vm, process_t *p, champ_t *champ)
+int process_with_id(vm_t *vm, process_t *p)
 {
     process_t *all = vm->all_process;
     process_t *prev = NULL;
@@ -71,8 +71,8 @@ void get_opcode(vm_t *vm, process_t *process, UNSD champ_t *champ)
     init_operation_table(table);
     op = malloc(sizeof(operation_t));
     vmemset(op, '\0', sizeof(operation_t));
-    if (process_with_id(vm, process, champ))
-        return;
+    //if (process_with_id(vm, process, champ))
+    //    return;
     if (opcode <= 0 || opcode > 16) {
         process->pc = (process->pc + 1) % MEM_SIZE;
         return;

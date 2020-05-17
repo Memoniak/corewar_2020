@@ -9,15 +9,14 @@
 
 void destroy_operation_t(operation_t *op)
 {
-    operation_t *current = op->next;
+    operation_t *current = op;
     operation_t *next;
 
-    while (current != NULL) {
+    while (current->next != NULL) {
         next = current->next;
         free(current);
         current = next;
     }
-    free(op);
 }
 
 void destroy_all_vm(parser_t *parser, operation_t *op, vm_t *vm)

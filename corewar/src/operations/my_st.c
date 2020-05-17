@@ -23,8 +23,6 @@ int my_st(vm_t *vm, process_t *proc)
             vm->mem[(ABS(proc->pc + ((b + i) % IDX_MOD))) % MEM_SIZE] =
                 (proc->registre[a] >> (8 * (3 - i))) & 0xFF;
     }
-    if (!proc->registre[a])
-        proc->carry = 1;
     move_pc(vm, proc);
     return 0;
 }

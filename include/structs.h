@@ -43,7 +43,7 @@ typedef struct process_s {
     int  id;
     int  pc;
     int  start_pos;
-    char carry;
+    int carry;
     int  cycle_length;
     int  wait_cycles;
     int  live;

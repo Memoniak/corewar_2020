@@ -40,14 +40,13 @@ void run_vm(vm_t *vm, champ_t champs[][4])
     CLEAR_ALL;
     create_champ_process(vm, champs);
     while (vm->cycle_to_die > 0 && vm->all_process) {
-        //CLEAR;
-        //print_mem(vm);
+        print_mem(vm);
+        CLEAR;
         take_care_process(vm, *champs);
         if (vm->cycle == vm->cycle_to_die) {
             remove_process(vm);
-            if (vm->nb_live >= NBR_LIVE) {
+            if (vm->nb_live >= NBR_LIVE)
                 vm->cycle_to_die -= CYCLE_DELTA;
-            }
             vm->cycle = 0;
             vm->nb_live = 0;
         }

@@ -42,6 +42,7 @@ void insert_process(vm_t *vm, process_t *new)
 int fork_operation(vm_t *vm, process_t *process)
 {
     process_t *new;
+    champ_t champ = get_champ_from_process(process, vm);
     process_t *old = process;
     int adr;
     int type = get_param_type(vm, process, 1);
@@ -57,6 +58,7 @@ int fork_operation(vm_t *vm, process_t *process)
     new->wait_cycles = 0;
     new->id = process->id + 1;
     new->operation_to_do = NULL;
+    new->id = champ.champ_nb;
     new->pc = (ABS(process->pc + (adr % IDX_MOD))) % MEM_SIZE;
     move_pc(vm, process);
     return 0;

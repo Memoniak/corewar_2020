@@ -45,7 +45,6 @@ debug:
 
 tests_run:
 		@make -C $(ASMDIR) tests_run -s
-		@make -C $(VMDIR) tests_run -s
 
 re:		fclean all
 

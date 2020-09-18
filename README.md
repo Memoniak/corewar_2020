@@ -2,8 +2,6 @@
 
 > Epitech project - based around the creation of a virtual machine as well as an assembler for the game Corewar
 
-***MARK : 100%***
-
 
 ## Table of Contents
 

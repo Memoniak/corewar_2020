@@ -9,7 +9,6 @@
 
 - [Overview](#overview)
 - [Installation](#installation)
-- [Features](#features)
 - [Team](#team)
 
 

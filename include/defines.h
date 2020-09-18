@@ -23,7 +23,7 @@
 #define ROTATION_DIST (1000)
 #define SPEED_DIST    (2000)
 
-#define ANIM (true)
+#define ANIM (false)
 
 #define INFO (true)
 
